@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+	<title>Inicio</title>
+	<link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+	<header th:replace="nav/nav.html"> </header>
+	<div class="contenedor">
+		<div class="contenedorAutores">
+			<h3>Nuestros autores</h3>
+
+			<table class="listas">
+
+				<ol th:each="autor : ${autores}" name="IdAutor" th:if=${autor.alta}>
+					<td class="texto" th:text="${autor.nombre}"></td>
+					<td><a class="botones" th:href="@{editarAutor/} +  ${autor.id}">Editar</a></td>
+					<td><a class="botones" th:href="@{altaBajaAutor/} +  ${autor.id}" action="altaBajaAutor"
+							method="POST">Baja</a></td>
+
+					<tr></tr>
+				</ol>
+				<ol th:each="autor : ${autores}" name="IdAutor" th:if=${autor.alta}>
+					<td class="texto" th:text="${autor.nombre}"></td>
+					<td><a class="botones" th:href="@{editarAutor/} +  ${autor.id}">Editar</a></td>
+					<td><a class="botones" th:href="@{altaBajaAutor/} +  ${autor.id}" action="altaBajaAutor"
+							method="POST">Baja</a></td>
+
+
+				</ol>
+			</table>
+		</div>
+
+		<div class="contenedorLibros">
+			<h3>Nuestros libros</h3>
+
+			<table class="listas">
+
+				<ol th:each="libro : ${libros}" name="IdLibro" th:if=${libro.alta}>
+					<td class="texto" th:text="${libro.titulo}"></td>
+					<td><a class="botones" th:href="@{editarLibro/} +  ${libro.id}">Editar</a></td>
+					<td><a class="botones" th:href="@{altaBajaLibro/} +  ${libro.id}" action="altaBajaLibro"
+							method="POST">Baja</a></td>
+
+					<tr>
+				</ol>
+			</table>
+		</div>
+		<div class="ContenedorEditoriales">
+			<h3>Nuestras Editoriales</h3>
+
+			<table class="listas">
+
+				<ol th:each="editorial : ${editoriales}" name="IdEditorial" th:if=${editorial.alta}>
+					<td class="texto" th:text="${editorial.nombre}"></td>
+					<td><a class="botones" th:href="@{editarEditorial/} +  ${editorial.id}">Editar</a></td>
+
+
+					<td><a class="botones" th:href="@{altaBajaEditorial/} +  ${editorial.id}" action="altaBajaEditorial"
+							method="POST">Baja</a></td>
+
+					<tr></tr>
+				</ol>
+
+			</table>
+
+		</div>
+
+	</div>
+
+
+</body>
+
+</html>
