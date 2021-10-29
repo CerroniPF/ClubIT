@@ -24,7 +24,7 @@ public class Usuario {
 	private List<Posteo> post;
 	@OneToMany
 	private List<Respuesta> respuesta;
-	private Boolean rolEmpresa;
+	private Boolean rolAdministrador;
 	private Boolean alta;
 	
 	public Usuario() {	}
@@ -93,12 +93,12 @@ public class Usuario {
 		this.respuesta = respuesta;
 	}
 
-	public Boolean getRolEmpresa() {
-		return rolEmpresa;
+	public Boolean getRolAdministrador() {
+		return rolAdministrador;
 	}
 
-	public void setRolEmpresa(Boolean rolEmpresa) {
-		this.rolEmpresa = rolEmpresa;
+	public void setRolAdministrador(Boolean rolAdministrador) {
+		this.rolAdministrador = rolAdministrador;
 	}
 
 	public Boolean getAlta() {
@@ -113,6 +113,6 @@ public class Usuario {
 	public String toString() {
 		return "Usuario [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", nombreUsuario="
 				+ nombreUsuario + ", mail=" + mail + ", contrasena=" + contrasena + ", post=" + post + ", respuesta="
-				+ respuesta + ", rolEmpresa=" + rolEmpresa + ", alta=" + alta + "]";
+				+ respuesta + ", rolAdministrador=" + rolAdministrador + ", alta=" + alta + "]";
 	};
 }
