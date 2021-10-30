@@ -1,23 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head  th:fragment="head">
+
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="nav.css" />
-
-
+    <link rel="stylesheet"  th:href="@{./nav.css}">
+    <title>Document</title>
 </head>
+
 <body>
     <header th:fragment="header">
-        <nav class="barra">
-            <a class="link" href="/">inicio</a>
-            <a class="link" href="/cargarAutor">autor</a>
-            <a class="link" href="/cargarEditorial">editorial</a>
-            <a class="link" href="/cargarLibro">libro</a>
-            <div class="contenedorBucador">
-            <input  class="img" src="img.jpg" type="image"type="text">
-        </div>
+        <nav class="navbar">
+            <a class="logo" th:href ="@{/}" >
+                <img th:src="@{/logo-solo.png}" alt="logo"  >
+                <h1>Club IT</h1>
+            </a>
+              
+            <div class="restoNav">
+                <form class="form" action="">
+                    <select name="etiqueta" class="select">
+                        <option value="todos">Todos</option>
+                        <option value="todos">Java</option>
+                        <option value="todos">MySQL</option>
+                    </select>
+                    <input name="titulo" type="text" class="buscador">
+                    <button class="lupita"><img th:src="@{/lupa.png}" alt=""></button>
+                </form>
+
+                <!-- Agregar th:if="usuario == null" -->
+                <div class="usuarioLogin">
+                <a  class="boton" href="/ingreso">Ingresar</a>
+                <a class="boton" href="/registro">Registrar</a>
+                </div> 
+
+                <!-- Agregar th:if="usuario != null" 
+                <div class="usuarioLogin">
+                     th:text="usuario.nombreUsuario" 
+                    <div class="usuario">Pepito Flores</div>
+                    <a class="boton boton-largo" href="">Cerrar sesión</a>
+                </div>-->
+
+            </div>
         </nav>
     </header>
 </body>

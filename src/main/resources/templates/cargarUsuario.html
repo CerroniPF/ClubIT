@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:fragment="head">
- 
+     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cargar Libro</title>
-    <link rel="stylesheet" href="cargarUsuario.css" />
-    <header th:replace="nav/nav.html"> </header>
+    <link rel="stylesheet" href="/cargarUsuario.css" />
+    
+ 
+    
     
 </head>
 
 <body>
-<h1>Estamos acá!</h1>
-<!--	
+<header th:replace="nav/nav.html"> </header>
+	
     <div class="contenedor">
         <form action="cargarUsuario" method="POST">
             <h2 class="titulo">Registro usuario</h2>
@@ -44,7 +48,7 @@
             <button class="agregar">Agregar</button>
         </form>
     </div>
-    -->
+  
 </body>
 
 </html>

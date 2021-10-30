@@ -1,5 +1,7 @@
 package com.egg.clubit.servicios;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +14,10 @@ public class UsuarioServicio {
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;
 
-	public void registro(String nombre, String apellido, String nombreUsuario, String mail, String contrasena,
-			String contrasena2) throws ErrorServicio {
-		validar(nombre, apellido, nombreUsuario, mail, contrasena, contrasena2);
+	@Transactional
+	public void registro(String nombre, String apellido, String nombreUsuario, String mail, String pass,
+			String pass2) throws ErrorServicio {
+		validar(nombre, apellido, nombreUsuario, mail, pass, pass2);
 
 		try {
 			Usuario usuario = new Usuario();
@@ -23,10 +26,12 @@ public class UsuarioServicio {
 			usuario.setNombreUsuario(nombreUsuario);
 
 			usuario.setMail(mail);
-			usuario.setContrasena(contrasena);
+			usuario.setContrasena(pass);
 			usuario.setAlta(true);
 			usuario.setRolAdministrador(false);
 
+			
+			System.out.println("entro");
 			if (!usuarioRepositorio.buscarPorUsuario(mail).equals(mail)) {
 				usuarioRepositorio.save(usuario);
 			} else {

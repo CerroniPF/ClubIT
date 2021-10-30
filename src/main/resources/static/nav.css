@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+	list-style: none;
+	text-decoration: none;
+	border: none;
+	outline: none;
+	
+}
+
+body {
+    width: 100vw;
+    	background-image: url("fondo.jpg");
+}
+
+.navbar {
+    width: 100%;
+    height: 100px;
+    background: #3a475a;
+    color: rgb(196, 196, 196);
+    display: flex;
+    justify-content: space-between;
+}
+.logo {
+    width: 250px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color:aliceblue;
+}
+
+h1 {
+    font-size: 40px;
+    margin-left: 10px;
+}
+
+.logo img{
+    height: 70px;
+    transition: all 2s;
+}
+
+.logo img:hover {
+    height: 20px;
+    transform: rotate(360deg);
+}
+
+.restoNav {
+    width: 60%;
+    display: flex;
+}
+
+.form {
+    height: 100%;
+    width: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.buscador {
+    width: 70%;
+    height: 35px;
+    border-radius: 17.5px;
+    color: white;
+    background: rgba(255, 255, 255, 0.356);
+    padding-left: 10px;
+    border: none;
+    margin: 10px;
+}
+
+.lupita {
+    height: 30px;
+    width: 30px;
+    border: none;
+    background: transparent;
+    position: relative;
+    right: 45px;
+}
+.lupita img {
+    height: 25px;
+    width: 25px;
+}
+.select {
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    height: 30px;
+    padding: 5px;
+    width: 30%;
+    border-bottom: solid rgba(255, 255, 255, 0.356);
+    color: #fff;
+}
+.select:focus {
+    background: rgba(255, 255, 255, 0.356);
+}
+.usuarioLogin {
+    width: 35%;
+    height: 100%;
+}
+.boton {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 100px;
+    background: #4596D9;
+    color: white;
+    border-radius: 15px;
+    text-decoration: none;
+    margin-top: 30px;
+    margin-left: 10px;
+}
+.boton:hover{
+	 background: #69b7f6;
+}
+.boton-largo {
+    width: 120px;
+}
+.usuario {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 100px;
+    color: white;
+    margin-top: 30px;
+    margin-left: 10px;
+}
