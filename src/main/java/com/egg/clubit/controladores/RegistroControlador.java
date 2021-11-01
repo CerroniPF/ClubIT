@@ -41,11 +41,11 @@ public class RegistroControlador {
 
 	
 	@PostMapping("/registro")
-	public String registroUsuario(@RequestParam String nombre,@RequestParam String apellido,@RequestParam String nombreUsuario,@RequestParam String email,@RequestParam String pass,@RequestParam String pass2)throws ErrorServicio {
+	public String registroUsuario(@RequestParam String nombre,@RequestParam String apellido,@RequestParam String nombreUsuario,@RequestParam String mail,@RequestParam String pass,@RequestParam String pass2)throws ErrorServicio {
 		
 		
 		try {
-			usuarioServicio.registro(nombre,apellido,nombreUsuario,email,pass,pass2);
+			usuarioServicio.registro(nombre,apellido,nombreUsuario,mail,pass,pass2);
 		} catch (ErrorServicio e) {
 			
 			e.printStackTrace();
