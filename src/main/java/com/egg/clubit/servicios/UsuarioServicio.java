@@ -16,9 +16,9 @@ public class UsuarioServicio {
 	private UsuarioRepositorio usuarioRepositorio;
 
 	@Transactional
-	public void registro(String nombre, String apellido, String nombreUsuario, String mail, String pass,
-			String pass2) throws ErrorServicio {
-		validar(nombre, apellido, nombreUsuario, mail, pass, pass2); 
+	public void registro(String nombre, String apellido, String nombreUsuario, String mail, String contrasena,
+			String contrasena2) throws ErrorServicio {
+		validar(nombre, apellido, nombreUsuario, mail, contrasena, contrasena2); 
 
 		try {
 			Usuario usuario = new Usuario();
@@ -28,7 +28,7 @@ public class UsuarioServicio {
 			usuario.setNombreUsuario(nombreUsuario);
 
 			usuario.setMail(mail);
-			usuario.setContrasena(pass);
+			usuario.setContrasena(contrasena);
 			usuario.setAlta(true);
 			usuario.setRolAdministrador(false);
 
@@ -123,9 +123,9 @@ public class UsuarioServicio {
 			throw new ErrorServicio("El mail de usuario no puede quedar vacío");
 
 		}
-		// anda mal
-		if (   largo < 4 && largo < 16 ) { 
-			throw new ErrorServicio("La contraseña de usuario no puede quedar vacío");
+	
+		if (   largo < 4 || largo > 16 ) { 
+			throw new ErrorServicio("La contraseña de usuario no culple las condiciones (4-16)");
 		}
 		// si las contraseñas son iguales guarda el ususario
 		if (!contrasena.equals(contrasena2)) {
