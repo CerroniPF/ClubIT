@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargar Libro</title>
+    <link rel="stylesheet" href="registroUsuario.css" />
+   
+ 
+    
+    
+</head>
+
+<body>
+<header th:replace="nav/nav.html"> </header>
+	
+    <div class="contenedor">
+        <form  action="registro" method="POST">
+
+            <div  class="cajaCampo">
+                <b class="nombreCampo">Nombre</b>
+                <input class="campo" type="text" placeholder="ingrese nombre usuario" name="nombre" />
+            </div>
+            <div  class="cajaCampo">
+                <b class="nombreCampo">Apellido</b>
+                <input class="campo" type="text" placeholder="ingrese nombre usuario" name="apellido" />
+            </div><div  class="cajaCampo">
+                <b class="nombreCampo">Nombre Usuario</b>
+                <input class="campo" type="text" placeholder="ingrese nombre usuario" name="nombreUsuario" />
+            </div>
+            <div  class="cajaCampo">
+                <b class="nombreCampo">Email</b>
+                <input class="campo" type="email" placeholder="ingrese nombre usuario" name="mail" />
+            </div>
+        
+            <div  class="cajaCampo">
+                <b class="nombreCampo">Contraseña</b>
+                <input class="campo" type="text" placeholder="ingrese contraseña" name="pass" />
+            </div>
+            <div  class="cajaCampo">
+                <b class="nombreCampo">Repita Contraseña</b>
+                <input class="campo" type="text" placeholder="ingrese contraseña" name="pass2" />
+            </div>
+
+            <button class="botonRegistro">registro</button>
+        </form>
+    </div>
+  
+</body>
+
+</html>
