@@ -15,8 +15,10 @@
 
 <body>
 <header th:replace="nav/nav.html"> </header>
-	<div  class="error" th:text="${error}"></div>
+	
+
     <div class="contenedor">
+    <div  class="error" th:text="${error}"></div>
         <form  action="registro" method="POST">
 
             <div  class="cajaCampo">

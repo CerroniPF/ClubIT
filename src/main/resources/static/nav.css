@@ -149,6 +149,17 @@ option{
     margin-top: 30px;
     margin-left: 10px;
 }
+
 .error{
-	background-color: red;
+	text-align: center;
+	width:50%;
+	padding:20px;
+	border-radius: 5px;
+	margin:auto;
+	color: #842029;
+	background-color: #f8d7da;
+
+;
+
+	
 }
