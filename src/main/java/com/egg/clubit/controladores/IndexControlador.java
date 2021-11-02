@@ -8,13 +8,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller 
 @RequestMapping ("/")
 public class IndexControlador {
-
 	@GetMapping("/")
 	public ModelAndView index()  {
 		ModelAndView mav = new ModelAndView("index");
 		return mav;
 	}
-	
+
 	
 	@GetMapping("/crearPost")
 	public ModelAndView crearPost()  {
@@ -22,4 +21,5 @@ public class IndexControlador {
 		return mav;
 	}
 	
+
 }

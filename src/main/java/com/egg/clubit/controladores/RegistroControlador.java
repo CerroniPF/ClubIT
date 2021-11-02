@@ -14,16 +14,12 @@ import com.egg.clubit.servicios.UsuarioServicio;
 
 @Controller 
 @RequestMapping ("/")
-
 public class RegistroControlador {
-	
-	
+
 	@Autowired
 	private UsuarioServicio usuarioServicio;
 	
-	
-	
-	
+
 /*	@GetMapping("/ingreso")
 	public String ingreso(ModelMap model) {
 		
@@ -42,12 +38,15 @@ public class RegistroControlador {
 		ModelAndView mav = new ModelAndView("ingresoUsuario");
 		return mav;
 	}
-
 	
 	@PostMapping("/registro")
+
 	public String registroUsuario(ModelMap modelo ,@RequestParam String nombre,@RequestParam String apellido,@RequestParam String nombreUsuario,@RequestParam String mail,@RequestParam String pass,@RequestParam String pass2)throws ErrorServicio {
 		
 		
+
+	//public String registroUsuario(@RequestParam String nombre,@RequestParam String apellido,@RequestParam String nombreUsuario,@RequestParam String mail,@RequestParam String pass,@RequestParam String pass2)throws ErrorServicio {		
+
 		try {
 			usuarioServicio.registro(nombre,apellido,nombreUsuario,mail,pass,pass2);
 		} catch (ErrorServicio e) {
