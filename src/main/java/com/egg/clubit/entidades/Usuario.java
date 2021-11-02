@@ -20,9 +20,9 @@ public class Usuario {
 	private String nombreUsuario;
 	private String mail;
 	private String contrasena;
-	@OneToMany
+	@OneToMany(mappedBy = "id")
 	private List<Posteo> post;
-	@OneToMany
+	@OneToMany(mappedBy = "id")
 	private List<Respuesta> respuesta;
 	private Boolean rolAdministrador;
 	private Boolean alta;

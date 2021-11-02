@@ -17,16 +17,16 @@
 <header th:replace="nav/nav.html"> </header>
 	
     <div class="contenedor">
-        <form   action="cargarUsuario" method="POST">
+        <form   action="/logincheck" method="POST">
      
             <div  class="cajaCampo">
                 <b class="nombreCampo">Nombre de usuario</b>
-                <input class="campo" type="text" placeholder="ingrese nombre usuario" name="nombreUsuario" />
+                <input class="campo" type="text" placeholder="ingrese nombre usuario" name="mail" />
             </div>
         
             <div  class="cajaCampo">
                 <b class="nombreCampo">Contraseña</b>
-                <input class="campo" type="password" placeholder="ingrese contraseña" name="contraseña" />
+                <input class="campo" type="password" placeholder="ingrese contraseña" name="contrasena" />
             </div>
             <button class="boton">Iniciar sesion</button>
         </form>

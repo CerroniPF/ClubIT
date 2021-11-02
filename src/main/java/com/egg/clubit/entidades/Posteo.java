@@ -21,11 +21,22 @@ public class Posteo {
 	private String id;
 	private String titulo;
 	private String posteo;
-	private Boolean cerrar;
+	private Boolean alta;
+	private Boolean editado;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaPosteo;
 	@ManyToOne
 	private Etiqueta etiqueta;
+	@ManyToOne
+	Usuario usuario;
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	@OneToMany
 	private List<Respuesta> respuesta;
 	
@@ -55,12 +66,12 @@ public class Posteo {
 		this.posteo = posteo;
 	}
 
-	public Boolean getCerrar() {
-		return cerrar;
+	public Boolean getAlta() {
+		return alta;
 	}
 
-	public void setCerrar(Boolean cerrar) {
-		this.cerrar = cerrar;
+	public void setAlta(Boolean alta) {
+		this.alta = alta;
 	}
 
 	public Date getFechaPosteo() {
@@ -87,9 +98,18 @@ public class Posteo {
 		this.respuesta = respuesta;
 	}
 
+	public Boolean getEditado() {
+		return editado;
+	}
+
+	public void setEditado(Boolean editado) {
+		this.editado = editado;
+	}
+
 	@Override
 	public String toString() {
-		return "Posteo [id=" + id + ", posteo=" + posteo + ", cerrar=" + cerrar + ", fechaPosteo=" + fechaPosteo
-				+ ", etiqueta=" + etiqueta + ", respuesta=" + respuesta + "]";
+		return "Posteo [id=" + id + ", titulo=" + titulo + ", posteo=" + posteo + ", alta=" + alta + ", editado="
+				+ editado + ", fechaPosteo=" + fechaPosteo + ", etiqueta=" + etiqueta + ", usuario=" + usuario
+				+ ", respuesta=" + respuesta + "]";
 	}
 }
