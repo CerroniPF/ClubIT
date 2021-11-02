@@ -15,35 +15,35 @@
 
 <body>
 <header th:replace="nav/nav.html"> </header>
-	
+	<div  class="error" th:text="${error}"></div>
     <div class="contenedor">
         <form  action="registro" method="POST">
 
             <div  class="cajaCampo">
                 <b class="nombreCampo">Nombre</b>
-                <input class="campo" type="text" placeholder="ingrese nombre usuario" name="nombre" />
+                <input class="campo" type="text" placeholder="ingrese nombre" th:value=${nombre} name="nombre" />
             </div>
             <div  class="cajaCampo">
                 <b class="nombreCampo">Apellido</b>
-                <input class="campo" type="text" placeholder="ingrese nombre usuario" name="apellido" />
+                <input class="campo" type="text" placeholder="ingrese apellido" th:value=${apellido} name="apellido" />
             </div><div  class="cajaCampo">
                 <b class="nombreCampo">Nombre Usuario</b>
-                <input class="campo" type="text" placeholder="ingrese nombre usuario" name="nombreUsuario" />
+                <input class="campo" type="text" placeholder="ingrese nombre usuario"  th:value=${nombreUsuario} name="nombreUsuario" />
             </div>
             <div  class="cajaCampo">
                 <b class="nombreCampo">Email</b>
-                <input class="campo" type="email" placeholder="ingrese nombre usuario" name="mail" />
+                <input class="campo" type="email" placeholder="ingrese mail" th:value=${mail} name="mail" />
             </div>
         
             <div  class="cajaCampo">
                 <b class="nombreCampo">Contraseña</b>
-                <input class="campo" type="text" placeholder="ingrese contraseña" name="pass" />
+                <input class="campo" type="password" placeholder="ingrese contraseña" name="pass" />
             </div>
             <div  class="cajaCampo">
                 <b class="nombreCampo">Repita Contraseña</b>
-                <input class="campo" type="text" placeholder="ingrese contraseña" name="pass2" />
+                <input class="campo" type="password" placeholder="ingrese contraseña"   name="pass2" />
             </div>
-
+				
             <button class="botonRegistro">registro</button>
         </form>
     </div>

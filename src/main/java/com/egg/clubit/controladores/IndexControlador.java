@@ -15,4 +15,11 @@ public class IndexControlador {
 		return mav;
 	}
 	
+	
+	@GetMapping("/crearPost")
+	public ModelAndView crearPost()  {
+		ModelAndView mav = new ModelAndView("crearPosteo");
+		return mav;
+	}
+	
 }
