@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cargar Libro</title>
     <link rel="stylesheet" href="ingresoUsuario.css" />
-   
+    
  
     
     
@@ -17,18 +17,19 @@
 <header th:replace="nav/nav.html"> </header>
 	
     <div class="contenedor">
-        <form   action="/logincheck" method="POST">
+        <form action="cargarUsuario" method="POST">
+            <h2 class="titulo">nombre usurio</h2>
+            <a>dar de baja</a>
+            <div class="columnas">
      
-            <div  class="cajaCampo">
-                <b class="nombreCampo"> Mail</b>
-                <input class="campo" type="text" placeholder="ingrese mail" name="mail" />
+            <div  class="camposLibro">
+                <b class="tituloCampo">Nombre de usuario</b>
+                <input class="campo" type="text" placeholder="ingrese nombre usuario" name="nombreUsuario" />
             </div>
         
-            <div  class="cajaCampo">
-                <b class="nombreCampo">Contraseña</b>
-                <input class="campo" type="password" placeholder="ingrese contraseña" name="contrasena" />
-            </div>
-            <button class="boton">Iniciar sesion</button>
+
+        </div>
+            <button class="agregar">Guardar cambios</button>
         </form>
     </div>
   
