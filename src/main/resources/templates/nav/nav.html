@@ -29,17 +29,16 @@
                 </form>
 
                 <!-- Agregar th:if="usuario == null" -->
-                <div class="usuarioLogin">
+                <div class="usuarioLogin" th:if="${session.usersession == null}">
                 <a  class="boton" href="/ingreso">Ingresar</a>
                 <a class="boton" href="/registro">Registrar</a>
                 </div> 
 
-                <!-- Agregar th:if="usuario != null" 
-                <div class="usuarioLogin">
-                     th:text="usuario.nombreUsuario" 
-                    <div class="usuario">Pepito Flores</div>
-                    <a class="boton boton-largo" href="">Cerrar sesión</a>
-                </div>-->
+                <!-- Agregar th:if="usuario != null" -->
+                <div class="usuarioLogin" th:if="${session.usersession != null}">
+                     <div class="usuario">Pepito Flores</div>
+                    	<a class="boton boton-largo" href="/logout">Cerrar sesión</a>
+                </div>
 
             </div>
         </nav>
