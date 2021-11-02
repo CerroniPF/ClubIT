@@ -3,6 +3,8 @@ package com.egg.clubit.servicios;
 import java.util.Date;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,23 +18,24 @@ public class PosteoServicio {
 	@Autowired
 	public PosteoRepositorio posteoRepositorio;
 
+	@Transactional //(readOnly = true)
 	public void listarTodos() {
 		
 	}
 	
-	//@PreAuthorize("hasAnyRole('ROLE_ACTIVO')")
+	@Transactional //(readOnly = true)
 	public void listarPostUsuario() {
 		System.out.println("***************************");
 		//System.out.println(posteoRepositorio.listarPostUsuario());
 		System.out.println("***************************");
 	}
 	
-	//@PreAuthorize("hasAnyRole('ROLE_ACTIVO')")
+	@Transactional //(readOnly = true)
 	public void listarPorUsuarioYLenguaje(String email) {
 		
 	}
 	
-	//@PreAuthorize("hasAnyRole('ROLE_ACTIVO')")
+	@Transactional
 	public void crearPost(String titulo, String posteo, Etiqueta etiqueta) throws Exception {
 		//validar();
 		
@@ -50,7 +53,7 @@ public class PosteoServicio {
 		}
 	}
 
-	//@PreAuthorize("hasAnyRole('ROLE_ACTIVO')")
+	@Transactional
 	public void darBaja(String id) throws Exception {
 		Optional<Posteo> resp = posteoRepositorio.findById(id);
 		if (resp.isPresent()) {
@@ -61,7 +64,7 @@ public class PosteoServicio {
 		}
 	}
 	
-	//@PreAuthorize("hasAnyRole('ROLE_ACTIVO')")
+	@Transactional
 	public void modificar(String id, String titulo, String posteo, Etiqueta etiqueta) throws Exception {
 		Optional<Posteo> resp = posteoRepositorio.findById(id);
 		if (resp.isPresent()) {

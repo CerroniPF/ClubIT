@@ -20,7 +20,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.egg.clubit.entidades.Usuario;
 import com.egg.clubit.errorservicio.ErrorServicio;
-import com.egg.clubit.repositorios.PosteoRepositorio;
 import com.egg.clubit.repositorios.UsuarioRepositorio;
 
 @Service
@@ -31,6 +30,12 @@ public class UsuarioServicio implements UserDetailsService {
 	@Autowired
 	private PosteoServicio posteoServicio;
 
+	@Transactional //(readOnly = true)
+	public Usuario buscarPorMail(String mail) {
+		Usuario usuario = usuarioRepositorio.buscarUsuarioPorMail(mail);
+		return usuario;
+	}
+	
 	@Transactional
 	public void registro(String nombre, String apellido, String nombreUsuario, String mail, String contrasena,
 			String contrasena2) throws ErrorServicio {
@@ -83,6 +88,7 @@ public class UsuarioServicio implements UserDetailsService {
 //
 //	}
 
+	@Transactional
 	public void modificar(String nombreUsuario, String nombreUsuarioNuevo) throws ErrorServicio {
 
 		Usuario usuario = usuarioRepositorio.buscarPorNombreUsuario(nombreUsuario);
@@ -97,6 +103,7 @@ public class UsuarioServicio implements UserDetailsService {
 
 	}
 
+	@Transactional
 	public void baja(String nombreUsuario) {
 		/* Verificar que exista el usuario */
 		try {
@@ -147,13 +154,6 @@ public class UsuarioServicio implements UserDetailsService {
 			throw new ErrorServicio("Las contraseñas no coinciden");
 		}
 
-	}
-
-	public Usuario buscarPorMail(String mail) {
-
-		Usuario usuario = usuarioRepositorio.buscarUsuarioPorMail(mail);
-
-		return usuario;
 	}
 
 	@Override
