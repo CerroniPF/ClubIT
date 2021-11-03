@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,12 +14,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.egg.clubit.entidades.Usuario;
 import com.egg.clubit.errorservicio.ErrorServicio;
-import com.egg.clubit.repositorios.PosteoRepositorio;
 import com.egg.clubit.repositorios.UsuarioRepositorio;
 
 @Service
@@ -31,12 +30,18 @@ public class UsuarioServicio implements UserDetailsService {
 	@Autowired
 	private PosteoServicio posteoServicio;
 
+	@Transactional(readOnly = true)
+	public Usuario buscarPorMail(String mail) {
+		Usuario usuario = usuarioRepositorio.buscarUsuarioPorMail(mail);
+		return usuario;
+	}
+	
 	@Transactional
 	public void registro(String nombre, String apellido, String nombreUsuario, String mail, String contrasena,
 			String contrasena2) throws ErrorServicio {
-		validar(nombre, apellido, nombreUsuario, mail, contrasena, contrasena2);
+		//validar(nombre, apellido, nombreUsuario, mail, contrasena, contrasena2);
 
-		posteoServicio.listarPostUsuario();
+		//posteoServicio.listarPostUsuario("carlos@gmail.com");
 		
 		try {
 			Usuario usuario = new Usuario();
@@ -83,6 +88,7 @@ public class UsuarioServicio implements UserDetailsService {
 //
 //	}
 
+	@Transactional
 	public void modificar(String nombreUsuario, String nombreUsuarioNuevo) throws ErrorServicio {
 
 		Usuario usuario = usuarioRepositorio.buscarPorNombreUsuario(nombreUsuario);
@@ -97,6 +103,7 @@ public class UsuarioServicio implements UserDetailsService {
 
 	}
 
+	@Transactional
 	public void baja(String nombreUsuario) {
 		/* Verificar que exista el usuario */
 		try {
@@ -147,13 +154,6 @@ public class UsuarioServicio implements UserDetailsService {
 			throw new ErrorServicio("Las contraseñas no coinciden");
 		}
 
-	}
-
-	public Usuario buscarPorMail(String mail) {
-
-		Usuario usuario = usuarioRepositorio.buscarUsuarioPorMail(mail);
-
-		return usuario;
 	}
 
 	@Override

@@ -29,21 +29,22 @@ public class Posteo {
 	private Etiqueta etiqueta;
 	@ManyToOne
 	Usuario usuario;
+	@OneToMany(mappedBy = "id")
+	private List<Respuesta> respuesta;
+
+	public Posteo() {
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	}
-
-	@OneToMany
-	private List<Respuesta> respuesta;
-	
-	public Posteo() {	}
-	
-		public String getTitulo() {
-		return titulo;
 	}
 
 	public void setTitulo(String titulo) {
@@ -106,10 +107,10 @@ public class Posteo {
 		this.editado = editado;
 	}
 
-	@Override
-	public String toString() {
-		return "Posteo [id=" + id + ", titulo=" + titulo + ", posteo=" + posteo + ", alta=" + alta + ", editado="
-				+ editado + ", fechaPosteo=" + fechaPosteo + ", etiqueta=" + etiqueta + ", usuario=" + usuario
-				+ ", respuesta=" + respuesta + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Posteo [id=" + id + ", titulo=" + titulo + ", posteo=" + posteo + ", alta=" + alta + ", editado="
+//				+ editado + ", fechaPosteo=" + fechaPosteo + ", etiqueta=" + etiqueta + ", usuario=" + usuario
+//				+ ", respuesta=" + respuesta + "]";
+//	}
 }
