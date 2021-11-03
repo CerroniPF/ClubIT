@@ -39,11 +39,11 @@ public class UsuarioServicio implements UserDetailsService {
 	@Transactional
 	public void registro(String nombre, String apellido, String nombreUsuario, String mail, String contrasena,
 			String contrasena2) throws ErrorServicio {
-		validar(nombre, apellido, nombreUsuario, mail, contrasena, contrasena2);
+		//validar(nombre, apellido, nombreUsuario, mail, contrasena, contrasena2);
 
-		posteoServicio.listarPostUsuario();
+		posteoServicio.listarPostUsuario("carlos@gmail.com");
 		
-		try {
+		/* try {
 			Usuario usuario = new Usuario();
 			Usuario usuario2 = new Usuario();
 			usuario.setNombre(nombre);
@@ -68,7 +68,7 @@ public class UsuarioServicio implements UserDetailsService {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-
+*/
 	}
 
 //	public void ingreso(String mail, String contrasena) throws ErrorServicio {
