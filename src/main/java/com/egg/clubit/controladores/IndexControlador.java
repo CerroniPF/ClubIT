@@ -3,6 +3,7 @@ package com.egg.clubit.controladores;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,6 +28,12 @@ public class IndexControlador {
 	@GetMapping("/perfil")
 	public ModelAndView perfil()  {
 		ModelAndView mav = new ModelAndView("perfil");
+		return mav;
+	}
+	
+	@GetMapping("/verPosteo/{id}")
+	public ModelAndView verPosteo(@PathVariable String id)  {
+		ModelAndView mav = new ModelAndView("verPosteo");
 		return mav;
 	}
 	

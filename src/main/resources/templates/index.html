@@ -2,21 +2,25 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 
-
 <head th:fragment="head">
+     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargar Libro</title>
+    <link th:replace="nav/nav.html :: link">
 
     <title>Cargar Libro</title>
    
-    <header th:replace="nav/nav.html"> </header>
+ </head>
  
 </head>
-
+ <header th:replace="nav/nav.html :: nav"> </header>
  
 </body>
 <p th:text="${error}"></p>
 
 <a  th:if="${session.usersession}" class="boton" href="/crearPost">Post</a>
-
+<a  th:if="${session.usersession}" class="botones" th:href="@{verPosteo/} +  ${session.usersession.id}">Editar</a>
 <div class="contenedor" >
 	<b>titulo</b>
 	<p>java </p>

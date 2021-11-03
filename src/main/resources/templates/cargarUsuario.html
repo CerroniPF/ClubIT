@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cargar Libro</title>
+       <link th:replace="nav/nav.html :: link">
     <link rel="stylesheet" href="/cargarUsuario.css" />
     
  
@@ -14,7 +15,7 @@
 </head>
 
 <body>
-<header th:replace="nav/nav.html"> </header>
+ <header th:replace="nav/nav.html :: nav"> </header>
 	
     <div class="contenedor">
         <form action="cargarUsuario" method="POST">
