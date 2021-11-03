@@ -9,13 +9,14 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller 
 @RequestMapping ("/")
 public class IndexControlador {
+	
 	@GetMapping("/")
 	public ModelAndView index()  {
 		ModelAndView mav = new ModelAndView("index");
 		return mav;
 	}
 
-	
+	@PreAuthorize("hasAnyRole('ROLE_ACTIVO')")
 	@GetMapping("/crearPost")
 	public ModelAndView crearPost()  {
 		ModelAndView mav = new ModelAndView("crearPosteo");

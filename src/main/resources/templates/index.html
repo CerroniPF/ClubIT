@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!DOCTYPE html>
+
 
 
 <head th:fragment="head">
@@ -15,7 +15,13 @@
 </body>
 <p th:text="${error}"></p>
 
-<a  class="boton" href="/crearPost">Post</a>
+<a  th:if="${session.usersession}" class="boton" href="/crearPost">Post</a>
+
+<div class="contenedor" >
+	<b>titulo</b>
+	<p>java </p>
+	<p>fecha</p>
+</div>	
 </body>
 
 </html>
