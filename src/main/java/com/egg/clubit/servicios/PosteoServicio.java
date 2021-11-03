@@ -20,7 +20,7 @@ public class PosteoServicio {
 		
 	}
 	
-	//@PreAuthorize("hasAnyRole('ROLE_ACTIVO')")
+	
 	public void listarPostUsuario() {
 		System.out.println("***************************");
 		//System.out.println(posteoRepositorio.listarPostUsuario());

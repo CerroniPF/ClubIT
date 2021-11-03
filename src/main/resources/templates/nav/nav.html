@@ -2,15 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"  th:href="@{./nav.css}">
-    <title>Document</title>
+ 
 </head>
 
 <body>
-    <header th:fragment="header">
+<link th:fragment="link" rel="stylesheet"  href="/nav.css">     <!--rempalzar en todos lados" -->
+   <header th:fragment="nav" > <!--rempalzar en todos lados" -->
         <nav class="navbar">
             <a class="logo" th:href ="@{/}" >
                 <img th:src="@{/logo-solo.png}" alt="logo"  >
@@ -36,12 +33,12 @@
 
                 <!-- Agregar th:if="usuario != null" -->
                 <div class="usuarioLogin" th:if="${session.usersession != null}">
-                     <div class="usuario">Pepito Flores</div>
-                    	<a class="boton boton-largo" href="/logout">Cerrar sesión</a>
+                     <a href="/perfil" class="usuario" th:text="${session.usersession.nombreUsuario}"></a>
+                    	<a  class="boton boton-largo" href="/logout">Cerrar sesión</a>
                 </div>
 
             </div>
         </nav>
-    </header>
+</header>   
 </body>
 </html>

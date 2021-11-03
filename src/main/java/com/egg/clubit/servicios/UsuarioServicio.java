@@ -61,7 +61,7 @@ public class UsuarioServicio implements UserDetailsService {
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 
 	}
