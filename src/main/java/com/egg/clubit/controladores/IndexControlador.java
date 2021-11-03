@@ -27,9 +27,9 @@ public class IndexControlador {
 		return mav;
 	}
 	
-	@GetMapping("/posteos/{mail}")
-	public String posteos(Model model, @PathVariable String mail)  {
-		Usuario usuario = usuarioServicio.buscarPorMail(mail);
+	@GetMapping("/posteos/{id}")
+	public String posteos(Model model, @PathVariable String id)  {
+		Usuario usuario = usuarioServicio.buscarPorId(id);
 		List<Posteo> posteos = usuario.getPost();
 		model.addAttribute("posteos", posteos);
 		
