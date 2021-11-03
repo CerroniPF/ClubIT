@@ -51,8 +51,8 @@ public class Respuesta {
 		this.respuesta = respuesta;
 	}
 
-	@Override
-	public String toString() {
-		return "Respuesta [id=" + id + ", fechaResp=" + fechaResp + ", respuesta=" + respuesta + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Respuesta [id=" + id + ", fechaResp=" + fechaResp + ", respuesta=" + respuesta + "]";
+//	}
 }

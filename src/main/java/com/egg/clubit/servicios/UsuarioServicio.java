@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,8 +12,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -30,7 +29,7 @@ public class UsuarioServicio implements UserDetailsService {
 	@Autowired
 	private PosteoServicio posteoServicio;
 
-	@Transactional //(readOnly = true)
+	@Transactional(readOnly = true)
 	public Usuario buscarPorMail(String mail) {
 		Usuario usuario = usuarioRepositorio.buscarUsuarioPorMail(mail);
 		return usuario;

@@ -107,10 +107,10 @@ public class Posteo {
 		this.editado = editado;
 	}
 
-	@Override
-	public String toString() {
-		return "Posteo [id=" + id + ", titulo=" + titulo + ", posteo=" + posteo + ", alta=" + alta + ", editado="
-				+ editado + ", fechaPosteo=" + fechaPosteo + ", etiqueta=" + etiqueta + ", usuario=" + usuario
-				+ ", respuesta=" + respuesta + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Posteo [id=" + id + ", titulo=" + titulo + ", posteo=" + posteo + ", alta=" + alta + ", editado="
+//				+ editado + ", fechaPosteo=" + fechaPosteo + ", etiqueta=" + etiqueta + ", usuario=" + usuario
+//				+ ", respuesta=" + respuesta + "]";
+//	}
 }

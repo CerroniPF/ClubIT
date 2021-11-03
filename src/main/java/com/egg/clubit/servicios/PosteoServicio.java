@@ -28,21 +28,19 @@ public class PosteoServicio {
 	@Transactional //(readOnly = true)
 	public void listarPostUsuario(String mail) {
 
-		Usuario usuario = posteoRepositorio.buscarUsuarioPorMail(mail);
+		//Usuario usuario = posteoRepositorio.buscarUsuarioPorMail(mail);
+//		System.out.println("***************************");
+//		System.out.println(usuario);
+//		System.out.println("***************************");
+//		String id2 = usuario.getId();
+//		System.out.println(id2);
+		//List<Posteo> listaPosteos = posteoRepositorio.listarPostUsuario(id2);
 		System.out.println("***************************");
-		System.out.println(usuario);
-		System.out.println("***************************");
-		String id2 = usuario.getId();
-		System.out.println(id2);
-		List<Posteo> listaPosteos = posteoRepositorio.listarPostUsuario(id2);
-		System.out.println("***************************");
-		for (Posteo posteo : listaPosteos) {
-			System.out.println("***************************");
-			System.out.println(posteo);
-			System.out.println("***************************");
-		}
-		
-	
+//		for (Posteo posteo : listaPosteos) {
+//			System.out.println("***************************");
+//			System.out.println(posteo);
+//			System.out.println("***************************");
+//		}	
 	}
 	
 	@Transactional //(readOnly = true)
