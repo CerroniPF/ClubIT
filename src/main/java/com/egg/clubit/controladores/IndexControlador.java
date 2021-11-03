@@ -3,6 +3,7 @@ package com.egg.clubit.controladores;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,5 +34,25 @@ public class IndexControlador {
 		model.addAttribute("posteos", posteos);
 		
 		return "prueba";
+	}
+
+	@PreAuthorize("hasAnyRole('ROLE_ACTIVO')")
+	@GetMapping("/crearPost")
+	public ModelAndView crearPost()  {
+		ModelAndView mav = new ModelAndView("crearPosteo");
+		return mav;
+	}
+	
+	@PreAuthorize("hasAnyRole('ROLE_ACTIVO')")
+	@GetMapping("/perfil")
+	public ModelAndView perfil()  {
+		ModelAndView mav = new ModelAndView("perfil");
+		return mav;
+	}
+	
+	@GetMapping("/verPosteo/{id}")
+	public ModelAndView verPosteo(@PathVariable String id)  {
+		ModelAndView mav = new ModelAndView("verPosteo");
+		return mav;
 	}
 }

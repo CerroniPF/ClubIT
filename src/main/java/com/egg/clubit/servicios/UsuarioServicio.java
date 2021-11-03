@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -40,9 +41,9 @@ public class UsuarioServicio implements UserDetailsService {
 			String contrasena2) throws ErrorServicio {
 		//validar(nombre, apellido, nombreUsuario, mail, contrasena, contrasena2);
 
-		posteoServicio.listarPostUsuario("carlos@gmail.com");
+		//posteoServicio.listarPostUsuario("carlos@gmail.com");
 		
-		/* try {
+		try {
 			Usuario usuario = new Usuario();
 			Usuario usuario2 = new Usuario();
 			usuario.setNombre(nombre);
@@ -65,9 +66,9 @@ public class UsuarioServicio implements UserDetailsService {
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
-*/
+
 	}
 
 //	public void ingreso(String mail, String contrasena) throws ErrorServicio {

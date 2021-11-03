@@ -1,17 +1,14 @@
 package com.egg.clubit.servicios;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
-
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.egg.clubit.entidades.Etiqueta;
 import com.egg.clubit.entidades.Posteo;
-import com.egg.clubit.entidades.Usuario;
 import com.egg.clubit.errorservicio.ErrorServicio;
 import com.egg.clubit.repositorios.PosteoRepositorio;
 
@@ -20,30 +17,18 @@ public class PosteoServicio {
 	@Autowired
 	public PosteoRepositorio posteoRepositorio;
 
-	@Transactional //(readOnly = true)
+	@Transactional(readOnly = true)
 	public void listarTodos() {
 		
 	}
 	
-	@Transactional //(readOnly = true)
-	public void listarPostUsuario(String mail) {
-
-		//Usuario usuario = posteoRepositorio.buscarUsuarioPorMail(mail);
-//		System.out.println("***************************");
-//		System.out.println(usuario);
-//		System.out.println("***************************");
-//		String id2 = usuario.getId();
-//		System.out.println(id2);
-		//List<Posteo> listaPosteos = posteoRepositorio.listarPostUsuario(id2);
+	@Transactional(readOnly = true)
+	public void listarPostUsuario() {
 		System.out.println("***************************");
-//		for (Posteo posteo : listaPosteos) {
-//			System.out.println("***************************");
-//			System.out.println(posteo);
-//			System.out.println("***************************");
-//		}	
+		System.out.println("***************************");
 	}
 	
-	@Transactional //(readOnly = true)
+	@Transactional(readOnly = true)
 	public void listarPorUsuarioYLenguaje(String email) {
 		
 	}

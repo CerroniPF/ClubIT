@@ -14,7 +14,11 @@
 
 body {
     width: 100vw;
-    	background-image: url("fondo.jpg");
+    	background-image: url("fondito3.jpg");
+      background-repeat: no-repeat;
+    background-size: cover;
+
+
 }
 
 .navbar {
@@ -87,6 +91,10 @@ h1 {
     height: 25px;
     width: 25px;
 }
+
+
+/*sobran*/
+
 .select {
     background: transparent;
     border: none;
@@ -96,10 +104,18 @@ h1 {
     width: 30%;
     border-bottom: solid rgba(255, 255, 255, 0.356);
     color: #fff;
+    cursor:pointer;  
+}
+option{
+	background-color: #3a475a ;
+	 
 }
 .select:focus {
     background: rgba(255, 255, 255, 0.356);
+    
 }
+
+/*hastacaa*/
 .usuarioLogin {
     width: 35%;
     height: 100%;
@@ -132,4 +148,18 @@ h1 {
     color: white;
     margin-top: 30px;
     margin-left: 10px;
+}
+
+.error{
+	text-align: center;
+	width:50%;
+	padding:20px;
+	border-radius: 5px;
+	margin:auto;
+	color: #842029;
+	background-color: #f8d7da;
+
+;
+
+	
 }
