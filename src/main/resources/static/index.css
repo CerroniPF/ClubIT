@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+	list-style: none;
+	text-decoration: none;
+	border: none;
+	outline: none;
+}
+
+.contenedorPost{
+    background-color: rgba(63, 73, 87,0.9);
+    width: 70%;
+    height: 100%;
+    text-align: center;
+    border-radius: 10px;
+    margin:10px auto;
+   
+   
+   
+}
+
+.cajaCampo{
+    display: inline-flex;
+    width: 90%;
+}
+.nombreCampo{
+
+    padding: 10px;
+    color: white;
+    width: 70%s;
+
+}
+
+
+ 
+  #boton2{
+	margin-top: 15px;
+	margin-bottom: 20px;
+}
+.fechaCampo{
+    
+    color: white;
+width: 20%;
+}
+.tituloCampo{
+    color: white;
+    width: 80%;
+}
+.temaCampo{
+    
+    color: white;
+width: 20%;
+}
+.usuarioCampo{
+    color: white;
+    width: 80%;
+}
+  

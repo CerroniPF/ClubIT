@@ -37,7 +37,7 @@ public class PosteoServicio {
 	
 	@Transactional
 	public void crearPost(String titulo, String posteo, Etiqueta etiqueta, Usuario usuario) throws ErrorServicio {
-		validar(titulo,posteo, etiqueta);
+	validar(titulo,posteo, etiqueta);
 
 
 		try {
@@ -89,20 +89,24 @@ public class PosteoServicio {
 	}	
 	
 	public void validar( String titulo, String posteo, Etiqueta etiqueta) throws ErrorServicio {
-
+		System.out.println("gatito");
 
 		if (titulo == null || titulo.isEmpty()) {
+			System.out.println("gato");
 			throw new ErrorServicio("El titulo no puede quedar vacío");
+			
 
 		}
 		if (posteo == null || posteo.isEmpty()) {
+			System.out.println("posteo");
 			throw new ErrorServicio("El posteo no puede quedar vacío");
 
 		}
-		if (etiqueta == null) {
-			throw new ErrorServicio("La etiqueta no puede quedar vacío");
-
-		}
+//		if (etiqueta == null) {
+//			System.out.println("etiquera");
+//			throw new ErrorServicio("La etiqueta no puede quedar vacío");
+//
+//		}
 		
 		}
 

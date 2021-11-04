@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cargar Libro</title>
     <link th:replace="nav/nav.html :: link">
+    <link rel="stylesheet" href="index.css">
 
     <title>Cargar Libro</title>
    
@@ -21,11 +22,21 @@
 
 <a  th:if="${session.usersession}" class="boton" href="/crearPost">Post</a>
 <a  th:if="${session.usersession}" class="botones" th:href="@{verPosteo/} +  ${session.usersession.id}">Editar</a>
-<div class="contenedor" >
-	<b>titulo</b>
-	<p>java </p>
-	<p>fecha</p>
-</div>	
+<div class="contenedorPost">
+    
+ 
+        <div  class="cajaCampo">
+            <b class="tituloCampo">Titulo</b>
+            <b class="fechaCampo">fecha</b>
+        </div>
+
+        <div  class="cajaCampo">
+            <b class="tituloCampo">java</b>
+            <b class="fechaCampo">nombre usuario</b>
+   
+        </div>
+
+</div>		
 </body>
 
 </html>

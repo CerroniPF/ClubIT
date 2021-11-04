@@ -62,16 +62,19 @@ public class IndexControlador {
 		return mav;
 	}
 
+	
+	// activar en el validar la etiqueta y poner aca la atiqueta pasada por parrametro
+	
 	@PreAuthorize("hasAnyRole('ROLE_ACTIVO')")
 	@PostMapping("/crearPost")
 	public RedirectView crearPostMetodoPost(Model modelo,
 			HttpSession httpSession, 
-			@RequestParam(defaultValue = "") String titulo,
-			@RequestParam(defaultValue = "") String posteo) throws ErrorServicio {
+			@RequestParam String titulo,
+			@RequestParam String posteo) throws ErrorServicio {
 		RedirectView rv = new RedirectView();
 		String id2 ="";
 		Usuario usuario = (Usuario) httpSession.getAttribute("usersession");
-		System.out.println(usuario);
+		
 		if(usuario == null) {
 			rv.setUrl("redirect:/");
 			return rv;
