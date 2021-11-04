@@ -37,17 +37,23 @@ public class IndexControlador {
 		return mav;
 	}
 
-	
+	//ESTE METODO LISTA TODOS LOS POSTEOS
 	@GetMapping("/posteos/{id}")
 	public String posteos(Model model, @PathVariable String id)  {
 		Usuario usuario = usuarioServicio.buscarPorId(id);
-
 		List<Posteo> posteos = usuario.getPost();
 		model.addAttribute("posteos", posteos);
-
 		return "prueba";
 	}
 
+	//ESTE MÉTODO MUESTRA 1 SOLO POSTEO
+	@GetMapping("/posteo/{id}")
+	public String posteo(Model model, @PathVariable String id)  {
+		Posteo posteo = posteoServicio.buscarPorId(id);
+		model.addAttribute("posteo", posteo);
+		return "mostrarPosteo";
+	}
+	
 	@PreAuthorize("hasAnyRole('ROLE_ACTIVO')")
 	@GetMapping("/crearPost")
 	public ModelAndView crearPost(HttpSession httpSession) {
@@ -96,6 +102,7 @@ public class IndexControlador {
 		rv.setUrl("posteos/"+ id2);
 		return rv;
 	}
+	
 	
 	
 	@PreAuthorize("hasAnyRole('ROLE_ACTIVO')")
