@@ -32,8 +32,10 @@ public class IndexControlador {
 	PosteoServicio posteoServicio;
 
 	@GetMapping("/")
-	public ModelAndView index() {
+	public ModelAndView index(Model model) {
 		ModelAndView mav = new ModelAndView("index");
+		List<Posteo> posteo=posteoServicio.listarTodos();
+		mav.addObject("posteos", posteo);
 		return mav;
 	}
 

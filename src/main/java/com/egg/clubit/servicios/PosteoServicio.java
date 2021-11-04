@@ -1,6 +1,7 @@
 package com.egg.clubit.servicios;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,10 @@ public class PosteoServicio {
 	@Autowired
 	public PosteoRepositorio posteoRepositorio;
 
-	@Transactional(readOnly = true)
-	public void listarTodos() {
-		
+	// cambie void por listaposteo
+	public List<Posteo> listarTodos() {
+		return posteoRepositorio.ordenarPosteosFecha();
+
 	}
 	
 	@Transactional(readOnly = true)

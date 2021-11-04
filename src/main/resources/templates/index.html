@@ -23,18 +23,21 @@
 <a  th:if="${session.usersession}" class="boton" href="/crearPost">Post</a>
 <a  th:if="${session.usersession}" class="botones" th:href="@{verPosteo/} +  ${session.usersession.id}">Editar</a>
 <div class="contenedorPost">
-    
- 
+   
+ <div class=contenedor th:each="posteo : ${posteos}">
+ <a th:href="@{/posteo/} + ${posteo.id}"> 
         <div  class="cajaCampo">
-            <b class="tituloCampo">Titulo</b>
-            <b class="fechaCampo">fecha</b>
+            <b class="tituloCampo" th:text="${posteo.titulo}"></b>
+            <b class="fechaCampo" th:text="${posteo.fechaPosteo}"></b>
         </div>
 
         <div  class="cajaCampo">
-            <b class="tituloCampo">java</b>
-            <b class="fechaCampo">nombre usuario</b>
+            <b class="tituloCampo" th:text="${posteo.etiqueta}"></b>
+            <b class="fechaCampo" th:text="${posteo.usuario.nombre}"></b>
    
         </div>
+ </a>
+ </div>
 
 </div>		
 </body>

@@ -18,6 +18,7 @@
     text-align: center;
     border-radius: 10px;
     margin:10px auto;
+    
    
    
    
@@ -26,6 +27,13 @@
 .cajaCampo{
     display: inline-flex;
     width: 90%;
+   
+}
+.contenedor{
+	border:double white 4px;
+	border-radius: 5px;
+	margin-bottom: 20px;
+	height: 120px;
 }
 .nombreCampo{
 
@@ -42,11 +50,15 @@
 	margin-bottom: 20px;
 }
 .fechaCampo{
-    
+    padding: 10px;
     color: white;
 width: 20%;
 }
 .tituloCampo{
+	height: 51px;
+ word-wrap: break-word;
+   overflow:hidden;
+    padding: 10px;
     color: white;
     width: 80%;
 }
