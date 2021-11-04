@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+	list-style: none;
+	text-decoration: none;
+	border: none;
+	outline: none;
+}
+
+.contenedor{
+    background-color: rgba(63, 73, 87,0.9);
+    width: 55%;
+    height: 100%;
+    text-align: center;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 10%;
+    padding:10px;
+   
+}
+
+
+.nombreCampo{
+    display: block;
+    padding: 10px;
+    color: white;
+
+}
+.campo{
+    width: 70%;
+    height: 35px;
+    border-radius: 5px;
+    color: white;
+    background-color:rgba(63, 73, 87,0.9);
+    padding-left: 10px;
+    border: none;
+    border-bottom: solid 2px #4596D9 ;
+    margin: 10px;
+    text-align: center;   
+}
+.campo:hover{
+    background-color:rgba(255, 255, 255, 0.082);
+    border-bottom: solid 2px #5ca8e6;
+}
+.campo:focus{
+    background-color:rgba(255, 255, 255, 0.363);
+    border-bottom: solid 2px #5ca8e6;
+}
+.campo::placeholder { 
+    color: rgba(255, 255, 255, 0.822);
+ }
+
+
+

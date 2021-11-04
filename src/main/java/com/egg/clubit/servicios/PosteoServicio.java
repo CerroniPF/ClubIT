@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.egg.clubit.entidades.Etiqueta;
 import com.egg.clubit.entidades.Posteo;
+import com.egg.clubit.entidades.Usuario;
 import com.egg.clubit.errorservicio.ErrorServicio;
 import com.egg.clubit.repositorios.PosteoRepositorio;
 
@@ -34,7 +35,7 @@ public class PosteoServicio {
 	}
 	
 	@Transactional
-	public void crearPost(String titulo, String posteo, Etiqueta etiqueta) throws Exception {
+	public void crearPost(String titulo, String posteo, Etiqueta etiqueta, Usuario usuario) throws ErrorServicio {
 		//validar();
 		
 		try {
@@ -44,7 +45,7 @@ public class PosteoServicio {
 			post.setEtiqueta(etiqueta);
 			post.setEditado(false);
 			post.setFechaPosteo(new Date());
-			
+			post.setUsuario(usuario);
 			posteoRepositorio.save(post);
 		} catch (Exception e) {
 			throw new ErrorServicio("Todos los campos son obligatorios");

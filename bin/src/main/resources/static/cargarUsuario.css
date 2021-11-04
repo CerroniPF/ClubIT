@@ -1,0 +1,62 @@
+
+
+.link{
+    color: #fff;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+.contenedor{
+    width: 100%;
+    margin: auto;
+    
+    text-align: center;
+    background-color: rgba(138, 136, 136,0.5);
+    border: solid 4px rgba(110, 245, 155, 0.404);
+    border-radius: 10px;
+    padding: 25px;
+    
+}
+.columnas{
+    column-count: 2;
+}
+.agregar{
+    margin: auto;
+    margin-top: 20px;
+    display: block;
+    background-color: rgba(83, 182, 116, 0.8);
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.titulo{
+    margin: 4%;
+    color: #fff;
+}
+.tituloCampo{
+font-size: 20px;
+color: #fff;
+}
+.campo{
+    margin: 4%;
+    padding: 5px;
+    width: 30%;
+    border-bottom:solid rgba(83, 182, 116, 0.8);
+    background-color: transparent;
+    color: #fff;
+}
+.campo::placeholder { 
+    color: #fff;
+ }
+body{
+    background-image: url("libreriaFondo.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+img{
+    width: 100%;
+}
+.camposLibro{
+    margin: 2px;
+
+}

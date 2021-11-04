@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+	list-style: none;
+	text-decoration: none;
+	border: none;
+	outline: none;
+}
+
+.contenedor{
+    background-color: rgba(63, 73, 87,0.9);
+    width: 90%;
+    height: 100%;
+    text-align: center;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 10%;
+    padding:10px;
+    
+}
+
+
+.nombreCampo{
+    width: 50%;
+    display: block;
+    
+    color: white;
+  
+
+}
+.campo{
+    
+    width: 50%;
+    height: 35px;
+    border-radius: 5px;
+    color: white;
+    background-color:rgba(63, 73, 87,0.9);
+    padding-left: 10px;
+    border: none;
+    border-bottom: solid 2px #4596D9 ;
+
+    text-align: center;   
+}
+.campo:hover{
+    background-color:rgba(255, 255, 255, 0.082);
+    border-bottom: solid 2px #5ca8e6;
+}
+.campo:focus{
+    background-color:rgba(255, 255, 255, 0.363);
+    border-bottom: solid 2px #5ca8e6;
+}
+.campo::placeholder { 
+    color: rgba(255, 255, 255, 0.822);
+ }
+.botonRegistro {
+    display: block;
+    height: 40px;
+    width: 100px;
+    background: #4596D9;
+    color: white;
+    border-radius: 15px;
+    text-decoration: none;
+margin: auto;
+    cursor: pointer;
+}
+.botonRegistro:hover{
+	 background: #69b7f6;
+}
+
+.cajaCampo{
+
+    width: 45%;
+    text-align: center;
+    display: inline-flex;
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+
+
