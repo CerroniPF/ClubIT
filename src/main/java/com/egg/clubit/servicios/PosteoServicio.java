@@ -56,6 +56,10 @@ public class PosteoServicio {
 		}
 	}
 
+	public Posteo buscarPorId(String id) {
+		return posteoRepositorio.getById(id);
+	}
+	
 	@Transactional
 	public void darBaja(String id) throws Exception {
 		Optional<Posteo> resp = posteoRepositorio.findById(id);
