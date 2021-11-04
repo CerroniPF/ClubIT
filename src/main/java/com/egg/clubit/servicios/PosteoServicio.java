@@ -15,6 +15,7 @@ import com.egg.clubit.repositorios.PosteoRepositorio;
 
 @Service
 public class PosteoServicio {
+	
 	@Autowired
 	public PosteoRepositorio posteoRepositorio;
 
@@ -36,8 +37,9 @@ public class PosteoServicio {
 	
 	@Transactional
 	public void crearPost(String titulo, String posteo, Etiqueta etiqueta, Usuario usuario) throws ErrorServicio {
-		//validar();
-		
+		validar(titulo,posteo, etiqueta);
+
+
 		try {
 			Posteo post = new Posteo();
 			post.setTitulo(titulo);
@@ -64,19 +66,48 @@ public class PosteoServicio {
 	}
 	
 	@Transactional
-	public void modificar(String id, String titulo, String posteo, Etiqueta etiqueta) throws Exception {
+	public void modificar(String id, String titulo, String posteo, Etiqueta etiqueta) throws Exception {		
+		
+		validar(titulo,posteo, etiqueta);
+		
 		Optional<Posteo> resp = posteoRepositorio.findById(id);
+		
 		if (resp.isPresent()) {
 			Posteo post = resp.get();
+			
 			post.setTitulo(titulo);
 			post.setPosteo(posteo);
 			post.setEtiqueta(etiqueta);
 			post.setEditado(true);				/* Este atributo se agrego para identificar si el post fue editado desde el .html */
 			post.setFechaPosteo(new Date());
 			
+			
 			posteoRepositorio.save(post);
 		} else {
 			throw new ErrorServicio("No se pudo modificar el post");
 		}
 	}	
+	
+	public void validar( String titulo, String posteo, Etiqueta etiqueta) throws ErrorServicio {
+
+
+		if (titulo == null || titulo.isEmpty()) {
+			throw new ErrorServicio("El titulo no puede quedar vacío");
+
+		}
+		if (posteo == null || posteo.isEmpty()) {
+			throw new ErrorServicio("El posteo no puede quedar vacío");
+
+		}
+		if (etiqueta == null) {
+			throw new ErrorServicio("La etiqueta no puede quedar vacío");
+
+		}
+		
+		}
+
+	
+	
+	
+	
 }

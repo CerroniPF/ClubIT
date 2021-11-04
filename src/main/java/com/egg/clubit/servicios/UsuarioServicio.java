@@ -31,8 +31,8 @@ public class UsuarioServicio implements UserDetailsService {
 	private PosteoServicio posteoServicio;
 
 	@Transactional(readOnly = true)
-	public Usuario buscarPorMail(String mail) {
-		Usuario usuario = usuarioRepositorio.buscarUsuarioPorMail(mail);
+	public Usuario buscarPorId (String id) {
+		Usuario usuario = usuarioRepositorio.findById(id).orElseThrow(null);
 		return usuario;
 	}
 	
@@ -57,8 +57,8 @@ public class UsuarioServicio implements UserDetailsService {
 			usuario.setRolAdministrador(false);
 
 			// System.out.println(usuario2=buscarPorMail(mail));
-
-			usuario2 = buscarPorMail(mail);
+			
+			usuario2 = usuarioRepositorio.buscarUsuarioPorMail(mail);
 			if (usuario2 == null) {
 				usuarioRepositorio.save(usuario);
 			} else {

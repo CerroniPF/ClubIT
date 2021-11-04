@@ -37,9 +37,11 @@ public class IndexControlador {
 		return mav;
 	}
 
-	@GetMapping("/posteos/{mail}")
-	public String posteos(Model model, @PathVariable String mail) {
-		Usuario usuario = usuarioServicio.buscarPorMail(mail);
+	
+	@GetMapping("/posteos/{id}")
+	public String posteos(Model model, @PathVariable String id)  {
+		Usuario usuario = usuarioServicio.buscarPorId(id);
+
 		List<Posteo> posteos = usuario.getPost();
 		model.addAttribute("posteos", posteos);
 
@@ -67,7 +69,7 @@ public class IndexControlador {
 			@RequestParam(defaultValue = "") String titulo,
 			@RequestParam(defaultValue = "") String posteo) throws ErrorServicio {
 		RedirectView rv = new RedirectView();
-		String mail2 ="";
+		String id2 ="";
 		Usuario usuario = (Usuario) httpSession.getAttribute("usersession");
 		System.out.println(usuario);
 		if(usuario == null) {
@@ -79,8 +81,7 @@ public class IndexControlador {
 		////Etiqueta etiqueta1 = new Etiqueta(); CAMBIAR ESTA LÍNEA DE CÓDIGO
 			
 			posteoServicio.crearPost(titulo, posteo, null, usuario);
-			mail2 = usuario.getMail();
-			modelo.addAttribute("mail", usuario.getMail());
+			id2 = usuario.getId();
 		} catch (ErrorServicio e) {
 			modelo.addAttribute("error", e.getMessage());
 			modelo.addAttribute("titulo", titulo);
@@ -89,7 +90,7 @@ public class IndexControlador {
 			rv.setUrl("redirect:/");
 			return rv;
 		}
-		rv.setUrl("posteos/"+ mail2);
+		rv.setUrl("posteos/"+ id2);
 		return rv;
 	}
 	
