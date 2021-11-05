@@ -25,6 +25,10 @@ public class Respuesta {
 	@ManyToOne
 	private Posteo posteo;
 	
+	
+	
+	
+	
 	public Respuesta() {	}
 
 	public String getId() {

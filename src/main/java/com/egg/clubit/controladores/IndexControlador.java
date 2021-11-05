@@ -53,7 +53,7 @@ public class IndexControlador {
 	public String posteo(Model model, @PathVariable String id)  {
 		Posteo posteo = posteoServicio.buscarPorId(id);
 		model.addAttribute("posteo", posteo);
-		System.out.println(posteo.getRespuesta().get(0).getId());
+	
 		return "mostrarPosteo";
 	}
 	
