@@ -51,6 +51,35 @@ public class Respuesta {
 		this.respuesta = respuesta;
 	}
 
+	/**
+	 * @return the usuario
+	 */
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	/**
+	 * @param usuario the usuario to set
+	 */
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	/**
+	 * @return the posteo
+	 */
+	public Posteo getPosteo() {
+		return posteo;
+	}
+
+	/**
+	 * @param posteo the posteo to set
+	 */
+	public void setPosteo(Posteo posteo) {
+		this.posteo = posteo;
+	}
+	
+
 //	@Override
 //	public String toString() {
 //		return "Respuesta [id=" + id + ", fechaResp=" + fechaResp + ", respuesta=" + respuesta + "]";

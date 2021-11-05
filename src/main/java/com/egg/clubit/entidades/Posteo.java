@@ -30,8 +30,9 @@ public class Posteo {
 	@ManyToOne	
 	private Etiqueta etiqueta;
 	@ManyToOne
-	Usuario usuario;
-	@OneToMany(mappedBy = "id")
+	private Usuario usuario;
+	
+	@OneToMany(mappedBy = "posteo")
 	private List<Respuesta> respuesta;
 
 	public Posteo() {
