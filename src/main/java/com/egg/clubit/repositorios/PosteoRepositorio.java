@@ -19,4 +19,9 @@ public interface PosteoRepositorio extends JpaRepository<Posteo, String> {
 //	@Query(value="SELECT p FROM Posteo p INNER JOIN Usuario u ON u.id = u WHERE p.id LIKE :id2")
 //	public List<Posteo> listarPostUsuario(@Param("id2") String id2);
 
+	@Query(value="SELECT p FROM Posteo p WHERE p.titulo LIKE %:palabraClave%")
+	public List<Posteo> buscarPorPalabraClave(@Param("palabraClave") String palabraClave);
+	
+	@Query(value="SELECT p FROM Posteo p WHERE p.titulo LIKE %:etiqueta%")
+	public List<Posteo> buscarPorLenguaje(@Param("etiqueta") String etiqueta);
 }

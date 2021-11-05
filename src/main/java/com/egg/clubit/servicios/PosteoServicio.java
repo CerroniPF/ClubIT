@@ -1,6 +1,7 @@
 package com.egg.clubit.servicios;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,19 +20,35 @@ public class PosteoServicio {
 	public PosteoRepositorio posteoRepositorio;
 
 	@Transactional(readOnly = true)
-	public void listarTodos() {
-		
+	public List<Posteo> listarTodos() {
+	 	List<Posteo> listaPosteos =posteoRepositorio.findAll();
+	 	return listaPosteos;
 	}
+	
 	
 	@Transactional(readOnly = true)
 	public void listarPostUsuario() {
-		System.out.println("***************************");
-		System.out.println("***************************");
+		//esto lo resolvió lorenzo, lo borramos o no? VOT SI/NO.
+	}
+
+	
+	
+	@Transactional(readOnly = true)
+	public List<Posteo> listarPorPalabraClave(String palabraClave) throws ErrorServicio {
+	
+		try {
+			List<Posteo> listarPosteoPalabraClave=posteoRepositorio.buscarPorPalabraClave(palabraClave);
+			return listarPosteoPalabraClave;
+		} catch (Exception e) {
+		throw new ErrorServicio("No se encontró ningún post:(");
+		}
+	 
 	}
 	
 	@Transactional(readOnly = true)
-	public void listarPorUsuarioYLenguaje(String email) {
-		
+	public List<Posteo> listarPorLenguaje(String etiqueta) {
+		List<Posteo> listarPorLenguaje= posteoRepositorio.buscarPorLenguaje(etiqueta);
+		return listarPorLenguaje;
 	}
 	
 	@Transactional
