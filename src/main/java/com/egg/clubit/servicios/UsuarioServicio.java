@@ -30,9 +30,12 @@ public class UsuarioServicio implements UserDetailsService {
 	@Autowired
 	private PosteoServicio posteoServicio;
 
+	@Autowired
+	private EtiquetaServicio etiquetaServicio;
+	
 	@Transactional(readOnly = true)
-	public Usuario buscarPorMail(String mail) {
-		Usuario usuario = usuarioRepositorio.buscarUsuarioPorMail(mail);
+	public Usuario buscarPorId (String id) {
+		Usuario usuario = usuarioRepositorio.findById(id).orElseThrow(null);
 		return usuario;
 	}
 	
@@ -40,8 +43,8 @@ public class UsuarioServicio implements UserDetailsService {
 	public void registro(String nombre, String apellido, String nombreUsuario, String mail, String contrasena,
 			String contrasena2) throws ErrorServicio {
 		//validar(nombre, apellido, nombreUsuario, mail, contrasena, contrasena2);
-
-		//posteoServicio.listarPostUsuario("carlos@gmail.com");
+		//acá está la carga de las etiquetas
+	//	etiquetaServicio.cargaAutomatica();
 		
 		try {
 			Usuario usuario = new Usuario();
@@ -57,8 +60,8 @@ public class UsuarioServicio implements UserDetailsService {
 			usuario.setRolAdministrador(false);
 
 			// System.out.println(usuario2=buscarPorMail(mail));
-
-			usuario2 = buscarPorMail(mail);
+			
+			usuario2 = usuarioRepositorio.buscarUsuarioPorMail(mail);
 			if (usuario2 == null) {
 				usuarioRepositorio.save(usuario);
 			} else {

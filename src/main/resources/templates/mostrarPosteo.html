@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cargar Libro</title>
     <link th:replace="nav/nav.html :: link">
-    <link rel="stylesheet" th:href="@{/index.css}">
+    <link rel="stylesheet" href="../index.css">
 
     <title>Cargar Libro</title>
    
@@ -24,8 +24,7 @@
 <a  th:if="${session.usersession}" class="botones" th:href="@{verPosteo/} +  ${session.usersession.id}">Editar</a>
 <div class="contenedorPost">
    
- <div class="contenedor" th:each="posteo : ${posteos}">
- <a th:href="@{/posteo/} + ${posteo.id}"> 
+ <div class="contenedor" >
         <div  class="cajaCampo">
             <b class="tituloCampo" th:text="${posteo.titulo}"></b>
             <b class="fechaCampo" th:text="${posteo.fechaPosteo}"></b>
@@ -34,9 +33,23 @@
         <div  class="cajaCampo">
             <b class="tituloCampo" th:text="${posteo.etiqueta}"></b>
             <b class="fechaCampo" th:text="${posteo.usuario.nombre}"></b>
-   
-        </div>
- </a>
+            <b class="fechaCampo" th:text="${posteo.posteo}"></b>
+        </div>   
+ </div>
+ 
+  <div class="contenedor" th:each="res : ${posteo.respuesta}" >
+        <div  class="cajaCampo">
+            
+            <b class="fechaCampo" th:text="${res.respuesta}"></b>
+            <b class="tituloCampo" th:text="${res.usuario.nombre}"></b>
+            <b class="fechaCampo" th:text="${res.fechaResp}"></b>
+        </div>   
+ </div>
+ 
+   <div  >
+      
+        
+        <textarea row="100%" cols="100%"></textarea>
  </div>
 
 </div>		

@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -25,11 +27,12 @@ public class Posteo {
 	private Boolean editado;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaPosteo;
-	@ManyToOne
+	@ManyToOne	
 	private Etiqueta etiqueta;
 	@ManyToOne
-	Usuario usuario;
-	@OneToMany(mappedBy = "id")
+	private Usuario usuario;
+	
+	@OneToMany(mappedBy = "posteo")
 	private List<Respuesta> respuesta;
 
 	public Posteo() {

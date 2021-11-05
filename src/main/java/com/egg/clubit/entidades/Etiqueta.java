@@ -1,6 +1,8 @@
 package com.egg.clubit.entidades;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -12,6 +14,7 @@ public class Etiqueta {
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
+	/*@Enumerated(EnumType.STRING)*/
 	private String nombre;
 	private Integer contador;
 	
@@ -40,9 +43,9 @@ public class Etiqueta {
 	public void setContador(Integer contador) {
 		this.contador = contador;
 	}
-
+/*
 	@Override
 	public String toString() {
 		return "Etiqueta [id=" + id + ", nombre=" + nombre + ", contador=" + contador + "]";
-	}	
+	}	*/
 }

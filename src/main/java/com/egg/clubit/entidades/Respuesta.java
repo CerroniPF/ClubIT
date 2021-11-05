@@ -25,6 +25,10 @@ public class Respuesta {
 	@ManyToOne
 	private Posteo posteo;
 	
+	
+	
+	
+	
 	public Respuesta() {	}
 
 	public String getId() {
@@ -50,6 +54,35 @@ public class Respuesta {
 	public void setRespuesta(String respuesta) {
 		this.respuesta = respuesta;
 	}
+
+	/**
+	 * @return the usuario
+	 */
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	/**
+	 * @param usuario the usuario to set
+	 */
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	/**
+	 * @return the posteo
+	 */
+	public Posteo getPosteo() {
+		return posteo;
+	}
+
+	/**
+	 * @param posteo the posteo to set
+	 */
+	public void setPosteo(Posteo posteo) {
+		this.posteo = posteo;
+	}
+	
 
 //	@Override
 //	public String toString() {

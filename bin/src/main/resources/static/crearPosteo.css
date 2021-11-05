@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+	list-style: none;
+	text-decoration: none;
+	border: none;
+	outline: none;
+}
+
+.contenedorPost{
+    background-color: rgba(63, 73, 87,0.9);
+    width: 80%;
+    height: 100%;
+    text-align: center;
+    border-radius: 10px;
+    margin:10px auto;
+   
+   
+}
+
+
+.nombreCampo{
+    display: block;
+    padding: 10px;
+    color: white;
+
+}
+.campo{
+    width: 70%;
+    height: 35px;
+    border-radius: 5px;
+    color: white;
+    background-color:rgba(63, 73, 87,0.9);
+    padding-left: 10px;
+    border: none;
+    border-bottom: solid 2px #4596D9 ;
+    margin: 10px;
+    text-align: center;   
+}
+.campo:hover{
+    background-color:rgba(255, 255, 255, 0.082);
+    border-bottom: solid 2px #5ca8e6;
+}
+.campo:focus{
+    background-color:rgba(255, 255, 255, 0.363);
+    border-bottom: solid 2px #5ca8e6;
+}
+.campo::placeholder { 
+    color: rgba(255, 255, 255, 0.822);
+ }
+
+ textarea {
+    resize: none;
+    background-color: rgba(63, 73, 87,0.9);
+    padding: 5px;
+    color: #fff;
+    border-radius: 10px;
+    width: 95%;
+    height: 40vh;
+    
+  }
+  #boton2{
+	margin-top: 15px;
+	margin-bottom: 20px;
+}
+  
+  ::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+  
+
