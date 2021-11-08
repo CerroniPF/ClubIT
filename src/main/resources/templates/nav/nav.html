@@ -33,7 +33,7 @@
 
                 <!-- Agregar th:if="usuario != null" -->
                 <div class="usuarioLogin" th:if="${session.usersession != null}">
-                     <a href="/perfil" class="usuario" th:text="${session.usersession.nombreUsuario}"></a>
+                     <a href="/perfil" class="usuario" th:text="${session.usersession.nombreUsuario}" name="id"></a>
                     	<a  class="boton boton-largo" href="/logout">Cerrar sesión</a>
                 </div>
 

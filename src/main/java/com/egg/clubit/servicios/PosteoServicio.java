@@ -67,6 +67,7 @@ public class PosteoServicio {
 			post.setEditado(false);
 			post.setFechaPosteo(new Date());
 			post.setUsuario(usuario);
+			post.setAlta(true); //falto darle de alta
 			posteoRepositorio.save(post);
 		} catch (Exception e) {
 			throw new ErrorServicio("Todos los campos son obligatorios");

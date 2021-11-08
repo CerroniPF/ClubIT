@@ -20,8 +20,8 @@
 </body>
 <p th:text="${error}"></p>
 
-<a  th:if="${session.usersession}" class="boton" href="/crearPost">Post</a>
-<a  th:if="${session.usersession}" class="botones" th:href="@{verPosteo/} +  ${session.usersession.id}">Editar</a>
+<a  th:if="${session.usersession}" class="botonPost" href="/crearPost">Post</a>
+
 <div class="contenedorPost">
    
  <div class="contenedor" th:each="posteo : ${posteos}">
@@ -34,6 +34,7 @@
         <div  class="cajaCampo">
             <b class="tituloCampo" th:text="${posteo.etiqueta}"></b>
             <b class="fechaCampo" th:text="${posteo.usuario.nombre}"></b>
+            
    
         </div>
  </a>
