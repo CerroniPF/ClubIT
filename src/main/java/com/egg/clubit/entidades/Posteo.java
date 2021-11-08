@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -21,18 +23,31 @@ public class Posteo {
 	private String id;
 	private String titulo;
 	private String posteo;
-	private Boolean cerrar;
+	private Boolean alta;
+	private Boolean editado;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaPosteo;
-	@ManyToOne
+	@ManyToOne	
 	private Etiqueta etiqueta;
-	@OneToMany
+	@ManyToOne
+	private Usuario usuario;
+	
+	@OneToMany(mappedBy = "posteo")
 	private List<Respuesta> respuesta;
-	
-	public Posteo() {	}
-	
-		public String getTitulo() {
+
+	public Posteo() {
+	}
+
+	public String getTitulo() {
 		return titulo;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public void setTitulo(String titulo) {
@@ -55,12 +70,12 @@ public class Posteo {
 		this.posteo = posteo;
 	}
 
-	public Boolean getCerrar() {
-		return cerrar;
+	public Boolean getAlta() {
+		return alta;
 	}
 
-	public void setCerrar(Boolean cerrar) {
-		this.cerrar = cerrar;
+	public void setAlta(Boolean alta) {
+		this.alta = alta;
 	}
 
 	public Date getFechaPosteo() {
@@ -87,9 +102,18 @@ public class Posteo {
 		this.respuesta = respuesta;
 	}
 
-	@Override
-	public String toString() {
-		return "Posteo [id=" + id + ", posteo=" + posteo + ", cerrar=" + cerrar + ", fechaPosteo=" + fechaPosteo
-				+ ", etiqueta=" + etiqueta + ", respuesta=" + respuesta + "]";
+	public Boolean getEditado() {
+		return editado;
 	}
+
+	public void setEditado(Boolean editado) {
+		this.editado = editado;
+	}
+
+//	@Override
+//	public String toString() {
+//		return "Posteo [id=" + id + ", titulo=" + titulo + ", posteo=" + posteo + ", alta=" + alta + ", editado="
+//				+ editado + ", fechaPosteo=" + fechaPosteo + ", etiqueta=" + etiqueta + ", usuario=" + usuario
+//				+ ", respuesta=" + respuesta + "]";
+//	}
 }

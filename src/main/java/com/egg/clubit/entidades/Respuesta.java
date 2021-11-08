@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -19,6 +20,14 @@ public class Respuesta {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaResp;
 	private String respuesta;
+	@ManyToOne
+	private Usuario usuario;
+	@ManyToOne
+	private Posteo posteo;
+	
+	
+	
+	
 	
 	public Respuesta() {	}
 
@@ -46,8 +55,37 @@ public class Respuesta {
 		this.respuesta = respuesta;
 	}
 
-	@Override
-	public String toString() {
-		return "Respuesta [id=" + id + ", fechaResp=" + fechaResp + ", respuesta=" + respuesta + "]";
+	/**
+	 * @return the usuario
+	 */
+	public Usuario getUsuario() {
+		return usuario;
 	}
+
+	/**
+	 * @param usuario the usuario to set
+	 */
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	/**
+	 * @return the posteo
+	 */
+	public Posteo getPosteo() {
+		return posteo;
+	}
+
+	/**
+	 * @param posteo the posteo to set
+	 */
+	public void setPosteo(Posteo posteo) {
+		this.posteo = posteo;
+	}
+	
+
+//	@Override
+//	public String toString() {
+//		return "Respuesta [id=" + id + ", fechaResp=" + fechaResp + ", respuesta=" + respuesta + "]";
+//	}
 }

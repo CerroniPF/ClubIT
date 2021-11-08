@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargar Libro</title>
+    <link th:replace="nav/nav.html :: link">
+    <link rel="stylesheet" href="ingresoUsuario.css" />
+   
+ 
+    
+    
+</head>
+<header th:replace="nav/nav.html :: nav"> </header>
+<body>
+
+	
+    <div class="contenedor">
+        <form   action="/logincheck" method="POST">
+     
+            <div  class="cajaCampo">
+                <b class="nombreCampo"> Mail</b>
+                <input class="campo" type="text" placeholder="ingrese mail" name="mail" />
+            </div>
+        
+            <div  class="cajaCampo">
+                <b class="nombreCampo">Contraseña</b>
+                <input class="campo" type="password" placeholder="ingrese contraseña" name="contrasena" />
+            </div>
+            <button class="boton">Iniciar sesion</button>
+            
+        </form>
+    </div>
+  
+</body>
+
+</html>

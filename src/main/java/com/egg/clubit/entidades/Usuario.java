@@ -20,11 +20,11 @@ public class Usuario {
 	private String nombreUsuario;
 	private String mail;
 	private String contrasena;
-	@OneToMany
+	@OneToMany(mappedBy = "usuario")
 	private List<Posteo> post;
-	@OneToMany
+	@OneToMany(mappedBy = "usuario")
 	private List<Respuesta> respuesta;
-	private Boolean rolEmpresa;
+	private Boolean rolAdministrador;
 	private Boolean alta;
 	
 	public Usuario() {	}
@@ -93,12 +93,12 @@ public class Usuario {
 		this.respuesta = respuesta;
 	}
 
-	public Boolean getRolEmpresa() {
-		return rolEmpresa;
+	public Boolean getRolAdministrador() {
+		return rolAdministrador;
 	}
 
-	public void setRolEmpresa(Boolean rolEmpresa) {
-		this.rolEmpresa = rolEmpresa;
+	public void setRolAdministrador(Boolean rolAdministrador) {
+		this.rolAdministrador = rolAdministrador;
 	}
 
 	public Boolean getAlta() {
@@ -109,10 +109,10 @@ public class Usuario {
 		this.alta = alta;
 	}
 
-	@Override
-	public String toString() {
-		return "Usuario [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", nombreUsuario="
-				+ nombreUsuario + ", mail=" + mail + ", contrasena=" + contrasena + ", post=" + post + ", respuesta="
-				+ respuesta + ", rolEmpresa=" + rolEmpresa + ", alta=" + alta + "]";
-	};
+//	@Override
+//	public String toString() {
+//		return "Usuario [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", nombreUsuario="
+//				+ nombreUsuario + ", mail=" + mail + ", contrasena=" + contrasena + ", post=" + post + ", respuesta="
+//				+ respuesta + ", rolAdministrador=" + rolAdministrador + ", alta=" + alta + "]";
+//	};
 }

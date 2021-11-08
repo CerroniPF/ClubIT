@@ -1,0 +1,118 @@
+
+    
+  @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+	list-style: none;
+	text-decoration: none;
+	border: none;
+	outline: none;
+}
+
+
+.contenedorPost{
+    background-color: rgba(63, 73, 87,0.9);
+    width: 70%;
+    height: 100%;
+    text-align: center;
+    border-radius: 10px;
+    margin:10px auto;
+ 
+}
+
+.cajaCampo{
+    display: inline-flex;
+    width: 90%;
+   
+}
+
+.cajaPost{
+    display: inline-flex;
+    width: 100%;
+    margin:5px;
+     
+}
+
+.cajaDatos{   
+height:100%;
+
+font-size:13px ;
+margin-top:10px;
+   
+}
+
+.post{
+	  display: inline-flex;
+    width: 95%;
+    color:white;
+    margin :auto;
+   
+}
+.contenedor{
+	border:double white 4px;
+	border-radius: 5px;
+	margin-bottom: 20px;
+	height: 110px;
+}
+
+
+.botonResponder {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 100px;
+    background: #4596D9;
+    color: white;
+    border-radius: 15px;
+    text-decoration: none;
+    
+}
+
+.fechaCampo{
+    padding: 10px;
+    color: white;
+width: 20%;
+}
+.tituloCampo{
+	height: 51px;
+ word-wrap: break-word;
+   overflow:hidden;
+    padding: 10px;
+    color: white;
+    width: 80%;
+}
+.temaCampo{
+    
+    color: white;
+width: 20%;
+}
+.usuarioCampo{
+    color: white;
+    width: 80%;
+}
+ textarea {
+    resize: none;
+    background-color: rgba(63, 73, 87,0.9);
+    padding: 5px;
+    color: #fff;
+    border-radius: 10px;
+    width: 90%;
+    height: 15vh;
+    margin-right: 3%;
+    }
+    
+    
+    
+ .contenedorRespouesta{
+	display: inline-flex;
+	align-items: center;
+
+	margin-bottom:20px;
+}  
+    
+    
