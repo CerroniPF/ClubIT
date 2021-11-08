@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.egg.clubit.entidades.Etiqueta;
 import com.egg.clubit.entidades.Posteo;
 import com.egg.clubit.entidades.Respuesta;
 import com.egg.clubit.errorservicio.ErrorServicio;
@@ -21,25 +20,32 @@ public class RespuestaServicio {
 	@Autowired
 	public RespuestaRepositorio respuestaRepositorio;
 
+	
+	//dalta recibir datos
 	@Transactional
 	public void crearRespuesta(String idPost, String respuestaRTA) throws Exception {
-		validar(respuestaRTA);
+		//validar(respuestaRTA);
 		//Preguntar cómo validar que el usuario fue logueado.
 		//Para nosotros(luciano y yo) el botón de comentar no debería estar activado para los no logueados 
-		Posteo post= posteoRepositorio.findById(idPost).orElse(null);
+		System.out.println("entro3");
+		
+		Posteo post= posteoRepositorio.findById(idPost).get();
+		System.out.println(post);
 		//O desde el front se pone el botón en gris diciendo que el post está cerrado?
 		if (post.getAlta()==false) {
+			System.out.println("entro2");
 			throw new ErrorServicio("El posteo fue cerrado y no admite más respuestas.");
 		}else {
 			try {
 				Respuesta respuesta = new Respuesta();
 				respuesta.setRespuesta(respuestaRTA);
 				respuesta.setFechaResp(new Date());
-			
+			System.out.println("entro");
 				respuestaRepositorio.save(respuesta);
 			} catch (Exception e) {
 				throw new ErrorServicio("Todos los campos son obligatorios");
 			}
+			
 		}
 		
 		
@@ -60,7 +66,7 @@ public class RespuestaServicio {
 	public void modificar(String idRespuesta, String rtaModificado) throws Exception {		
 		
 		validar(rtaModificado);
-		
+		System.out.println("sadas");
 		Optional<Respuesta> resp = respuestaRepositorio.findById(idRespuesta);
 		//esto es por si respetamos el CU y no se puede auto responder hablar con loren :)
 		

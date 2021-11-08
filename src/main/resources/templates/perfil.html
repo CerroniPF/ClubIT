@@ -19,7 +19,7 @@
 
 	
     <div class="contenedor">
-        <form action="cargarUsuario" method="POST">
+        <form action="editarUsuario" method="POST">
             <div class="contenedorTitulo">
             <h2 class="titulo" th:text="${session.usersession.nombreUsuario}">{nombre usurio}</h2>
             <a class="papelera"><img src="papelera.png" alt=""></a>
@@ -27,6 +27,7 @@
             <div class="columnas">
      
                 <div  class="camposLibro">
+                <input class="campo" hidden th:value="${session.usersession.mail}" type="text" placeholder="ingrese nombre " name="mail" />
                     <b class="tituloCampo" >Nombre </b>
                     <input class="campo" th:value="${session.usersession.nombre}" type="text" placeholder="ingrese nombre " name="nombre" />
                 </div> 
@@ -36,7 +37,7 @@
                 </div>
                 <div  class="camposLibro">
                 <b class="tituloCampo">Nombre de usuario</b>
-                <input class="campo" th:value="${session.usersession.nombreUsuario}" type="text" placeholder="ingrese nombre usuario" name="nombreUsuario" />
+                <input class="campo" th:value="${session.usersession.nombreUsuario}" type="text" placeholder="ingrese nombre usuario" name="nombreUsuario2" />
             </div>
 
 

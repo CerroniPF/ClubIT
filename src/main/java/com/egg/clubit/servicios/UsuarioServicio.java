@@ -92,17 +92,45 @@ public class UsuarioServicio implements UserDetailsService {
 //	}
 
 	@Transactional
-	public void modificar(String nombreUsuario, String nombreUsuarioNuevo) throws ErrorServicio {
+	public void modificar(String mail ,String nombre,String apellido, String nombreUsuario) throws ErrorServicio {
+		
+		//no se puede buscar por un valor que se va a modificar posteriormente se rompe 
 
-		Usuario usuario = usuarioRepositorio.buscarPorNombreUsuario(nombreUsuario);
+		System.out.println(mail);
+		Usuario usuario = usuarioRepositorio.buscarUsuarioPorMail(mail);
 
-		if (usuarioRepositorio.buscarPorNombreUsuario(nombreUsuarioNuevo) == null) {
-			usuario.setNombreUsuario(nombreUsuarioNuevo);
-			usuarioRepositorio.save(usuario);
+		System.out.println(usuario);
+		
+		if (nombre == null || nombre.isEmpty()) {
+			throw new ErrorServicio("El nombre de usuario no puede quedar vacío");
 
-		} else {
-			throw new ErrorServicio("El nombre de usuario ya existe");
+		}else {
+			
+			usuario.setNombre(nombre);
 		}
+		
+		if (apellido == null || apellido.isEmpty()) {
+			throw new ErrorServicio("El apellido de usuario no puede quedar vacío");
+
+		}else {
+			
+			usuario.setApellido(apellido);
+			
+		}
+		if (nombreUsuario == null || nombreUsuario.isEmpty()) {
+			throw new ErrorServicio("El apellido de usuario no puede quedar vacío");
+
+		}else {
+
+			usuario.setNombreUsuario(nombreUsuario);
+		}
+
+		usuarioRepositorio.save(usuario);
+		
+		System.out.println(usuario.getNombreUsuario());
+
+
+		
 
 	}
 
