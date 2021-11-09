@@ -16,48 +16,41 @@ import com.egg.clubit.repositorios.PosteoRepositorio;
 
 @Service
 public class PosteoServicio {
-	
 	@Autowired
-	public PosteoRepositorio posteoRepositorio;
+	private PosteoRepositorio posteoRepositorio;
 
+	@Autowired
+	private EtiquetaServicio etiquetaServicio;
 
 	// cambie void por listaposteo
 	public List<Posteo> listarTodos() {
 		return posteoRepositorio.ordenarPosteosFecha();
-
-
 	}
-	
-	
+
 	@Transactional(readOnly = true)
 	public void listarPostUsuario() {
-		//esto lo resolvió lorenzo, lo borramos o no? VOT SI/NO.
+		// esto lo resolvió lorenzo, lo borramos o no? VOT SI/NO.
 	}
 
-	
-	
 	@Transactional(readOnly = true)
 	public List<Posteo> listarPorPalabraClave(String palabraClave) throws ErrorServicio {
-	
 		try {
-			List<Posteo> listarPosteoPalabraClave=posteoRepositorio.buscarPorPalabraClave(palabraClave);
+			List<Posteo> listarPosteoPalabraClave = posteoRepositorio.buscarPorPalabraClave(palabraClave);
 			return listarPosteoPalabraClave;
 		} catch (Exception e) {
-		throw new ErrorServicio("No se encontró ningún post:(");
+			throw new ErrorServicio("No se encontró ningún post:(");
 		}
-	 
 	}
-	
+
 	@Transactional(readOnly = true)
 	public List<Posteo> listarPorLenguaje(String etiqueta) {
-		List<Posteo> listarPorLenguaje= posteoRepositorio.buscarPorLenguaje(etiqueta);
+		List<Posteo> listarPorLenguaje = posteoRepositorio.buscarPorLenguaje(etiqueta);
 		return listarPorLenguaje;
 	}
-	
+
 	@Transactional
 	public void crearPost(String titulo, String posteo, Etiqueta etiqueta, Usuario usuario) throws ErrorServicio {
-	validar(titulo,posteo, etiqueta);
-
+		validar(titulo, posteo, etiqueta);
 
 		try {
 			Posteo post = new Posteo();
@@ -67,17 +60,20 @@ public class PosteoServicio {
 			post.setEditado(false);
 			post.setFechaPosteo(new Date());
 			post.setUsuario(usuario);
-			post.setAlta(true); //falto darle de alta
+			etiquetaServicio.contador(etiqueta.getNombre());
+			post.setAlta(true);
+
 			posteoRepositorio.save(post);
 		} catch (Exception e) {
 			throw new ErrorServicio("Todos los campos son obligatorios");
 		}
 	}
 
+	@Transactional(readOnly = true)
 	public Posteo buscarPorId(String id) {
 		return posteoRepositorio.getById(id);
 	}
-	
+
 	@Transactional
 	public void darBaja(String id) throws Exception {
 		Optional<Posteo> resp = posteoRepositorio.findById(id);
@@ -88,37 +84,38 @@ public class PosteoServicio {
 			throw new ErrorServicio("No se encontro el post");
 		}
 	}
-	
+
 	@Transactional
-	public void modificar(String id, String titulo, String posteo, Etiqueta etiqueta) throws Exception {		
-		
-		validar(titulo,posteo, etiqueta);
-		
+	public void modificar(String id, String titulo, String posteo, Etiqueta etiqueta) throws Exception {
+
+		validar(titulo, posteo, etiqueta);
+
 		Optional<Posteo> resp = posteoRepositorio.findById(id);
-		
+
 		if (resp.isPresent()) {
 			Posteo post = resp.get();
-			
+
 			post.setTitulo(titulo);
 			post.setPosteo(posteo);
 			post.setEtiqueta(etiqueta);
-			post.setEditado(true);				/* Este atributo se agrego para identificar si el post fue editado desde el .html */
+			post.setEditado(true); /*
+									 * Este atributo se agrego para identificar si el post fue editado desde el
+									 * .html
+									 */
 			post.setFechaPosteo(new Date());
-			
-			
+
 			posteoRepositorio.save(post);
 		} else {
 			throw new ErrorServicio("No se pudo modificar el post");
 		}
-	}	
-	
-	public void validar( String titulo, String posteo, Etiqueta etiqueta) throws ErrorServicio {
+	}
+
+	public void validar(String titulo, String posteo, Etiqueta etiqueta) throws ErrorServicio {
 		System.out.println("gatito");
 
 		if (titulo == null || titulo.isEmpty()) {
 			System.out.println("gato");
 			throw new ErrorServicio("El titulo no puede quedar vacío");
-			
 
 		}
 		if (posteo == null || posteo.isEmpty()) {
@@ -126,16 +123,9 @@ public class PosteoServicio {
 			throw new ErrorServicio("El posteo no puede quedar vacío");
 
 		}
-//		if (etiqueta == null) {
-//			System.out.println("etiquera");
-//			throw new ErrorServicio("La etiqueta no puede quedar vacío");
-//
-//		}
-		
+		if (etiqueta == null) {
+			System.out.println("etiqueta");
+			throw new ErrorServicio("La etiqueta no puede quedar vacía");
 		}
-
-	
-	
-	
-	
+	}
 }

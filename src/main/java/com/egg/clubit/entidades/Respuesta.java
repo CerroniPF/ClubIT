@@ -2,6 +2,7 @@ package com.egg.clubit.entidades;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,15 +20,12 @@ public class Respuesta {
 	private String id;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaResp;
+	@Column(length = 10000)
 	private String respuesta;
 	@ManyToOne
 	private Usuario usuario;
 	@ManyToOne
 	private Posteo posteo;
-	
-	
-	
-	
 	
 	public Respuesta() {	}
 

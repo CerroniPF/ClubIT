@@ -15,9 +15,9 @@
 </head>
 
 </head>
-<header th:replace="nav/nav.html :: nav"> </header>
 
 </body>
+<header th:replace="nav/nav.html :: nav"> </header>
 <p th:text="${error}"></p>
 
 <a th:if="${session.usersession}" class="boton" href="/crearPost">Post</a>
@@ -49,15 +49,13 @@
 		</div>
 	</div>
 
-
-	<form action="/posteo/${id}/respuesta" method="POST">
-	<input  th:value="${posteo.id}" type="text" placeholder="ingrese nombre " name="idPost" />
+	<p th:if="${session.usersession == null}" class="error"> Para poder responder debe estar logeado </p>
+	<form th:if="${session.usersession}" action="/posteo/${id}/respuesta" method="POST">
+	<input th:value="${posteo.id}" type="text" placeholder="ingrese nombre" hidden name="idPost" />
 		<div class="contenedorRespouesta">
 			<textarea name="respuestaRTA" id="" cols="100" rows="20" placeholder="Ingrese tu post"></textarea>
-
-			<button th:if="${session.usersession}" class="botonResponder"}>responder</button>
+			<button class="botonResponder"}>responder</button>
 		</div>
-		
 	</form>
 </div>
 </body>

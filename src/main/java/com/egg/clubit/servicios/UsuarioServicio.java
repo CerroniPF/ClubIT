@@ -42,9 +42,9 @@ public class UsuarioServicio implements UserDetailsService {
 	@Transactional
 	public void registro(String nombre, String apellido, String nombreUsuario, String mail, String contrasena,
 			String contrasena2) throws ErrorServicio {
-		//validar(nombre, apellido, nombreUsuario, mail, contrasena, contrasena2);
+		validar(nombre, apellido, nombreUsuario, mail, contrasena, contrasena2);
 		//acá está la carga de las etiquetas
-	//	etiquetaServicio.cargaAutomatica();
+		//etiquetaServicio.cargaAutomatica();
 		
 		try {
 			Usuario usuario = new Usuario();
@@ -71,7 +71,6 @@ public class UsuarioServicio implements UserDetailsService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 //	public void ingreso(String mail, String contrasena) throws ErrorServicio {
@@ -138,9 +137,14 @@ public class UsuarioServicio implements UserDetailsService {
 	public void baja(String nombreUsuario) {
 		/* Verificar que exista el usuario */
 		try {
-
 			Usuario usuario = usuarioRepositorio.buscarPorNombreUsuario(nombreUsuario);
 			usuario.setAlta(false);
+			usuario.setNombre(null);
+			usuario.setApellido(null);
+			usuario.setNombreUsuario(usuario.getId());
+			usuario.setMail(null);
+			usuario.setContrasena(null);
+			
 			usuarioRepositorio.save(usuario);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -198,6 +202,7 @@ public class UsuarioServicio implements UserDetailsService {
 			// Guardamos sus atributos
 			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 			HttpSession session = attr.getRequest().getSession(true);
+			//session.setAttribute("usersession", usuario);
 			session.setAttribute("usersession", usuario);
 
 			User user = new User(usuario.getMail(), usuario.getContrasena(), permisos);
