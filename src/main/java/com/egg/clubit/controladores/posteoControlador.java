@@ -19,9 +19,11 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.egg.clubit.entidades.Etiqueta;
 import com.egg.clubit.entidades.Posteo;
+import com.egg.clubit.entidades.Respuesta;
 import com.egg.clubit.entidades.Usuario;
 import com.egg.clubit.errorservicio.ErrorServicio;
 import com.egg.clubit.repositorios.EtiquetaRepositorio;
+import com.egg.clubit.repositorios.RespuestaRepositorio;
 import com.egg.clubit.servicios.PosteoServicio;
 import com.egg.clubit.servicios.RespuestaServicio;
 import com.egg.clubit.servicios.UsuarioServicio;
@@ -40,6 +42,9 @@ public class posteoControlador {
 	
 	@Autowired
 	EtiquetaRepositorio etiquetaRepositorio;
+	
+	@Autowired
+	RespuestaRepositorio respuestaRepositorio;
 
 //--------------------------------------------------------------------------------------------	
 	@PreAuthorize("hasAnyRole('ROLE_ACTIVO')")
@@ -113,7 +118,10 @@ public class posteoControlador {
 	public String posteo(Model modelo, @PathVariable String id) {
 		Posteo posteo = posteoServicio.buscarPorId(id);
 		modelo.addAttribute("posteo", posteo);
-
+		List<Respuesta> listaRespuestaOrdenada=respuestaRepositorio.ordenarRespuesta(id);
+		modelo.addAttribute("respuestas", listaRespuestaOrdenada);
+		System.out.println();
+		
 		return "mostrarPosteo";
 	}
 

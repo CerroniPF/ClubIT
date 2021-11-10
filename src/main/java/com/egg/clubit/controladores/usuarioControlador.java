@@ -113,12 +113,18 @@ public class usuarioControlador {
 	// hacer un mensaje de que si se cambio el nombre de usuario se mostrara la
 	// proxima vez que ingrese
 	@PostMapping("/editarUsuario")
-	public String editarUsuario(ModelMap modelo, @RequestParam String mail, @RequestParam String nombre,
+	public String editarUsuario(HttpServletRequest request,ModelMap modelo, @RequestParam String mail, @RequestParam String nombre,
 			@RequestParam String apellido, @RequestParam String nombreUsuario2) {
 
 		try {
 			usuarioServicio.modificar(mail, nombre, apellido, nombreUsuario2);
-
+			
+			HttpSession session = request.getSession(false);
+			if (session != null) {
+				session.invalidate();
+			}
+			usuarioServicio.loadUserByUsername(mail);
+			
 		} catch (ErrorServicio e) {
 
 			return "/perfil";
@@ -126,4 +132,14 @@ public class usuarioControlador {
 		return "redirect:/";
 	}
 	// --------------------------------------------------------------------------------------------
+
+	@GetMapping("/editarUsuario/baja")
+	public String bajaUsuario(HttpServletRequest request,ModelMap modelo, @RequestParam String nombreUsuario2) {
+
+		
+			usuarioServicio.baja(nombreUsuario2);
+			System.out.println("deslogeado");
+		return "redirect:/";
+	}
+
 }

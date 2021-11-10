@@ -32,21 +32,64 @@ public class PosteoServicio {
 		// esto lo resolvió lorenzo, lo borramos o no? VOT SI/NO.
 	}
 
-	@Transactional(readOnly = true)
-	public List<Posteo> listarPorPalabraClave(String palabraClave) throws ErrorServicio {
-		try {
-			List<Posteo> listarPosteoPalabraClave = posteoRepositorio.buscarPorPalabraClave(palabraClave);
-			return listarPosteoPalabraClave;
-		} catch (Exception e) {
-			throw new ErrorServicio("No se encontró ningún post:(");
-		}
-	}
+//	@Transactional(readOnly = true)
+//	public List<Posteo> listarPorPalabraClave(String palabraClave) throws ErrorServicio {
+//		
+//		System.out.println(palabraClave);
+//		
+//		try {
+//			List<Posteo> listarPosteoPalabraClave = posteoRepositorio.buscarPorPalabraClave(palabraClave);
+//		
+//			for(Posteo aux : listarPosteoPalabraClave){
+//				System.out.println(aux);	
+//			}
+//			
+//			
+//			
+//			return listarPosteoPalabraClave;
+//		
+//			
+//		} catch (Exception e) {
+//			throw new ErrorServicio("No se encontró ningún post:(");
+//		}
+//		
+//	}
+	
+	
+	
+	
+	
+	
 
+//	@Transactional(readOnly = true)
+//	public List<Posteo> listarPorLenguaje(String etiqueta) {
+//		List<Posteo> listarPorLenguaje = posteoRepositorio.buscarPorLenguaje(etiqueta);
+//		return listarPorLenguaje;
+//	}
+	
+	
+	
 	@Transactional(readOnly = true)
-	public List<Posteo> listarPorLenguaje(String etiqueta) {
-		List<Posteo> listarPorLenguaje = posteoRepositorio.buscarPorLenguaje(etiqueta);
-		return listarPorLenguaje;
+	public List<Posteo> busquedaAvanzada(String palabraClave, String idEtiqueta) {
+		List<Posteo> listaResultado = posteoRepositorio.busquedaAvanzada(palabraClave,idEtiqueta);
+		
+		if(!palabraClave.equals("")){
+			listaResultado = posteoRepositorio.busquedaAvanzada(palabraClave,idEtiqueta);
+			
+		}
+		
+		if(idEtiqueta.equals("Todos")) {
+			listaResultado = posteoRepositorio.buscarPorPalabraClave (palabraClave);
+			 
+		}
+		
+		
+		
+		
+		
+		return listaResultado ;
 	}
+	
 
 	@Transactional
 	public void crearPost(String titulo, String posteo, Etiqueta etiqueta, Usuario usuario) throws ErrorServicio {
@@ -61,7 +104,7 @@ public class PosteoServicio {
 			post.setFechaPosteo(new Date());
 			post.setUsuario(usuario);
 			etiquetaServicio.contador(etiqueta.getNombre());
-			post.setAlta(true);
+					post.setAlta(true);
 
 			posteoRepositorio.save(post);
 		} catch (Exception e) {
@@ -111,15 +154,15 @@ public class PosteoServicio {
 	}
 
 	public void validar(String titulo, String posteo, Etiqueta etiqueta) throws ErrorServicio {
-		System.out.println("gatito");
+		
 
 		if (titulo == null || titulo.isEmpty()) {
-			System.out.println("gato");
+			
 			throw new ErrorServicio("El titulo no puede quedar vacío");
 
 		}
 		if (posteo == null || posteo.isEmpty()) {
-			System.out.println("posteo");
+			
 			throw new ErrorServicio("El posteo no puede quedar vacío");
 
 		}

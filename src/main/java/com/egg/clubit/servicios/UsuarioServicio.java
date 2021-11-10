@@ -137,6 +137,7 @@ public class UsuarioServicio implements UserDetailsService {
 	public void baja(String nombreUsuario) {
 		/* Verificar que exista el usuario */
 		try {
+			System.out.println("entro");
 			Usuario usuario = usuarioRepositorio.buscarPorNombreUsuario(nombreUsuario);
 			usuario.setAlta(false);
 			usuario.setNombre(null);

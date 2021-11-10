@@ -15,8 +15,9 @@
             </a>
               
             <div class="restoNav">
-                <form class="form" action="">
-                    <select class="select" name="IdAutor">
+                <form class="form" action="buscar">
+                    <select class="select" name="etiqueta">
+                    	<option  th:value="Todos" th:text="Todos" > </option>
  						<option th:each = "etiqueta : ${etiquetas}" th:value="${etiqueta.id}" th:text="${etiqueta.nombre}" > </option>
  					</select>
 					<input name="titulo" type="text" class="buscador">
