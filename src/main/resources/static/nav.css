@@ -9,7 +9,6 @@
 	text-decoration: none;
 	border: none;
 	outline: none;
-	
 }
 
 body {
@@ -17,8 +16,6 @@ body {
     	background-image: url("fondito3.jpg");
       background-repeat: no-repeat;
     background-size: cover;
-
-
 }
 
 .navbar {
@@ -158,8 +155,15 @@ option{
 	margin:auto;
 	color: #842029;
 	background-color: #f8d7da;
+}
 
-;
-
-	
+.exito{
+	text-align: center;
+	width:50%;
+	padding:20px;
+	border-radius: 5px;
+	margin:auto;
+	color: #0f5132;
+    background-color: #d1e7dd;
+    border-color: #badbcc;
 }

@@ -15,9 +15,9 @@
 </head>
 
 </head>
-<header th:replace="nav/nav.html :: nav"> </header>
 
 </body>
+<header th:replace="nav/nav.html :: nav"> </header>
 <p th:text="${error}"></p>
 
 <a th:if="${session.usersession}" class="boton" href="/crearPost">Post</a>
@@ -31,7 +31,7 @@
 			<div class="cajaDatos">
 
 				<b class="tituloCampo" th:text="${posteo.fechaPosteo}"></b>
-				<b class="tituloCampo" th:text="${posteo.usuario.nombre}"></b>
+				<b class="tituloCampo" th:text="${posteo.etiqueta.nombre}"></b>
 			</div>
 		</div>
 
@@ -39,25 +39,25 @@
 			<b class="post" th:text="${posteo.posteo}"></b>
 		</div>
 	</div>
-
-	<div class="contenedor" th:each="res : ${posteo.respuesta}">
+	<div class="cantenedorRespuesta">
+<b class="textoRespuesta">RESPUESTAS</b>
+	</div>
+	<div class="contenedor" th:each="respuesta : ${respuestas}">
 		<div class="cajaCampo">
 
-			<b class="fechaCampo" th:text="${res.respuesta}"></b>
-			<b class="tituloCampo" th:text="${res.usuario.nombre}"></b>
-			<b class="fechaCampo" th:text="${res.fechaResp}"></b>
+			<b class="fechaCampo" th:text="${respuesta.respuesta}"></b>
+			<b class="tituloCampo" th:text="${respuesta.usuario.nombreUsuario}"></b>
+			<b class="fechaCampo" th:text="${respuesta.fechaResp}"></b>
 		</div>
 	</div>
 
-
-	<form action="/posteo/${id}/respuesta" method="POST">
-	<input  th:value="${posteo.id}" type="text" placeholder="ingrese nombre " name="idPost" />
+	<p th:if="${session.usersession == null}" class="error"> Para poder responder debe estar logeado </p>
+	<form th:if="${session.usersession}" action="/posteo/${id}/respuesta" method="POST">
+	<input th:value="${posteo.id}" type="text" placeholder="ingrese nombre" hidden name="idPost" />
 		<div class="contenedorRespouesta">
 			<textarea name="respuestaRTA" id="" cols="100" rows="20" placeholder="Ingrese tu post"></textarea>
-
-			<button th:if="${session.usersession}" class="botonResponder"}>responder</button>
+			<button class="botonResponder">responder</button>
 		</div>
-		
 	</form>
 </div>
 </body>

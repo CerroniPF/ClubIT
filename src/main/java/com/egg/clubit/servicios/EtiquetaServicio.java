@@ -21,9 +21,7 @@ public class EtiquetaServicio {
 	@Transactional
 	public void cargaAutomatica() throws ErrorServicio {
 		try {
-			
 			for (EtiquetaEnum e : EtiquetaEnum.values()) {
-
 				Etiqueta etiqueta= new Etiqueta();
 				//e.getValor().toString();
 	            System.out.println(e.getValor().toString());
@@ -31,13 +29,11 @@ public class EtiquetaServicio {
 				etiqueta.setContador(0);			
 				etiquetaRepositorio.save(etiqueta);	
 			}
-					
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	/*Si queda tiempo, hacemos la carga por el front, sino a mano*/
-
 
 	@Transactional 
 	public void contador(String nombre) {

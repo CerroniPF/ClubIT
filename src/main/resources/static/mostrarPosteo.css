@@ -52,6 +52,20 @@ margin-top:10px;
     margin :auto;
    
 }
+.textoRespuesta{
+    color:white;
+   
+ 
+
+}
+.cantenedorRespuesta{
+	margin-bottom: 20px;
+    width: 95%;
+    color:white;
+    text-align: center;
+ 
+   
+}
 .contenedor{
 	border:double white 4px;
 	border-radius: 5px;
