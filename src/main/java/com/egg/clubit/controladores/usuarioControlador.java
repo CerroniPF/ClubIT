@@ -133,12 +133,15 @@ public class usuarioControlador {
 	}
 	// --------------------------------------------------------------------------------------------
 
-	@GetMapping("/editarUsuario/baja")
-	public String bajaUsuario(HttpServletRequest request,ModelMap modelo, @RequestParam String nombreUsuario2) {
+	@PostMapping("/perfil")
+	public String bajaUsuario(HttpServletRequest request, @RequestParam String mail) {
 
 		
-			usuarioServicio.baja(nombreUsuario2);
-			System.out.println("deslogeado");
+			usuarioServicio.baja(mail);
+			HttpSession session = request.getSession(false);
+			if (session != null) {
+				session.invalidate();
+			}
 		return "redirect:/";
 	}
 

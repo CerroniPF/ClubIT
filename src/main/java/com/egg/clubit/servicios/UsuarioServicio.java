@@ -90,61 +90,75 @@ public class UsuarioServicio implements UserDetailsService {
 //
 //	}
 
+
+	
 	@Transactional
-	public void modificar(String mail ,String nombre,String apellido, String nombreUsuario) throws ErrorServicio {
-		
-		//no se puede buscar por un valor que se va a modificar posteriormente se rompe 
-
-		System.out.println(mail);
+	public void modificar(String mail, String nombreModificado, String apellidoModificado, String nombreUsuarioModificado) throws ErrorServicio {		
 		Usuario usuario = usuarioRepositorio.buscarUsuarioPorMail(mail);
-
-		System.out.println(usuario);
-		
-		if (nombre == null || nombre.isEmpty()) {
+		List<Usuario> listaUsuario = usuarioRepositorio.findAll();
+		Boolean bandera = true;
+		if (nombreModificado == null || nombreModificado.isEmpty()) {
 			throw new ErrorServicio("El nombre de usuario no puede quedar vacío");
-
-		}else {
-			
-			usuario.setNombre(nombre);
 		}
 		
-		if (apellido == null || apellido.isEmpty()) {
+		if (apellidoModificado == null || apellidoModificado.isEmpty()) {
 			throw new ErrorServicio("El apellido de usuario no puede quedar vacío");
-
-		}else {
-			
-			usuario.setApellido(apellido);
-			
 		}
-		if (nombreUsuario == null || nombreUsuario.isEmpty()) {
+		if (nombreUsuarioModificado == null || nombreUsuarioModificado.isEmpty()) {
 			throw new ErrorServicio("El apellido de usuario no puede quedar vacío");
-
-		}else {
-
-			usuario.setNombreUsuario(nombreUsuario);
 		}
-
-		usuarioRepositorio.save(usuario);
 		
-		System.out.println(usuario.getNombreUsuario());
+		for (Usuario aux : listaUsuario) {
+			if (aux.getNombreUsuario().equals(nombreUsuarioModificado)) {
+				bandera = false;
+				break;
+			}
+			else {
+				bandera = true;
 
+			}
+		}
+		if (bandera == true) {
+			usuario.setNombre(nombreModificado);
+			usuario.setApellido(apellidoModificado);
+			usuario.setNombreUsuario(nombreUsuarioModificado);
+			usuario.setMail(mail);
 
-		
+			usuarioRepositorio.save(usuario);
+		}else {
+			System.out.println("El nombre de usuario ya existe");
+			throw new ErrorServicio("El nombre de usuario ya existe");
+			
+		}
 
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	@Transactional
-	public void baja(String nombreUsuario) {
+	public void baja(String mail) {
 		/* Verificar que exista el usuario */
 		try {
 			System.out.println("entro");
-			Usuario usuario = usuarioRepositorio.buscarPorNombreUsuario(nombreUsuario);
+			Usuario usuario = usuarioRepositorio.buscarUsuarioPorMail(mail);
 			usuario.setAlta(false);
 			usuario.setNombre(null);
 			usuario.setApellido(null);
-			usuario.setNombreUsuario(usuario.getId());
+			usuario.setNombreUsuario("dado de Baja");
 			usuario.setMail(null);
 			usuario.setContrasena(null);
+
 			
 			usuarioRepositorio.save(usuario);
 		} catch (Exception e) {
