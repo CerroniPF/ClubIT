@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.egg.clubit.entidades.Usuario;
 import com.egg.clubit.errorservicio.ErrorServicio;
@@ -24,14 +25,18 @@ public class respuestaControlador {
 	PosteoServicio posteoServicio;
 
 	@PostMapping("/posteo/{id}/respuesta")
-	public String respuesta(HttpSession httpSession, ModelMap modelo, @RequestParam String idPost, @RequestParam String respuestaRTA) throws ErrorServicio    {
+	public RedirectView respuesta(HttpSession httpSession, ModelMap modelo, @RequestParam String idPost, @RequestParam String respuestaRTA) throws ErrorServicio    {
+		
+		RedirectView rv = new RedirectView();
 		Usuario usuarioRespuesta = (Usuario) httpSession.getAttribute("usersession");
+		String id = idPost;
 		try {
 			respuestaServicio.crearRespuesta(idPost, usuarioRespuesta, respuestaRTA);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "redirect:/";
+		rv.setUrl("/posteo/" + id );
+		return rv;
 	}
 }

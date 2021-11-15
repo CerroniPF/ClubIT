@@ -11,6 +11,7 @@
 	outline: none;
 }
 
+
 .contenedorPost{
     background-color: rgba(63, 73, 87,0.9);
     width: 70%;
@@ -29,11 +30,34 @@
     width: 90%;
    
 }
+
+.cajaPost{
+    display: inline-flex;
+    width: 100%;
+    margin:5px;
+     
+}
+
+.cajaDatos{   
+height:100%;
+
+font-size:13px ;
+margin-top:10px;
+   
+}
+
+.post{
+	  display: inline-flex;
+    width: 95%;
+    color:white;
+    margin :auto;
+   
+}
 .contenedor{
 	border:double white 4px;
 	border-radius: 5px;
 	margin-bottom: 20px;
-	height: 120px;
+	height: 110px;
 }
 .nombreCampo{
 
@@ -43,7 +67,25 @@
 
 }
 
-
+.botonPost {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 100px;
+    background: #4596D9;
+    color: white;
+    border-radius: 15px;
+    text-decoration: none;
+    margin-top: 30px;
+    margin-left: 46%;
+}
+.botonPost{
+	 background: #69b7f6;
+}
+.botonPost-largo {
+    width: 120px;
+}
  
   #boton2{
 	margin-top: 15px;

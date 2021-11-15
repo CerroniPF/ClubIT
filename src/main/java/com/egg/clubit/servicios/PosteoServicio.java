@@ -13,6 +13,7 @@ import com.egg.clubit.entidades.Posteo;
 import com.egg.clubit.entidades.Usuario;
 import com.egg.clubit.errorservicio.ErrorServicio;
 import com.egg.clubit.repositorios.PosteoRepositorio;
+import com.egg.clubit.repositorios.UsuarioRepositorio;
 
 @Service
 public class PosteoServicio {
@@ -21,6 +22,9 @@ public class PosteoServicio {
 
 	@Autowired
 	private EtiquetaServicio etiquetaServicio;
+	
+	@Autowired
+	private UsuarioRepositorio usuarioRepositorio;
 
 	// cambie void por listaposteo
 	public List<Posteo> listarTodos() {
@@ -33,20 +37,22 @@ public class PosteoServicio {
 	}
 
 	@Transactional(readOnly = true)
-	public List<Posteo> listarPorPalabraClave(String palabraClave) throws ErrorServicio {
-		try {
-			List<Posteo> listarPosteoPalabraClave = posteoRepositorio.buscarPorPalabraClave(palabraClave);
-			return listarPosteoPalabraClave;
-		} catch (Exception e) {
-			throw new ErrorServicio("No se encontró ningún post:(");
+	public List<Posteo> busquedaAvanzada(String palabraClave, String idEtiqueta) {
+		List<Posteo> listaResultado = posteoRepositorio.busquedaAvanzada(palabraClave,idEtiqueta);
+		
+		if(!palabraClave.equals("")){
+			listaResultado = posteoRepositorio.busquedaAvanzada(palabraClave,idEtiqueta);
+			
 		}
+		
+		if(idEtiqueta.equals("Todos")) {
+			listaResultado = posteoRepositorio.buscarPorPalabraClave (palabraClave);
+			 
+		}
+		
+		return listaResultado ;
 	}
-
-	@Transactional(readOnly = true)
-	public List<Posteo> listarPorLenguaje(String etiqueta) {
-		List<Posteo> listarPorLenguaje = posteoRepositorio.buscarPorLenguaje(etiqueta);
-		return listarPorLenguaje;
-	}
+	
 
 	@Transactional
 	public void crearPost(String titulo, String posteo, Etiqueta etiqueta, Usuario usuario) throws ErrorServicio {
@@ -61,7 +67,7 @@ public class PosteoServicio {
 			post.setFechaPosteo(new Date());
 			post.setUsuario(usuario);
 			etiquetaServicio.contador(etiqueta.getNombre());
-			post.setAlta(true);
+			post.setAlta(1);
 
 			posteoRepositorio.save(post);
 		} catch (Exception e) {
@@ -74,14 +80,39 @@ public class PosteoServicio {
 		return posteoRepositorio.getById(id);
 	}
 
+//	@Transactional
+//	public void darBaja(String id) throws Exception {
+//		Optional<Posteo> resp = posteoRepositorio.findById(id);
+//		if (resp.isPresent()) {
+//			Posteo post = resp.get();
+//			post.setAlta(false);
+//		} else {
+//			throw new ErrorServicio("No se encontro el post");
+//		}
+//	}
+	
 	@Transactional
-	public void darBaja(String id) throws Exception {
+	public void darBaja(String id, String idLogueado) throws Exception {
 		Optional<Posteo> resp = posteoRepositorio.findById(id);
-		if (resp.isPresent()) {
-			Posteo post = resp.get();
-			post.setAlta(false);
-		} else {
-			throw new ErrorServicio("No se encontro el post");
+		Optional<Usuario> user = usuarioRepositorio.findById(idLogueado);
+		Usuario usuario = user.get();
+		if (usuario.getRolAdministrador().equals(true)) {
+			if (resp.isPresent()) {
+				Posteo post = resp.get();
+
+				post.setAlta(2);
+			} else {
+				throw new ErrorServicio("No se encontro el post");
+			}
+		
+		}else {
+			if (resp.isPresent()) {
+				Posteo post = resp.get();
+
+				post.setAlta(0);
+			} else {
+				throw new ErrorServicio("No se encontro el post");
+			}
 		}
 	}
 
@@ -111,15 +142,15 @@ public class PosteoServicio {
 	}
 
 	public void validar(String titulo, String posteo, Etiqueta etiqueta) throws ErrorServicio {
-		System.out.println("gatito");
+		
 
 		if (titulo == null || titulo.isEmpty()) {
-			System.out.println("gato");
+			
 			throw new ErrorServicio("El titulo no puede quedar vacío");
 
 		}
 		if (posteo == null || posteo.isEmpty()) {
-			System.out.println("posteo");
+			
 			throw new ErrorServicio("El posteo no puede quedar vacío");
 
 		}
