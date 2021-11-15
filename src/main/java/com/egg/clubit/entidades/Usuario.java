@@ -26,6 +26,8 @@ public class Usuario {
 	private List<Respuesta> respuesta;
 	private Boolean rolEmpresa;
 	private Boolean alta;
+
+	
 	
 	public Usuario() {	}
 

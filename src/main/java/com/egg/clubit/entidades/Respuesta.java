@@ -19,6 +19,17 @@ public class Respuesta {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaResp;
 	private String respuesta;
+<<<<<<< Updated upstream
+=======
+	@ManyToOne
+	private Usuario usuario;
+	@ManyToOne
+	private Posteo posteo;
+	
+	private Integer alta;
+	
+	
+>>>>>>> Stashed changes
 	
 	public Respuesta() {	}
 
@@ -50,4 +61,36 @@ public class Respuesta {
 	public String toString() {
 		return "Respuesta [id=" + id + ", fechaResp=" + fechaResp + ", respuesta=" + respuesta + "]";
 	}
+<<<<<<< Updated upstream
+=======
+
+	/**
+	 * @return the posteo
+	 */
+	public Posteo getPosteo() {
+		return posteo;
+	}
+
+	/**
+	 * @param posteo the posteo to set
+	 */
+	public void setPosteo(Posteo posteo) {
+		this.posteo = posteo;
+	}
+
+
+	public Integer getAlta() {
+		return alta;
+	}
+
+	public void setAlta(Integer alta) {
+		this.alta = alta;
+	}
+	
+
+//	@Override
+//	public String toString() {
+//		return "Respuesta [id=" + id + ", fechaResp=" + fechaResp + ", respuesta=" + respuesta + "]";
+//	}
+>>>>>>> Stashed changes
 }

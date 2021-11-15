@@ -21,7 +21,12 @@ public class Posteo {
 	private String id;
 	private String titulo;
 	private String posteo;
+<<<<<<< Updated upstream
 	private Boolean cerrar;
+=======
+	private Integer alta;
+	private Boolean editado;
+>>>>>>> Stashed changes
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaPosteo;
 	@ManyToOne
@@ -55,12 +60,21 @@ public class Posteo {
 		this.posteo = posteo;
 	}
 
+<<<<<<< Updated upstream
 	public Boolean getCerrar() {
 		return cerrar;
 	}
 
 	public void setCerrar(Boolean cerrar) {
 		this.cerrar = cerrar;
+=======
+	public Integer getAlta() {
+		return alta;
+	}
+
+	public void setAlta(Integer alta) {
+		this.alta = alta;
+>>>>>>> Stashed changes
 	}
 
 	public Date getFechaPosteo() {
