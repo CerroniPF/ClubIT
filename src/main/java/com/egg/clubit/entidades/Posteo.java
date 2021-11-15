@@ -3,9 +3,8 @@ package com.egg.clubit.entidades;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -22,8 +21,10 @@ public class Posteo {
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
 	private String titulo;
+	@Column(length = 10000)
 	private String posteo;
-	private Boolean alta;
+	//private Boolean alta;
+	private Integer alta;
 	private Boolean editado;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaPosteo;
@@ -70,11 +71,11 @@ public class Posteo {
 		this.posteo = posteo;
 	}
 
-	public Boolean getAlta() {
+	public Integer getAlta() {
 		return alta;
 	}
 
-	public void setAlta(Boolean alta) {
+	public void setAlta(Integer alta) {
 		this.alta = alta;
 	}
 

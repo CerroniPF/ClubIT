@@ -5,10 +5,11 @@
      <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cargar Libro</title>
+    <title>Editar usuario</title>
     <link th:replace="nav/nav.html :: link">
-    <link rel="stylesheet" href="ingresoUsuario.css" />
-    
+  
+
+    <link rel="stylesheet" href="perfil.css" />  
  
     
     
@@ -18,15 +19,28 @@
 
 	
     <div class="contenedor">
-        <form action="cargarUsuario" method="POST">
-            <h2 class="titulo">nombre usurio</h2>
-            <a>dar de baja</a>
+    
+        <form action="editarUsuario" method="POST">
+            <div class="contenedorTitulo">
+            <h2 class="titulo" th:text="${session.usersession.nombreUsuario}">{nombre usurio}</h2>
+        </div>
             <div class="columnas">
      
-            <div  class="camposLibro">
+                <div  class="camposLibro">
+                <input class="campo" hidden th:value="${session.usersession.mail}" type="text" placeholder="ingrese nombre " name="mail" />
+                    <b class="tituloCampo" >Nombre </b>
+                    <input class="campo" th:value="${session.usersession.nombre}" type="text" placeholder="ingrese nombre " name="nombre" />
+                </div> 
+                   <div  class="camposLibro">
+                    <b class="tituloCampo">Apellido</b>
+                    <input class="campo" th:value="${session.usersession.apellido}" type="text" placeholder="ingrese apellido" name="apellido" />
+                </div>
+                <div  class="camposLibro">
                 <b class="tituloCampo">Nombre de usuario</b>
-                <input class="campo" type="text" placeholder="ingrese nombre usuario" name="nombreUsuario" />
+                <input class="campo" th:value="${session.usersession.nombreUsuario}" type="text" placeholder="ingrese nombre usuario" name="nombreUsuario2" />
             </div>
+
+
         
 
         </div>

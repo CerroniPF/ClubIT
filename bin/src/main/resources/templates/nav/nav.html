@@ -15,16 +15,14 @@
             </a>
               
             <div class="restoNav">
-                <form class="form" action="">
-                    <select name="etiqueta" class="select">
-                        <option value="todos">Todos</option>
-                        <option value="todos">Java</option>
-                        <option value="todos">MySQL</option>
-                    </select>
-                    <input name="titulo" type="text" class="buscador">
+                <form class="form" action="buscar">
+                    <select class="select" name="etiqueta">
+                    	<option  th:value="Todos" th:text="Todos" > </option>
+ 						<option th:each = "etiqueta : ${etiquetas}" th:value="${etiqueta.id}" th:text="${etiqueta.nombre}" > </option>
+ 					</select>
+					<input name="titulo" type="text" class="buscador">
                     <button class="lupita"><img th:src="@{/lupa.png}" alt=""></button>
                 </form>
-
                 <!-- Agregar th:if="usuario == null" -->
                 <div class="usuarioLogin" th:if="${session.usersession == null}">
                 <a  class="boton" href="/ingreso">Ingresar</a>
@@ -33,7 +31,7 @@
 
                 <!-- Agregar th:if="usuario != null" -->
                 <div class="usuarioLogin" th:if="${session.usersession != null}">
-                     <a href="/perfil" class="usuario" th:text="${session.usersession.nombreUsuario}"></a>
+                     <a href="/perfil" class="usuario" th:text="${session.usersession.nombreUsuario}" name="id"></a>
                     	<a  class="boton boton-largo" href="/logout">Cerrar sesión</a>
                 </div>
 

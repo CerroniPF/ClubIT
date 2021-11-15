@@ -21,9 +21,9 @@
 <p th:text="${error}"></p>
 
 <a  th:if="${session.usersession}" class="botonPost" href="/crearPost">Post</a>
-
 <div class="contenedorPost">
-   
+
+<div class="error" th:if="${#lists.isEmpty(posteos)}">No se encontraron posteos con esos filtros</div>
  <div class="contenedor" th:each="posteo : ${posteos}">
  <a th:href="@{/posteo/} + ${posteo.id}"> 
         <div  class="cajaCampo">
@@ -32,8 +32,8 @@
         </div>
 
         <div  class="cajaCampo">
-            <b class="tituloCampo" th:text="${posteo.etiqueta}"></b>
-            <b class="fechaCampo" th:text="${posteo.usuario.nombre}"></b>
+            <b class="tituloCampo" th:text="${posteo.etiqueta.nombre}"></b>
+            <b class="fechaCampo" th:text="${posteo.usuario.nombreUsuario}"></b>
             
    
         </div>

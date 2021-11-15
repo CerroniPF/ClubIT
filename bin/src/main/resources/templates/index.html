@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cargar Libro</title>
     <link th:replace="nav/nav.html :: link">
+    <link rel="stylesheet" th:href="@{/index.css}">
 
     <title>Cargar Libro</title>
    
@@ -19,13 +20,28 @@
 </body>
 <p th:text="${error}"></p>
 
-<a  th:if="${session.usersession}" class="boton" href="/crearPost">Post</a>
-<a  th:if="${session.usersession}" class="botones" th:href="@{verPosteo/} +  ${session.usersession.id}">Editar</a>
-<div class="contenedor" >
-	<b>titulo</b>
-	<p>java </p>
-	<p>fecha</p>
-</div>	
+<a  th:if="${session.usersession}" class="botonPost" href="/crearPost">Post</a>
+
+<div class="contenedorPost">
+   
+<div class="error" th:if="${#lists.isEmpty(posteos)}">No se encontraron posteos con esos filtros</div>
+ <div class="contenedor" th:each="posteo : ${posteos}">
+ <a th:href="@{/posteo/} + ${posteo.id}"> 
+        <div  class="cajaCampo">
+            <b class="tituloCampo" th:text="${posteo.titulo}"></b>
+            <b class="fechaCampo" th:text="${posteo.fechaPosteo}"></b>
+        </div>
+
+        <div  class="cajaCampo">
+            <b class="tituloCampo" th:text="${posteo.etiqueta.nombre}"></b>
+            <b class="fechaCampo" th:text="${posteo.usuario.nombreUsuario}"></b>
+            
+   
+        </div>
+ </a>
+ </div>
+
+</div>		
 </body>
 
 </html>
