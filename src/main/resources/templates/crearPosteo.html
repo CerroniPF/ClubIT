@@ -21,11 +21,9 @@
                 <input class="campo" type="text" placeholder="ingrese titulo" name="titulo" />
             </div>
               <div  class="cajaCampo">
-                     <select name="etiqueta" class="select">
-                        <option value="todos">Otros	</option>
-                        <option value="todos">Java</option>
-                        <option value="todos">MySQL</option>
-                    </select>
+                   <select class="select" name="etiqueta">
+ 						<option th:each = "etiqueta : ${etiquetas}" th:value="${etiqueta.id}" th:text="${etiqueta.nombre}" > </option>
+ 					</select>
             </div>
         
             <div  class="cajaCampo">

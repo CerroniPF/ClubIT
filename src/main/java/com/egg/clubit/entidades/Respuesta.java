@@ -26,6 +26,7 @@ public class Respuesta {
 	private Usuario usuario;
 	@ManyToOne
 	private Posteo posteo;
+	private Integer alta;
 	
 	public Respuesta() {	}
 
@@ -79,6 +80,14 @@ public class Respuesta {
 	 */
 	public void setPosteo(Posteo posteo) {
 		this.posteo = posteo;
+	}
+
+	public Integer getAlta() {
+		return alta;
+	}
+
+	public void setAlta(Integer alta) {
+		this.alta = alta;
 	}
 	
 

@@ -31,7 +31,7 @@ public class usuarioControlador {
 
 	@Autowired
 	RespuestaServicio respuestaServicio;
-	
+
 	@Autowired
 	EtiquetaRepositorio etiquetaRepositorio;
 
@@ -39,16 +39,16 @@ public class usuarioControlador {
 	@ModelAttribute
 	public void addAttributes(Model modelo) {
 		List<Etiqueta> listaEtiquetas = etiquetaRepositorio.findAll();
-	    modelo.addAttribute("etiquetas", listaEtiquetas);
+		modelo.addAttribute("etiquetas", listaEtiquetas);
 	}
-	
+
 	@GetMapping("/registro")
 	public ModelAndView registro(Model modelo) {
 		ModelAndView mav = new ModelAndView("registroUsuario");
 
 		return mav;
 	}
-	
+
 	@PostMapping("/registro")
 	public String registroUsuario(ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido,
 			@RequestParam String nombreUsuario, @RequestParam String mail, @RequestParam String pass,
@@ -64,10 +64,10 @@ public class usuarioControlador {
 			modelo.put("nombreUsuario", nombreUsuario);
 			modelo.put("mail", mail);
 			modelo.put("registroMensaje", e.getMessage());
-			
+
 			return "/registroUsuario";
 		}
-		
+
 		return "redirect:/login?mensajeRegistro=mensajeRegistro";
 	}
 
@@ -81,7 +81,8 @@ public class usuarioControlador {
 
 	@GetMapping("/login")
 	public String login(HttpServletRequest request, HttpSession httpSession,
-			@RequestParam(required = false) String error, @RequestParam(required = false) String mensajeRegistro, Model model) {
+			@RequestParam(required = false) String error, @RequestParam(required = false) String mensajeRegistro,
+			Model model) {
 
 		if (error != null) {
 			model.addAttribute("error", "Nombre de usuario o clave incorrectos");
@@ -113,17 +114,43 @@ public class usuarioControlador {
 	// hacer un mensaje de que si se cambio el nombre de usuario se mostrara la
 	// proxima vez que ingrese
 	@PostMapping("/editarUsuario")
-	public String editarUsuario(ModelMap modelo, @RequestParam String mail, @RequestParam String nombre,
-			@RequestParam String apellido, @RequestParam String nombreUsuario2) {
+	public String editarUsuario(HttpServletRequest request, ModelMap modelo, @RequestParam String mail,
+			@RequestParam String nombre, @RequestParam String apellido, @RequestParam String nombreUsuario2) {
 
 		try {
 			usuarioServicio.modificar(mail, nombre, apellido, nombreUsuario2);
 
 		} catch (ErrorServicio e) {
+			if (e.getMessage().equals("El nombre de usuario ya existe")) {
+				System.out.println("*************Chaucha***************");
+				modelo.put("error", e.getMessage());
 
-			return "/perfil";
+				return "/perfil";
+			} else {
+				System.out.println("*************Chau***************");
+				modelo.put("exito", e.getMessage());
+				HttpSession session = request.getSession(false);
+				if (session != null) {
+					session.invalidate();
+				}
+				usuarioServicio.loadUserByUsername(mail);
+				return "/perfil";
+			}
+		}
+		
+		return "redirect:/";
+	}
+
+	// --------------------------------------------------------------------------------------------
+
+	@PostMapping("/perfil")
+	public String bajaUsuario(HttpServletRequest request, @RequestParam String mail) {
+
+		usuarioServicio.baja(mail);
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			session.invalidate();
 		}
 		return "redirect:/";
 	}
-	// --------------------------------------------------------------------------------------------
 }

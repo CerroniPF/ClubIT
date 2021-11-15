@@ -13,14 +13,18 @@ import com.egg.clubit.entidades.Usuario;
 import com.egg.clubit.errorservicio.ErrorServicio;
 import com.egg.clubit.repositorios.PosteoRepositorio;
 import com.egg.clubit.repositorios.RespuestaRepositorio;
+import com.egg.clubit.repositorios.UsuarioRepositorio;
 
 @Service
 public class RespuestaServicio {
 	@Autowired
-	public PosteoRepositorio posteoRepositorio;
+	private PosteoRepositorio posteoRepositorio;
 
 	@Autowired
-	public RespuestaRepositorio respuestaRepositorio;
+	private RespuestaRepositorio respuestaRepositorio;
+	
+	@Autowired
+	private UsuarioRepositorio usuarioRepositorio;
 
 	// dalta recibir datos
 	@Transactional
@@ -35,9 +39,9 @@ public class RespuestaServicio {
 		
 		//System.out.println(post);
 		// O desde el front se pone el botón en gris diciendo que el post está cerrado?
-		if (post.getAlta() == false) {
+		if (post.getAlta() == 0) {
 			System.out.println("entro2");
-			throw new ErrorServicio("El posteo fue cerrado y no admite más respuestas.");
+			throw new ErrorServicio("El posteo fue cerrado y no admite más respuestas");
 		} else {
 			try {
 				Respuesta respuesta = new Respuesta();
@@ -45,6 +49,7 @@ public class RespuestaServicio {
 				respuesta.setPosteo(post);
 				respuesta.setRespuesta(respuestaRTA);
 				respuesta.setFechaResp(new Date());
+				respuesta.setAlta(1);
 				System.out.println("entro");
 				
 				respuestaRepositorio.save(respuesta);
@@ -61,6 +66,29 @@ public class RespuestaServicio {
 	 * ErrorServicio("No se encontro el post"); } }lo volamos?? VOT Si/NO
 	 */
 
+	@Transactional
+	public void darBaja(String id, String idLogueado) throws Exception {
+		Optional<Respuesta> resp = respuestaRepositorio.findById(id);
+		Optional<Usuario> user = usuarioRepositorio.findById(idLogueado);
+		Usuario usuario = user.get();
+		if (usuario.getRolAdministrador().equals(true)) {
+			if (resp.isPresent()) {
+				Respuesta respuesta = resp.get();
+				respuesta.setAlta(2);
+			} else {
+				throw new ErrorServicio("No se encontro la respuesta");
+			}		
+		}else {
+			if (resp.isPresent()) {
+				Respuesta respuesta = resp.get();
+
+				respuesta.setAlta(0);
+			} else {
+				throw new ErrorServicio("No se encontro la respuesta");
+			}
+		}
+	}
+	
 	@Transactional
 	public void modificar(String idRespuesta, String rtaModificado) throws Exception {
 
