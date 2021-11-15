@@ -33,10 +33,10 @@ public class respuestaControlador {
 		try {
 			respuestaServicio.crearRespuesta(idPost, usuarioRespuesta, respuestaRTA);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		rv.setUrl("/posteo/" + id );
+		
 		return rv;
 	}
 }

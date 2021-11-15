@@ -1,75 +1,62 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head th:fragment="head">
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Editar usuario</title>
+	<title>Perfil</title>
 	<link th:replace="nav/nav.html :: link">
-
-
 	<link rel="stylesheet" href="perfil.css" />
-
-
-
 </head>
-<header th:replace="nav/nav.html :: nav"> </header>
 
 <body>
-
+	<header th:replace="nav/nav.html :: nav"> </header>
 	<div class="taparFondo" id="taparFondo"></div>
 	<div class="ventanaEmergente" id="ventanaEmergente">
 		<img id="botonCerrar" onclick="cerrarEmergente()" src="./botonCerrar.png" alt="cerrar">
 		<h2 class="tituloBorrar">Borrar usuario</h2>
 		<p class="parrafoBorrar">¿Está seguro que desea borrar su usuario?</p>
-		<p class="parrafoBorrar">Esta acción es irreversible. Su mail quedará liberado para ser usado en una nueva
-			cuenta.</p>
+		<p class="parrafoBorrar">Esta acción es irreversible. Su mail quedará liberado para ser usado en una nueva cuenta.</p>
 		<form action="/perfil" method="POST">
-			<input class="campo" hidden th:value="${session.usersession.mail}" type="text" placeholder="ingrese nombre "
+			<input class="campo" hidden th:value="${session.usersession.mail}" type="text" placeholder="Ingrese nombre "
 				name="mail" />
 			<button class="botonElimiarUsuario">Eliminar Usuario</button>
 		</form>
-
-
 	</div>
-
 	<div class="contenedor">
 		<div class="error" th:text="${error}" th:if="${error != null}"></div>
 		<div class="exito" th:text="${exito}" th:if="${exito != null}"></div>
-
 		<div onclick="abrirEmergente()" id="botonAbrir">
 			<img src="papelera.png" alt="papelera">
 		</div>
-
 		<form action="editarUsuario" method="POST">
 			<div class="contenedorTitulo">
 				<h2 class="titulo" th:text="${session.usersession.nombreUsuario}">{nombre usurio}</h2>
 			</div>
 			<div class="columnas">
 				<input class="campo" hidden th:value="${session.usersession.mail}" type="text"
-					placeholder="ingrese nombre " name="mail" />
+					placeholder="Ingrese nombre " name="mail" />
 				<div class="camposLibro">
 					<b class="tituloCampo">Nombre </b>
 					<input class="campo" th:value="${session.usersession.nombre}" type="text"
-						placeholder="ingrese nombre " name="nombre" />
+						placeholder="Ingrese nombre " name="nombre" />
 				</div>
 				<div class="camposLibro">
 					<b class="tituloCampo">Apellido</b>
 					<input class="campo" th:value="${session.usersession.apellido}" type="text"
-						placeholder="ingrese apellido" name="apellido" />
+						placeholder="Ingrese apellido" name="apellido" />
 				</div>
 				<div class="camposLibro">
 					<b class="tituloCampo">Nombre de usuario</b>
 					<input class="campo" th:value="${session.usersession.nombreUsuario}" type="text"
-						placeholder="ingrese nombre usuario" name="nombreUsuario2" />
+						placeholder="Ingrese nombre usuario" name="nombreUsuario2" />
 				</div>
-
 			</div>
 			<button class="agregar">Guardar cambios</button>
 		</form>
 	</div>
-
+	
+	<!-- Codigo JavaScrip -->
 	<script>
 		function abrirEmergente() {
 			var ventanaEmergente = document.getElementById("ventanaEmergente");
@@ -84,7 +71,6 @@
 			taparFondo.style.display = "none";
 		}
 	</script>
-
+	<!-- ****************************** -->
 </body>
-
 </html>

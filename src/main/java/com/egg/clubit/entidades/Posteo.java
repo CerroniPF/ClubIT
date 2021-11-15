@@ -23,7 +23,6 @@ public class Posteo {
 	private String titulo;
 	@Column(length = 10000)
 	private String posteo;
-	//private Boolean alta;
 	private Integer alta;
 	private Boolean editado;
 	@Temporal(TemporalType.TIMESTAMP)
