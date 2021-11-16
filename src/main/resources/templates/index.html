@@ -14,6 +14,7 @@
 <p th:text="${error}"></p>
 
 
+
 <a  th:if="${session.usersession}" class="botonPost" href="/crearPost">Post</a>
 <a  th:if="${session.usersession != null && session.usersession.rolAdministrador}" class="botonPost" href="/admin">admin</a>
 <div class="contenedorPost">
@@ -23,7 +24,7 @@
  <a th:href="@{/posteo/} + ${posteo.id}"> 
         <div  class="cajaCampo">
             <b class="tituloCampo" th:text="${posteo.titulo}"></b>
-            <b class="fechaCampo" th:text="${posteo.fechaPosteo}"></b>
+            <b class="fechaCampo"  th:text="${#dates.format(posteo.fechaPosteo, 'dd/MM/yy h:mm a')}"></b>
         </div>
 
         <div  class="cajaCampo">

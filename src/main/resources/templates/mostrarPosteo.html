@@ -9,36 +9,43 @@
 	<link rel="stylesheet" href="../mostrarPosteo.css">
 </head>
 
-</body>
+<body>
 
 	<header th:replace="nav/nav.html :: nav"> </header>
 	<p th:text="${error}"></p>
+	
 	<a th:if="${session.usersession}" class="boton" href="/crearPost">Post</a>
 	<!--<a th:if="${session.usersession}" class="botones" th:href="@{verPosteo/} +  ${session.usersession.id}">Editar</a> -->
 	<div class="contenedorPost">
+	<form action="/bajaPost" method="POST">
 		<div class="contenedor">
 			<div class="cajaCampo">
+				<b class="fechaCampo" th:text="${posteo.id}"></b>
 				<b class="tituloCampo" th:text="${posteo.titulo}"></b>
 				<div class="cajaDatos">
 					<b class="tituloCampo" th:text="${posteo.fechaPosteo}"></b>
 					<b class="tituloCampo" th:text="${posteo.etiqueta.nombre}"></b>
+					<button><img class="botonAbrir"  src="../papelera.png" alt="papelera"></button>
 				</div>
 			</div>
 			<div class="cajaPost">
 				<b class="post" th:text="${posteo.posteo}"></b>
-
 			</div>
 		</div>
+	</form>
 		<div class="cantenedorRespuesta">
 	<b class="textoRespuesta">RESPUESTAS</b>
 		</div>
-
+	<form action="/bajaRespuesta" method="POST">	
 		<div class="contenedor" th:each="respuesta : ${respuestas}">
 			<div class="cajaCampo">
+				<b class="fechaCampo" th:text="${respuesta.id}"></b>
 				<b class="fechaCampo" th:text="${respuesta.respuesta}"></b>
 				<b class="tituloCampo" th:text="${respuesta.usuario.nombreUsuario}"></b>
 				<b class="fechaCampo" th:text="${respuesta.fechaResp}"></b>
+				<button><img class="botonAbrir"  src="../papelera.png" alt="papelera"></button>
 			</div>
+	</form>
 
 		</div>
 		<p th:if="${session.usersession == null}" class="error"> Para poder responder debe estar logeado </p>

@@ -18,8 +18,7 @@
 		<p class="parrafoBorrar">¿Está seguro que desea borrar su usuario?</p>
 		<p class="parrafoBorrar">Esta acción es irreversible. Su mail quedará liberado para ser usado en una nueva cuenta.</p>
 		<form action="/perfil" method="POST">
-			<input class="campo" hidden th:value="${session.usersession.mail}" type="text" placeholder="Ingrese nombre "
-				name="mail" />
+			<input class="campo" hidden th:value="${session.usersession.mail}" type="text" placeholder="Ingrese nombre "name="mail" />
 			<button class="botonElimiarUsuario">Eliminar Usuario</button>
 		</form>
 	</div>
@@ -56,7 +55,7 @@
 		</form>
 	</div>
 	
-<<<<<<< HEAD
+
     <div class="contenedor">
     <div  class="error" th:text="${error}" th:if="${error != null}"></div>
 	<div  class="exito" th:text="${exito}" th:if="${exito != null}"></div>

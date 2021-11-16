@@ -128,5 +128,17 @@ width: 20%;
 
 	margin-bottom:20px;
 }  
+.botonAbrir {
+	cursor: pointer;
+	display: inline-flex;
+	margin:auto;
+	width: 30px;
+	height: 30px;
+	background-color: #dc3545;
+   border-radius:  7px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
     
     
