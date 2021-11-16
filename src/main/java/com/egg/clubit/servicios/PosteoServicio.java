@@ -13,6 +13,7 @@ import com.egg.clubit.entidades.Posteo;
 import com.egg.clubit.entidades.Usuario;
 import com.egg.clubit.errorservicio.ErrorServicio;
 import com.egg.clubit.repositorios.PosteoRepositorio;
+import com.egg.clubit.repositorios.UsuarioRepositorio;
 
 @Service
 public class PosteoServicio {
@@ -21,6 +22,9 @@ public class PosteoServicio {
 
 	@Autowired
 	private EtiquetaServicio etiquetaServicio;
+	
+	@Autowired
+	private UsuarioRepositorio usuarioRepositorio;
 
 	// cambie void por listaposteo
 	public List<Posteo> listarTodos() {
@@ -32,43 +36,6 @@ public class PosteoServicio {
 		// esto lo resolvió lorenzo, lo borramos o no? VOT SI/NO.
 	}
 
-//	@Transactional(readOnly = true)
-//	public List<Posteo> listarPorPalabraClave(String palabraClave) throws ErrorServicio {
-//		
-//		System.out.println(palabraClave);
-//		
-//		try {
-//			List<Posteo> listarPosteoPalabraClave = posteoRepositorio.buscarPorPalabraClave(palabraClave);
-//		
-//			for(Posteo aux : listarPosteoPalabraClave){
-//				System.out.println(aux);	
-//			}
-//			
-//			
-//			
-//			return listarPosteoPalabraClave;
-//		
-//			
-//		} catch (Exception e) {
-//			throw new ErrorServicio("No se encontró ningún post:(");
-//		}
-//		
-//	}
-	
-	
-	
-	
-	
-	
-
-//	@Transactional(readOnly = true)
-//	public List<Posteo> listarPorLenguaje(String etiqueta) {
-//		List<Posteo> listarPorLenguaje = posteoRepositorio.buscarPorLenguaje(etiqueta);
-//		return listarPorLenguaje;
-//	}
-	
-	
-	
 	@Transactional(readOnly = true)
 	public List<Posteo> busquedaAvanzada(String palabraClave, String idEtiqueta) {
 		List<Posteo> listaResultado = posteoRepositorio.busquedaAvanzada(palabraClave,idEtiqueta);
@@ -82,10 +49,6 @@ public class PosteoServicio {
 			listaResultado = posteoRepositorio.buscarPorPalabraClave (palabraClave);
 			 
 		}
-		
-		
-		
-		
 		
 		return listaResultado ;
 	}
@@ -104,7 +67,7 @@ public class PosteoServicio {
 			post.setFechaPosteo(new Date());
 			post.setUsuario(usuario);
 			etiquetaServicio.contador(etiqueta.getNombre());
-					post.setAlta(true);
+			post.setAlta(1);
 
 			posteoRepositorio.save(post);
 		} catch (Exception e) {
@@ -117,14 +80,39 @@ public class PosteoServicio {
 		return posteoRepositorio.getById(id);
 	}
 
+//	@Transactional
+//	public void darBaja(String id) throws Exception {
+//		Optional<Posteo> resp = posteoRepositorio.findById(id);
+//		if (resp.isPresent()) {
+//			Posteo post = resp.get();
+//			post.setAlta(false);
+//		} else {
+//			throw new ErrorServicio("No se encontro el post");
+//		}
+//	}
+	
 	@Transactional
-	public void darBaja(String id) throws Exception {
+	public void darBaja(String id, String idLogueado) throws Exception {
 		Optional<Posteo> resp = posteoRepositorio.findById(id);
-		if (resp.isPresent()) {
-			Posteo post = resp.get();
-			post.setAlta(false);
-		} else {
-			throw new ErrorServicio("No se encontro el post");
+		Optional<Usuario> user = usuarioRepositorio.findById(idLogueado);
+		Usuario usuario = user.get();
+		if (usuario.getRolAdministrador().equals(true)) {
+			if (resp.isPresent()) {
+				Posteo post = resp.get();
+
+				post.setAlta(2);
+			} else {
+				throw new ErrorServicio("No se encontro el post");
+			}
+		
+		}else {
+			if (resp.isPresent()) {
+				Posteo post = resp.get();
+
+				post.setAlta(0);
+			} else {
+				throw new ErrorServicio("No se encontro el post");
+			}
 		}
 	}
 

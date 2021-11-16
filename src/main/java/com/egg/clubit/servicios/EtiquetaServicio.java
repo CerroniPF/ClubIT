@@ -1,15 +1,12 @@
 package com.egg.clubit.servicios;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.egg.clubit.entidades.Etiqueta;
-import com.egg.clubit.entidades.Usuario;
 import com.egg.clubit.enumeraciones.EtiquetaEnum;
 import com.egg.clubit.errorservicio.ErrorServicio;
 import com.egg.clubit.repositorios.EtiquetaRepositorio;
-import com.egg.clubit.repositorios.UsuarioRepositorio;
 
 @Service 
 public class EtiquetaServicio {

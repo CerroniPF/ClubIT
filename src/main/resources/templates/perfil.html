@@ -19,7 +19,8 @@
 
 	
     <div class="contenedor">
-    
+    <div  class="error" th:text="${error}" th:if="${error != null}"></div>
+	<div  class="exito" th:text="${exito}" th:if="${exito != null}"></div>
         <form action="editarUsuario" method="POST">
             <div class="contenedorTitulo">
             <h2 class="titulo" th:text="${session.usersession.nombreUsuario}">{nombre usurio}</h2>

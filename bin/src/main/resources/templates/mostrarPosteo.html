@@ -3,56 +3,63 @@
 
 
 <head th:fragment="head">
-     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cargar Libro</title>
-    <link th:replace="nav/nav.html :: link">
-    <link rel="stylesheet" href="../index.css">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cargar Libro</title>
+	<link th:replace="nav/nav.html :: link">
+	<link rel="stylesheet" href="../mostrarPosteo.css">
 
-    <title>Cargar Libro</title>
-   
- </head>
- 
+	<title>Cargar Libro</title>
+
 </head>
- <header th:replace="nav/nav.html :: nav"> </header>
- 
+
+</head>
+
 </body>
+<header th:replace="nav/nav.html :: nav"> </header>
 <p th:text="${error}"></p>
 
-<a  th:if="${session.usersession}" class="boton" href="/crearPost">Post</a>
-<a  th:if="${session.usersession}" class="botones" th:href="@{verPosteo/} +  ${session.usersession.id}">Editar</a>
+<a th:if="${session.usersession}" class="boton" href="/crearPost">Post</a>
+<!--<a th:if="${session.usersession}" class="botones" th:href="@{verPosteo/} +  ${session.usersession.id}">Editar</a> -->
 <div class="contenedorPost">
-   
- <div class="contenedor" >
-        <div  class="cajaCampo">
-            <b class="tituloCampo" th:text="${posteo.titulo}"></b>
-            <b class="fechaCampo" th:text="${posteo.fechaPosteo}"></b>
-        </div>
 
-        <div  class="cajaCampo">
-            <b class="tituloCampo" th:text="${posteo.etiqueta}"></b>
-            <b class="fechaCampo" th:text="${posteo.usuario.nombre}"></b>
-            <b class="fechaCampo" th:text="${posteo.posteo}"></b>
-        </div>   
- </div>
- 
-  <div class="contenedor" th:each="res : ${posteo.respuesta}" >
-        <div  class="cajaCampo">
-            
-            <b class="fechaCampo" th:text="${res.respuesta}"></b>
-            <b class="tituloCampo" th:text="${res.usuario.nombre}"></b>
-            <b class="fechaCampo" th:text="${res.fechaResp}"></b>
-        </div>   
- </div>
- 
-   <div  >
-      
-        
-        <textarea row="100%" cols="100%"></textarea>
- </div>
+	<div class="contenedor">
+		<div class="cajaCampo">
 
-</div>		
+			<b class="tituloCampo" th:text="${posteo.titulo}"></b>
+			<div class="cajaDatos">
+
+				<b class="tituloCampo" th:text="${posteo.fechaPosteo}"></b>
+				<b class="tituloCampo" th:text="${posteo.etiqueta.nombre}"></b>
+			</div>
+		</div>
+
+		<div class="cajaPost">
+			<b class="post" th:text="${posteo.posteo}"></b>
+		</div>
+	</div>
+	<div class="cantenedorRespuesta">
+<b class="textoRespuesta">RESPUESTAS</b>
+	</div>
+	<div class="contenedor" th:each="respuesta : ${respuestas}">
+		<div class="cajaCampo">
+
+			<b class="fechaCampo" th:text="${respuesta.respuesta}"></b>
+			<b class="tituloCampo" th:text="${respuesta.usuario.nombreUsuario}"></b>
+			<b class="fechaCampo" th:text="${respuesta.fechaResp}"></b>
+		</div>
+	</div>
+
+	<p th:if="${session.usersession == null}" class="error"> Para poder responder debe estar logeado </p>
+	<form th:if="${session.usersession}" action="/posteo/${id}/respuesta" method="POST">
+	<input th:value="${posteo.id}" type="text" placeholder="ingrese nombre" hidden name="idPost" />
+		<div class="contenedorRespouesta">
+			<textarea name="respuestaRTA" id="" cols="100" rows="20" placeholder="Ingrese tu post"></textarea>
+			<button class="botonResponder">responder</button>
+		</div>
+	</form>
+</div>
 </body>
 
 </html>

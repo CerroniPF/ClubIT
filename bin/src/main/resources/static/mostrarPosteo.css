@@ -1,4 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+    
+  @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 * {
     padding: 0;
@@ -19,10 +21,7 @@
     text-align: center;
     border-radius: 10px;
     margin:10px auto;
-    
-   
-   
-   
+ 
 }
 
 .cajaCampo{
@@ -53,21 +52,29 @@ margin-top:10px;
     margin :auto;
    
 }
+.textoRespuesta{
+    color:white;
+   
+ 
+
+}
+.cantenedorRespuesta{
+	margin-bottom: 20px;
+    width: 95%;
+    color:white;
+    text-align: center;
+ 
+   
+}
 .contenedor{
 	border:double white 4px;
 	border-radius: 5px;
 	margin-bottom: 20px;
 	height: 110px;
 }
-.nombreCampo{
 
-    padding: 10px;
-    color: white;
-    width: 70%s;
 
-}
-
-.botonPost {
+.botonResponder {
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -77,20 +84,9 @@ margin-top:10px;
     color: white;
     border-radius: 15px;
     text-decoration: none;
-    margin-top: 30px;
-    margin-left: 46%;
+    
 }
-.botonPost{
-	 background: #69b7f6;
-}
-.botonPost-largo {
-    width: 120px;
-}
- 
-  #boton2{
-	margin-top: 15px;
-	margin-bottom: 20px;
-}
+
 .fechaCampo{
     padding: 10px;
     color: white;
@@ -113,4 +109,24 @@ width: 20%;
     color: white;
     width: 80%;
 }
-  
+ textarea {
+    resize: none;
+    background-color: rgba(63, 73, 87,0.9);
+    padding: 5px;
+    color: #fff;
+    border-radius: 10px;
+    width: 90%;
+    height: 15vh;
+    margin-right: 3%;
+    }
+    
+    
+    
+ .contenedorRespouesta{
+	display: inline-flex;
+	align-items: center;
+
+	margin-bottom:20px;
+}  
+    
+    

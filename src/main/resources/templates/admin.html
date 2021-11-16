@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cargar Libro</title>
     <link th:replace="nav/nav.html :: link">
-    <link rel="stylesheet" th:href="@{/index.css}">
+    <link rel="stylesheet" th:href="@{/admin.css}">
 
     <title>Cargar Libro</title>
    
@@ -19,27 +19,28 @@
  
 </body>
 <p th:text="${error}"></p>
-
-
+<a class="botonPost" href="/crearPost">admin</a>
 <a  th:if="${session.usersession}" class="botonPost" href="/crearPost">Post</a>
-<a  th:if="${session.usersession != null && session.usersession.rolAdministrador}" class="botonPost" href="/admin">admin</a>
+
 <div class="contenedorPost">
 
-<div class="error" th:if="${#lists.isEmpty(posteos)}">No se encontraron posteos con esos filtros</div>
- <div class="contenedor" th:each="posteo : ${posteos}">
- <a th:href="@{/posteo/} + ${posteo.id}"> 
+
+ <div class="contenedor" th:each="usuario : ${usuarios}">
+
         <div  class="cajaCampo">
-            <b class="tituloCampo" th:text="${posteo.titulo}"></b>
-            <b class="fechaCampo" th:text="${posteo.fechaPosteo}"></b>
+            <b class="tituloCampo" th:text="${usuario.nombreUsuario}"></b>
+            <b class="tituloCampo" th:text="${usuario.mail}"></b>
         </div>
 
         <div  class="cajaCampo">
-            <b class="tituloCampo" th:text="${posteo.etiqueta.nombre}"></b>
-            <b class="fechaCampo" th:text="${posteo.usuario.nombreUsuario}"></b>
-            
    
+			<img  th:if="${usuario.rolAdministrador}" class="botonAbrir" src="corona.png" alt="papelera">
+			<img th:if="${!usuario.rolAdministrador}" class="botonAbri" src="corona.png" alt="papelera">
+			<img class="botonAbrir" src="papelera.png" alt="papelera">
+		
+
         </div>
- </a>
+ 
  </div>
 
 </div>		

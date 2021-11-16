@@ -2,6 +2,7 @@ package com.egg.clubit.servicios;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -28,24 +29,21 @@ public class UsuarioServicio implements UserDetailsService {
 	private UsuarioRepositorio usuarioRepositorio;
 	
 	@Autowired
-	private PosteoServicio posteoServicio;
-
-	@Autowired
 	private EtiquetaServicio etiquetaServicio;
-	
+
 	@Transactional(readOnly = true)
-	public Usuario buscarPorId (String id) {
+	public Usuario buscarPorId(String id) {
 		Usuario usuario = usuarioRepositorio.findById(id).orElseThrow(null);
 		return usuario;
 	}
-	
+
 	@Transactional
 	public void registro(String nombre, String apellido, String nombreUsuario, String mail, String contrasena,
 			String contrasena2) throws ErrorServicio {
 		validar(nombre, apellido, nombreUsuario, mail, contrasena, contrasena2);
-		//acá está la carga de las etiquetas
-		//etiquetaServicio.cargaAutomatica();
-		
+		// acá está la carga de las etiquetas
+		etiquetaServicio.cargaAutomatica();
+
 		try {
 			Usuario usuario = new Usuario();
 			Usuario usuario2 = new Usuario();
@@ -59,65 +57,45 @@ public class UsuarioServicio implements UserDetailsService {
 			usuario.setAlta(true);
 			usuario.setRolAdministrador(false);
 
-			// System.out.println(usuario2=buscarPorMail(mail));
-			
 			usuario2 = usuarioRepositorio.buscarUsuarioPorMail(mail);
 			if (usuario2 == null) {
 				usuarioRepositorio.save(usuario);
 			} else {
 				throw new ErrorServicio("El usuario ya se encuentra registrado");
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-//	public void ingreso(String mail, String contrasena) throws ErrorServicio {
-//
-//		Usuario user = usuarioRepositorio.buscarUsuarioPorMail(mail);
-//		if (user.getMail().equals(mail)) {
-//
-//			if (user.getContrasena().equals(contrasena)) {
-//				/* Ver qué hacer. IngresoControlador; */
-//
-//			} else {
-//				throw new ErrorServicio("La contraseña es incorrecta");
-//			}
-//		} else {
-//			throw new ErrorServicio("El usuario no existe");
-//		}
-//
-//	}
-
-
-	
 	@Transactional
-	public void modificar(String mail, String nombreModificado, String apellidoModificado, String nombreUsuarioModificado) throws ErrorServicio {		
+	public void modificar(String mail, String nombreModificado, String apellidoModificado,
+			String nombreUsuarioModificado) throws ErrorServicio {
 		Usuario usuario = usuarioRepositorio.buscarUsuarioPorMail(mail);
+		String id = usuario.getId();
+
 		List<Usuario> listaUsuario = usuarioRepositorio.findAll();
 		Boolean bandera = true;
 		if (nombreModificado == null || nombreModificado.isEmpty()) {
 			throw new ErrorServicio("El nombre de usuario no puede quedar vacío");
 		}
-		
+
 		if (apellidoModificado == null || apellidoModificado.isEmpty()) {
 			throw new ErrorServicio("El apellido de usuario no puede quedar vacío");
 		}
 		if (nombreUsuarioModificado == null || nombreUsuarioModificado.isEmpty()) {
 			throw new ErrorServicio("El apellido de usuario no puede quedar vacío");
 		}
-		
+
 		for (Usuario aux : listaUsuario) {
-			if (aux.getNombreUsuario().equals(nombreUsuarioModificado)) {
+			if (aux.getNombreUsuario().equals(nombreUsuarioModificado) && !aux.getId().equals(id)) {
 				bandera = false;
 				break;
-			}
-			else {
+			} else {
 				bandera = true;
-
 			}
 		}
+
 		if (bandera == true) {
 			usuario.setNombre(nombreModificado);
 			usuario.setApellido(apellidoModificado);
@@ -125,26 +103,13 @@ public class UsuarioServicio implements UserDetailsService {
 			usuario.setMail(mail);
 
 			usuarioRepositorio.save(usuario);
-		}else {
+
+			throw new ErrorServicio("Cambios realizados exitósamente");
+		} else {
 			System.out.println("El nombre de usuario ya existe");
 			throw new ErrorServicio("El nombre de usuario ya existe");
-			
 		}
-
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	@Transactional
 	public void baja(String mail) {
@@ -159,7 +124,6 @@ public class UsuarioServicio implements UserDetailsService {
 			usuario.setMail(null);
 			usuario.setContrasena(null);
 
-			
 			usuarioRepositorio.save(usuario);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -217,13 +181,33 @@ public class UsuarioServicio implements UserDetailsService {
 			// Guardamos sus atributos
 			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 			HttpSession session = attr.getRequest().getSession(true);
-			//session.setAttribute("usersession", usuario);
+			// session.setAttribute("usersession", usuario);
 			session.setAttribute("usersession", usuario);
 
 			User user = new User(usuario.getMail(), usuario.getContrasena(), permisos);
 			return user;
 		} else {
 			return null;
+		}
+	}
+
+	@Transactional
+	public void asignarRol(String idLogueado, String idReceptor) throws ErrorServicio {
+		Optional<Usuario> user2 = usuarioRepositorio.findById(idReceptor);
+		Optional<Usuario> user = usuarioRepositorio.findById(idLogueado);
+
+		Usuario usuarioAdmin = user.get();
+		if (usuarioAdmin.getRolAdministrador().equals(true)) {
+			if (user2.isPresent()) {
+				Usuario usuarioReceptor = user2.get();
+
+				usuarioReceptor.setRolAdministrador(true);
+			} else {
+				throw new ErrorServicio("El usuario no existe.");
+			}
+		} else {
+
+			throw new ErrorServicio("El usuario no es administrador, tocá de acá.");
 		}
 	}
 }
