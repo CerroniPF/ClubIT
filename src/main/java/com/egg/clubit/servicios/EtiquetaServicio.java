@@ -12,15 +12,12 @@ import com.egg.clubit.repositorios.EtiquetaRepositorio;
 public class EtiquetaServicio {
 	@Autowired
 	private EtiquetaRepositorio etiquetaRepositorio;
-	private EtiquetaEnum etiquetaEnum;
-	/*queda en global por si queremos hacer la modificación por el front*/
 	
 	@Transactional
 	public void cargaAutomatica() throws ErrorServicio {
 		try {
 			for (EtiquetaEnum e : EtiquetaEnum.values()) {
 				Etiqueta etiqueta= new Etiqueta();
-				//e.getValor().toString();
 	            System.out.println(e.getValor().toString());
 				etiqueta.setNombre(e.getValor().toString());
 				etiqueta.setContador(0);			
@@ -30,24 +27,15 @@ public class EtiquetaServicio {
 			e.printStackTrace();
 		}
 	}
-	/*Si queda tiempo, hacemos la carga por el front, sino a mano*/
 
 	@Transactional 
 	public void contador(String nombre) {
 		try {
-			Etiqueta etiqueta= etiquetaRepositorio.buscarPorNombre(nombre);
-			Integer contador=etiqueta.getContador()+1;
+			Etiqueta etiqueta = etiquetaRepositorio.buscarPorNombre(nombre);
+			Integer contador = etiqueta.getContador() + 1;
 			etiqueta.setContador(contador);
 		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-		
+			System.out.println("No se pudo contabilizar la etiqueta");
+		}	
 	}
-
-	
-	
-	
-	
-
 }

@@ -12,7 +12,6 @@ public class Etiqueta {
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
-	/*@Enumerated(EnumType.STRING)*/
 	private String nombre;
 	private Integer contador;
 	

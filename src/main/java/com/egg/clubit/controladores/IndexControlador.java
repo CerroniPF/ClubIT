@@ -16,7 +16,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.egg.clubit.entidades.Etiqueta;
 import com.egg.clubit.entidades.Posteo;
+
 import com.egg.clubit.entidades.Usuario;
+
+
 import com.egg.clubit.errorservicio.ErrorServicio;
 import com.egg.clubit.repositorios.EtiquetaRepositorio;
 import com.egg.clubit.repositorios.UsuarioRepositorio;
@@ -42,7 +45,11 @@ public class IndexControlador {
 	@GetMapping("/")
 	public ModelAndView index(ModelMap model) {
 		ModelAndView mav = new ModelAndView("index");
+
 		List<Usuario> usuarios = usuarioRepositorio.findAll();
+
+
+
 		List<Posteo> posteo = posteoServicio.listarTodos();
 		List<Etiqueta> etiquetas = etiquetaRepositorio.findAll();
 		mav.addObject("posteos", posteo);
@@ -50,6 +57,7 @@ public class IndexControlador {
 		mav.addObject("usuarios", usuarios);
 		return mav;
 	}
+
 	
 	
 	@PreAuthorize("hasAnyRole('ROLE_ACTIVO')")
@@ -90,4 +98,5 @@ public class IndexControlador {
 
 		return mav;
 	}
+
 }

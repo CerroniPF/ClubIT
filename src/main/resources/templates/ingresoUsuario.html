@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head th:fragment="head">
-     <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cargar Libro</title>
+    <title>Ingreso usuario</title>
     <link th:replace="nav/nav.html :: link">
     <link rel="stylesheet" href="ingresoUsuario.css" />
 </head>
+
 <body>
 	<header th:replace="nav/nav.html :: nav"> </header>
     <div class="contenedor">
     	<div  class="error" th:text="${error}" th:if="${error != null}"></div>
     	<div  class="exito" th:text="${mensajeRegistro}" th:if="${mensajeRegistro != null}"></div>
         <form   action="/logincheck" method="POST">
-     
             <div  class="cajaCampo">
-                <b class="nombreCampo"> Mail</b>
-                <input class="campo" type="text" placeholder="ingrese mail" name="mail" />
+                <b class="nombreCampo">Mail</b>
+                <input class="campo" type="text" placeholder="Ingrese mail" name="mail" />
             </div>
-        
             <div  class="cajaCampo">
                 <b class="nombreCampo">Contraseña</b>
-                <input class="campo" type="password" placeholder="ingrese contraseña" name="contrasena" />
+                <input class="campo" type="password" placeholder="Ingrese contraseña" name="contrasena" />
             </div>
             <button class="boton">Iniciar sesion</button>
         </form>
