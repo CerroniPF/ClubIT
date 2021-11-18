@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:fragment="head">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Admin</title>
+	<link th:replace="nav/nav.html :: link">
+	<link rel="stylesheet" th:href="@{/admin.css}">
+
+
+</head>
+
+</head>
+<header th:replace="nav/nav.html :: nav"> </header>
+
+</body>
+<p th:text="${error}"></p>
+
+
+<div class="contenedorPost">
+
+
+	<div class="contenedor" th:each="usuario : ${usuarios}" th:if="${usuario.nombreUsuario != 'dado de Baja'}">
+
+		<div class="cajaCampo" >
+			<b class="tituloCampo" th:text="${usuario.nombreUsuario}"></b>
+			<b class="tituloCampo" th:text="${usuario.mail}"></b>
+		</div>
+		
+		<form action="/darAdmin" method="POST">	
+		<input class="campo" hidden th:value="${usuario.mail}" type="text" placeholder="Ingrese nombre " name="mail" />	
+			<div class=>
+			<button><img th:if="${usuario.rolAdministrador}" class="botonAbrir" src="corona.png"
+					alt="papelera"></button>
+			<button ><img th:if="${!usuario.rolAdministrador}" class="botonAbri" src="corona.png"
+					alt="papelera"></button>
+			</div>
+				
+		</form>				
+		<form action="/borrarUsuarioAdmin" method="POST">
+		<input class="campo" hidden th:value="${usuario.mail}" type="text" placeholder="Ingrese nombre " name="mail" />
+				<button><img class="botonAbrir" src="papelera.png" alt="papelera"></button>
+		</form>
+			</div>
+	</div>
+</div>
+
+</body>
+
+</html>

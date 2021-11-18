@@ -21,15 +21,17 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.egg.clubit.entidades.Usuario;
 import com.egg.clubit.errorservicio.ErrorServicio;
+import com.egg.clubit.repositorios.EtiquetaRepositorio;
 import com.egg.clubit.repositorios.UsuarioRepositorio;
 
 @Service
 public class UsuarioServicio implements UserDetailsService {
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;
-	
 	@Autowired
 	private EtiquetaServicio etiquetaServicio;
+
+
 
 	@Transactional(readOnly = true)
 	public Usuario buscarPorId(String id) {
@@ -41,8 +43,10 @@ public class UsuarioServicio implements UserDetailsService {
 	public void registro(String nombre, String apellido, String nombreUsuario, String mail, String contrasena,
 			String contrasena2) throws ErrorServicio {
 		validar(nombre, apellido, nombreUsuario, mail, contrasena, contrasena2);
-		// acá está la carga de las etiquetas
+
+		// Acá está la carga de las etiquetas
 		//etiquetaServicio.cargaAutomatica();
+
 
 		try {
 			Usuario usuario = new Usuario();
@@ -90,6 +94,7 @@ public class UsuarioServicio implements UserDetailsService {
 		for (Usuario aux : listaUsuario) {
 			if (aux.getNombreUsuario().equals(nombreUsuarioModificado) && !aux.getId().equals(id)) {
 				bandera = false;
+
 				break;
 			} else {
 				bandera = true;
@@ -106,7 +111,7 @@ public class UsuarioServicio implements UserDetailsService {
 
 			throw new ErrorServicio("Cambios realizados exitósamente");
 		} else {
-			System.out.println("El nombre de usuario ya existe");
+
 			throw new ErrorServicio("El nombre de usuario ya existe");
 		}
 	}
@@ -126,7 +131,7 @@ public class UsuarioServicio implements UserDetailsService {
 
 			usuarioRepositorio.save(usuario);
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("No se pudo dar de baja al usuario");
 		}
 	}
 
@@ -137,7 +142,17 @@ public class UsuarioServicio implements UserDetailsService {
 		Integer largo = contrasena.length();
 		System.out.println(contrasena2);
 		System.out.println(contrasena.length() + "largo");
+		
+		if (usuarioRepositorio.buscarUsuarioPorMail(mail) != null) {
+			throw new ErrorServicio("El mail ya fue utilizado.");
 
+		}
+		
+		if (mail == null || mail.isEmpty()) {
+			throw new ErrorServicio("El mail no puede quedar vacío");
+
+		}
+		
 		if (nombre == null || nombre.isEmpty()) {
 			throw new ErrorServicio("El nombre de usuario no puede quedar vacío");
 
@@ -154,12 +169,9 @@ public class UsuarioServicio implements UserDetailsService {
 			throw new ErrorServicio("El nombre de usuario ya existe");
 
 		}
-		// el mail == null creo que no hace nada
 		if (mail == null || mail.isEmpty()) {
 			throw new ErrorServicio("El mail de usuario no puede quedar vacío");
-
 		}
-
 		if (largo < 4 || largo > 16) {
 			throw new ErrorServicio("La contraseña de usuario no culple las condiciones (4-16)");
 		}
@@ -167,7 +179,6 @@ public class UsuarioServicio implements UserDetailsService {
 		if (!contrasena.equals(contrasena2)) {
 			throw new ErrorServicio("Las contraseñas no coinciden");
 		}
-
 	}
 
 	@Override
@@ -210,4 +221,23 @@ public class UsuarioServicio implements UserDetailsService {
 			throw new ErrorServicio("El usuario no es administrador, tocá de acá.");
 		}
 	}
+	
+	
+	@Transactional
+	public void asignarRol(String mail) {
+		
+		Usuario usuario = usuarioRepositorio.buscarUsuarioPorMail(mail);
+
+		if (usuario.getRolAdministrador().equals(true)) {
+
+			usuario.setRolAdministrador(false);
+			usuarioRepositorio.save(usuario);
+			} else {
+				usuario.setRolAdministrador(true);
+				usuarioRepositorio.save(usuario);
+			}
+		} 
+	
+	
+	
 }

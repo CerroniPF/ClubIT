@@ -51,25 +51,16 @@ public class posteoControlador {
 	@GetMapping("/crearPost")
 	public ModelAndView crearPost(Model modelo, HttpSession httpSession) {
 
-//		Usuario usuario = (Usuario) httpSession.getAttribute("usersession");
-//		if(usuario == null) {
-//			ModelAndView mav = new ModelAndView("ingresoUsuario");
-//			return mav;
-//		}
-
 		ModelAndView mav = new ModelAndView("crearPosteo");
 		return mav;
 	}
 
-	// activar en el validar la etiqueta y poner aca la atiqueta pasada por
-	// parrametro
-
+	/* Activar en el validar en la etiqueta y poner aca la atiqueta pasada por parametro */
 	@PreAuthorize("hasAnyRole('ROLE_ACTIVO')")
 	@PostMapping("/crearPost")
 	public RedirectView crearPostMetodoPost(Model modelo, HttpSession httpSession, @RequestParam String titulo,
 			@RequestParam Etiqueta etiqueta, @RequestParam String posteo) throws ErrorServicio {
 		RedirectView rv = new RedirectView();
-		String id2 = "";
 		Usuario usuario = (Usuario) httpSession.getAttribute("usersession");
 
 		if (usuario == null) {
@@ -77,18 +68,11 @@ public class posteoControlador {
 			return rv;
 		}
 		try {
-			/////// ACA HAY QUE BUSCAR LA ETIQUETA CON ETIQUETASERVICIO
-			//// Etiqueta etiqueta1 = new Etiqueta(); CAMBIAR ESTA LÍNEA DE CÓDIGO
-
 			posteoServicio.crearPost(titulo, posteo, etiqueta, usuario);
-
-			id2 = usuario.getId();
-
 		} catch (ErrorServicio e) {
 			modelo.addAttribute("error", e.getMessage());
 			modelo.addAttribute("titulo", titulo);
 			modelo.addAttribute("posteo", posteo);
-			// modelo.addAttribute("etiqueta", etiqueta);
 			rv.setUrl("redirect:/");
 			return rv;
 		}
@@ -103,17 +87,7 @@ public class posteoControlador {
 	}
 //--------------------------------------------------------------------------------------------	
 
-//	//ESTE METODO LISTA TODOS LOS POSTEOS
-//	@GetMapping("/posteos/{id}")
-//	public String posteos(Model model, @PathVariable String id)  {
-//		Usuario usuario = usuarioServicio.buscarPorId(id);
-//		List<Posteo> posteos = usuario.getPost();
-//		model.addAttribute("posteos", posteos);
-//		return "prueba";
-//	}
-//	
-
-	// ESTE MÉTODO MUESTRA 1 SOLO POSTEO
+	/* ESTE MÉTODO MUESTRA 1 SOLO POSTEO */
 	@GetMapping("/posteo/{id}")
 	public String posteo(Model modelo, @PathVariable String id) {
 		Posteo posteo = posteoServicio.buscarPorId(id);
@@ -126,5 +100,4 @@ public class posteoControlador {
 	}
 
 //--------------------------------------------------------------------------------------------		
-
 }

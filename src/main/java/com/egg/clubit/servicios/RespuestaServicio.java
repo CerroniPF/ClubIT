@@ -22,81 +22,68 @@ public class RespuestaServicio {
 
 	@Autowired
 	private RespuestaRepositorio respuestaRepositorio;
-	
+
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;
 
-	// dalta recibir datos
 	@Transactional
 	public void crearRespuesta(String idPost, Usuario usuarioRespuesta, String respuestaRTA) throws Exception {
 		validar(respuestaRTA);
-		// Preguntar cómo validar que el usuario fue logueado.
-		// Para nosotros(luciano y yo) el botón de comentar no debería estar activado
-		// para los no logueados
-		// System.out.println("entro3");
 
 		Posteo post = posteoRepositorio.findById(idPost).get();
-		
-		//System.out.println(post);
-		// O desde el front se pone el botón en gris diciendo que el post está cerrado?
+
+
 		if (post.getAlta() == 0) {
-			System.out.println("entro2");
+
 			throw new ErrorServicio("El posteo fue cerrado y no admite más respuestas");
 		} else {
 			try {
 				Respuesta respuesta = new Respuesta();
+
 				respuesta.setUsuario(usuarioRespuesta);
 				respuesta.setPosteo(post);
 				respuesta.setRespuesta(respuestaRTA);
 				respuesta.setFechaResp(new Date());
 				respuesta.setAlta(1);
-				System.out.println("entro");
-				
+
 				respuestaRepositorio.save(respuesta);
 			} catch (Exception e) {
 				throw new ErrorServicio("Todos los campos son obligatorios");
 			}
 		}
 	}
-	/*
-	 * @Transactional public void darBaja(String id) throws Exception {
-	 * Optional<Respuesta> resp = respuestaRepositorio.findById(id); if
-	 * (resp.isPresent()) { Respuesta respuesta = resp.get();
-	 * respuesta.setAlta(false); } else { throw new
-	 * ErrorServicio("No se encontro el post"); } }lo volamos?? VOT Si/NO
-	 */
 
 	@Transactional
-	public void darBaja(String id, String idLogueado) throws Exception {
+	public void darBaja(String id) throws Exception {
 		Optional<Respuesta> resp = respuestaRepositorio.findById(id);
-		Optional<Usuario> user = usuarioRepositorio.findById(idLogueado);
-		Usuario usuario = user.get();
-		if (usuario.getRolAdministrador().equals(true)) {
-			if (resp.isPresent()) {
+		if (resp.isPresent()) {
 				Respuesta respuesta = resp.get();
-				respuesta.setAlta(2);
-			} else {
-				throw new ErrorServicio("No se encontro la respuesta");
-			}		
-		}else {
-			if (resp.isPresent()) {
-				Respuesta respuesta = resp.get();
+				respuesta.setAlta(2);	
+				System.out.println("funciona!");
 
-				respuesta.setAlta(0);
-			} else {
-				throw new ErrorServicio("No se encontro la respuesta");
-			}
+				respuestaRepositorio.save(respuesta);
+				
 		}
 	}
-	
+
+	@Transactional
+	public void darAlta(String id) throws Exception {
+		Optional<Respuesta> resp = respuestaRepositorio.findById(id);
+		if (resp.isPresent()) {
+				Respuesta respuesta = resp.get();
+				respuesta.setAlta(1);	
+				System.out.println("funciona!");
+
+				respuestaRepositorio.save(respuesta);
+				
+		}
+	}
+
 	@Transactional
 	public void modificar(String idRespuesta, String rtaModificado) throws Exception {
-
 		validar(rtaModificado);
-		System.out.println("sadas");
+
 		Optional<Respuesta> resp = respuestaRepositorio.findById(idRespuesta);
-		// esto es por si respetamos el CU y no se puede auto responder hablar con loren
-		// :)
 
 		if (resp.isPresent()) {
 			Respuesta respuesta = resp.get();
@@ -105,7 +92,6 @@ public class RespuestaServicio {
 			respuesta.setFechaResp(new Date());
 
 			respuestaRepositorio.save(respuesta);
-
 		} else {
 			throw new ErrorServicio("No se pudo modificar la respuesta");
 		}
@@ -113,11 +99,11 @@ public class RespuestaServicio {
 
 	public void validar(String respuesta) throws ErrorServicio {
 		if (respuesta == null || respuesta.isEmpty()) {
-			if (respuesta.length() > 254)
+			if (respuesta.length() < 1)
 				throw new ErrorServicio("La respuesta no puede estar vacia");
 		}
-		if (respuesta.length() > 254) {
-			throw new ErrorServicio("La respuesta tiene que ser menor a 255 caracteres");
+		if (respuesta.length() > 10000) {
+			throw new ErrorServicio("La respuesta tiene que ser menor a 10000 caracteres!!!");
 		}
 	}
 }

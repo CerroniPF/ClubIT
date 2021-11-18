@@ -76,6 +76,7 @@ public class usuarioControlador {
 	@GetMapping("/ingreso")
 	public ModelAndView ingreso() {
 		ModelAndView mav = new ModelAndView("ingresoUsuario");
+		
 		return mav;
 	}
 
@@ -94,6 +95,7 @@ public class usuarioControlador {
 		if (mensajeRegistro != null) {
 			model.addAttribute("mensajeRegistro", "Registro exitoso");
 		}
+		
 		return "ingresoUsuario";
 	}
 
@@ -111,8 +113,6 @@ public class usuarioControlador {
 	}
 	// --------------------------------------------------------------------------------------------
 
-	// hacer un mensaje de que si se cambio el nombre de usuario se mostrara la
-	// proxima vez que ingrese
 	@PostMapping("/editarUsuario")
 	public String editarUsuario(HttpServletRequest request, ModelMap modelo, @RequestParam String mail,
 			@RequestParam String nombre, @RequestParam String apellido, @RequestParam String nombreUsuario2) {
@@ -120,20 +120,21 @@ public class usuarioControlador {
 		try {
 			usuarioServicio.modificar(mail, nombre, apellido, nombreUsuario2);
 
+
 		} catch (ErrorServicio e) {
 			if (e.getMessage().equals("El nombre de usuario ya existe")) {
-				System.out.println("*************Chaucha***************");
 				modelo.put("error", e.getMessage());
 
 				return "/perfil";
 			} else {
-				System.out.println("*************Chau***************");
+
 				modelo.put("exito", e.getMessage());
 				HttpSession session = request.getSession(false);
 				if (session != null) {
 					session.invalidate();
 				}
 				usuarioServicio.loadUserByUsername(mail);
+
 				return "/perfil";
 			}
 		}

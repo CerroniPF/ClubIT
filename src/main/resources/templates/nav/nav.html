@@ -2,7 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
- 
 </head>
 
 <body>
@@ -15,7 +14,11 @@
             </a>
               
             <div class="restoNav">
+
+              
+
                 <form class="form" action="/buscar">
+
                     <select class="select" name="etiqueta">
                     	<option  th:value="Todos" th:text="Todos" > </option>
  						<option th:each = "etiqueta : ${etiquetas}" th:value="${etiqueta.id}" th:text="${etiqueta.nombre}" > </option>
@@ -34,9 +37,8 @@
                      <a href="/perfil" class="usuario" th:text="${session.usersession.nombreUsuario}" name="id"></a>
                     	<a  class="boton boton-largo" href="/logout">Cerrar sesión</a>
                 </div>
-
             </div>
         </nav>
-</header>   
+	</header>   
 </body>
 </html>
