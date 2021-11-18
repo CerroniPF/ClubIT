@@ -18,9 +18,6 @@
 
 </body>
 <p th:text="${error}"></p>
-<a class="botonPost" href="/crearPost">admin</a>
-<a th:if="${session.usersession}" class="botonPost" href="/crearPost">Post</a>
-
 
 
 <div class="contenedorPost">
@@ -35,17 +32,19 @@
 		
 		<form action="/darAdmin" method="POST">	
 		<input class="campo" hidden th:value="${usuario.mail}" type="text" placeholder="Ingrese nombre " name="mail" />	
-				<button><img th:if="${usuario.rolAdministrador}" class="botonAbrir" src="corona.png"
-						alt="papelera"></button>
-				<button ><img th:if="${!usuario.rolAdministrador}" class="botonAbri" src="corona.png"
-						alt="papelera"></button>
+			<div class=>
+			<button><img th:if="${usuario.rolAdministrador}" class="botonAbrir" src="corona.png"
+					alt="papelera"></button>
+			<button ><img th:if="${!usuario.rolAdministrador}" class="botonAbri" src="corona.png"
+					alt="papelera"></button>
+			</div>
+				
 		</form>				
 		<form action="/borrarUsuarioAdmin" method="POST">
 		<input class="campo" hidden th:value="${usuario.mail}" type="text" placeholder="Ingrese nombre " name="mail" />
 				<button><img class="botonAbrir" src="papelera.png" alt="papelera"></button>
 		</form>
 			</div>
-		
 	</div>
 </div>
 

@@ -14,26 +14,30 @@
 <p th:text="${error}"></p>
 
 
-<div class="contenedorBotones">
+<div class=contenedorBotones>
 <a  th:if="${session.usersession}" class="botonPost" href="/crearPost">Postear</a>
-<a  th:if="${session.usersession != null && session.usersession.rolAdministrador}" class="botonPost" href="/mostrarTodos">Mostrar todos</a>
 <a  th:if="${session.usersession != null && session.usersession.rolAdministrador}" class="botonPost" href="/admin">Rol</a>
 </div>
+
 <div class="contenedorPost">
 
 <div class="error" th:if="${#lists.isEmpty(posteos)}">No se encontraron posteos con esos filtros</div>
  <div class="contenedor" th:each="posteo : ${posteos}">
  <a th:href="@{/posteo/} + ${posteo.id}"> 
         <div  class="cajaCampo">
+      	  	<div>
+       		 <b class="tituloCampo">Estado</b>
+             <b class="tituloCampo" th:text="${posteo.alta}"></b>
+       		 </div>  
+       		      
             <b class="tituloCampo" th:text="${posteo.titulo}"></b>
             <b class="fechaCampo"  th:text="${#dates.format(posteo.fechaPosteo, 'dd/MM/yy h:mm a')}"></b>
+            
         </div>
 
-        <div  class="cajaCampo">
+        <div class="cajaCampo">
             <b class="tituloCampo" th:text="${posteo.etiqueta.nombre}"></b>
             <b class="fechaCampo" th:text="${posteo.usuario.nombreUsuario}"></b>
-            
-   
         </div>
  </a>
  </div>

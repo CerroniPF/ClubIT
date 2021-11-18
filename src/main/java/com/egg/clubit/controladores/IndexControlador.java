@@ -26,6 +26,7 @@ import com.egg.clubit.errorservicio.ErrorServicio;
 import com.egg.clubit.repositorios.EtiquetaRepositorio;
 import com.egg.clubit.repositorios.UsuarioRepositorio;
 import com.egg.clubit.servicios.PosteoServicio;
+import com.egg.clubit.servicios.RespuestaServicio;
 import com.egg.clubit.servicios.UsuarioServicio;
 
 @Controller
@@ -38,8 +39,10 @@ public class IndexControlador {
 	PosteoServicio posteoServicio;
 
 	@Autowired
+	RespuestaServicio respuestaServicio;
+
+	@Autowired
 	EtiquetaRepositorio etiquetaRepositorio;
-	
 
 	@Autowired
 	UsuarioRepositorio usuarioRepositorio;
@@ -50,7 +53,20 @@ public class IndexControlador {
 
 		List<Usuario> usuarios = usuarioRepositorio.findAll();
 
+		List<Posteo> posteo = posteoServicio.listarActivos();
+		List<Etiqueta> etiquetas = etiquetaRepositorio.findAll();
+		mav.addObject("posteos", posteo);
+		mav.addObject("etiquetas", etiquetas);
+		mav.addObject("usuarios", usuarios);
+		return mav;
+	}
+//	-------------------------------------------------------------------------------------------------------------------------
 
+	@GetMapping("/mostrarTodos")
+	public ModelAndView adminMostrarTodos(ModelMap model) {
+		ModelAndView mav = new ModelAndView("adminMostrarTodos");
+
+		List<Usuario> usuarios = usuarioRepositorio.findAll();
 
 		List<Posteo> posteo = posteoServicio.listarTodos();
 		List<Etiqueta> etiquetas = etiquetaRepositorio.findAll();
@@ -59,7 +75,7 @@ public class IndexControlador {
 		mav.addObject("usuarios", usuarios);
 		return mav;
 	}
-
+	
 //	-------------------------------------------------------------------------------------------------------------------------
 	
 	
@@ -112,11 +128,55 @@ public class IndexControlador {
 		return "redirect:/";
 	}
 //	-------------------------------------------------------------------------------------------------------------------------
-	@PostMapping("/bajaPost")
-	public String bajaPost( @RequestParam String mail) {
-		System.out.println("asdsadas");
-		usuarioServicio.asignarRol(mail);
+	@PostMapping("/cerrarPosteo")
+	public String cerrarPosteo( @RequestParam String id ) throws Exception {
+		System.out.println(id+ "id");
+
+		posteoServicio.cerrarPost(id);
 		
 		return "redirect:/";
 	}
+//	-------------------------------------------------------------------------------------------------------------------------
+	@PostMapping("/bajaPost")
+	public String bajaPost( @RequestParam String id ) throws Exception {
+		System.out.println(id+ "id");
+
+		posteoServicio.darBaja(id);
+		
+		return "redirect:/";
+	}
+	//-------------------------------------------------------------------------------------------------------------------------
+	@PostMapping("/altaPost")
+	public String altaPost( @RequestParam String id ) throws Exception {
+		System.out.println(id+ "id");
+
+		posteoServicio.darAlta(id);
+		
+		return "redirect:/";
+	}
+//-------------------------------------------------------------------------------------------------------------------------
+@PostMapping("/bajaRespuesta")
+public String bajaRespuesta( @RequestParam String id) throws Exception {
+	System.out.println(id+ "id");
+	respuestaServicio.darBaja(id);
+	return "redirect:/";
+	//ver redirect
+
+ }
+
+
+
+//-------------------------------------------------------------------------------------------------------------------------
+@PostMapping("/altaRespuesta")
+public String altaRespuesta( @RequestParam String id ) throws Exception {
+	System.out.println(id+ "id");
+
+	respuestaServicio.darAlta(id);
+	
+	return "redirect:/";
+  }
+
+
+
+
 }

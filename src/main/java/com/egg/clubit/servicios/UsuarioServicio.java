@@ -21,12 +21,15 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.egg.clubit.entidades.Usuario;
 import com.egg.clubit.errorservicio.ErrorServicio;
+import com.egg.clubit.repositorios.EtiquetaRepositorio;
 import com.egg.clubit.repositorios.UsuarioRepositorio;
 
 @Service
 public class UsuarioServicio implements UserDetailsService {
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;
+	@Autowired
+	private EtiquetaServicio etiquetaServicio;
 
 
 
@@ -139,7 +142,17 @@ public class UsuarioServicio implements UserDetailsService {
 		Integer largo = contrasena.length();
 		System.out.println(contrasena2);
 		System.out.println(contrasena.length() + "largo");
+		
+		if (usuarioRepositorio.buscarUsuarioPorMail(mail) != null) {
+			throw new ErrorServicio("El mail ya fue utilizado.");
 
+		}
+		
+		if (mail == null || mail.isEmpty()) {
+			throw new ErrorServicio("El mail no puede quedar vacío");
+
+		}
+		
 		if (nombre == null || nombre.isEmpty()) {
 			throw new ErrorServicio("El nombre de usuario no puede quedar vacío");
 
@@ -189,25 +202,25 @@ public class UsuarioServicio implements UserDetailsService {
 		}
 	}
 
-//	@Transactional
-//	public void asignarRol(String idLogueado, String idReceptor) throws ErrorServicio {
-//		Optional<Usuario> user2 = usuarioRepositorio.findById(idReceptor);
-//		Optional<Usuario> user = usuarioRepositorio.findById(idLogueado);
-//
-//		Usuario usuarioAdmin = user.get();
-//		if (usuarioAdmin.getRolAdministrador().equals(true)) {
-//			if (user2.isPresent()) {
-//				Usuario usuarioReceptor = user2.get();
-//
-//				usuarioReceptor.setRolAdministrador(true);
-//			} else {
-//				throw new ErrorServicio("El usuario no existe.");
-//			}
-//		} else {
-//
-//			throw new ErrorServicio("El usuario no es administrador, tocá de acá.");
-//		}
-//	}
+	@Transactional
+	public void asignarRol(String idLogueado, String idReceptor) throws ErrorServicio {
+		Optional<Usuario> user2 = usuarioRepositorio.findById(idReceptor);
+		Optional<Usuario> user = usuarioRepositorio.findById(idLogueado);
+
+		Usuario usuarioAdmin = user.get();
+		if (usuarioAdmin.getRolAdministrador().equals(true)) {
+			if (user2.isPresent()) {
+				Usuario usuarioReceptor = user2.get();
+
+				usuarioReceptor.setRolAdministrador(true);
+			} else {
+				throw new ErrorServicio("El usuario no existe.");
+			}
+		} else {
+
+			throw new ErrorServicio("El usuario no es administrador, tocá de acá.");
+		}
+	}
 	
 	
 	@Transactional

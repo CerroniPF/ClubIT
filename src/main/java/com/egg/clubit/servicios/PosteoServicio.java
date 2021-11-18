@@ -30,7 +30,9 @@ public class PosteoServicio {
 		return posteoRepositorio.ordenarPosteosFecha();
 	}
 
-	
+	public List<Posteo> listarActivos() {
+		return posteoRepositorio.ordenarPosteosFechaActivos();
+	}
 
 
 	@Transactional(readOnly = true)
@@ -76,32 +78,52 @@ public class PosteoServicio {
 		return posteoRepositorio.getById(id);
 	}
 
+	@Transactional
+	public void cerrarPost(String id) throws Exception {
+		Optional<Posteo> resp = posteoRepositorio.findById(id);
+		
+		
+			if (resp.isPresent()) {
+				Posteo post = resp.get();
+				post.setAlta(0);
+				post.setId(id);
+				
+				posteoRepositorio.save(post);
 
+			} else {
+				throw new ErrorServicio("No se encontro el post");
+			}
+	}
 	
 	@Transactional
-	public void darBaja(String id, String idLogueado) throws Exception {
+	public void darAlta(String id) throws Exception {
 		Optional<Posteo> resp = posteoRepositorio.findById(id);
-		Optional<Usuario> user = usuarioRepositorio.findById(idLogueado);
-		Usuario usuario = user.get();
-		if (usuario.getRolAdministrador().equals(true)) {
+		
+		
 			if (resp.isPresent()) {
 				Posteo post = resp.get();
+				post.setAlta(1);
+				posteoRepositorio.save(post);
 
-				post.setAlta(2);
 			} else {
 				throw new ErrorServicio("No se encontro el post");
 			}
-			}else {
-			if (resp.isPresent()) {
-				Posteo post = resp.get();
-
-				post.setAlta(0);
-			} else {
-				throw new ErrorServicio("No se encontro el post");
-			}
-		}
 	}
+	
+	@Transactional
+	public void darBaja(String id) throws Exception {
+		Optional<Posteo> resp = posteoRepositorio.findById(id);
+		
+		
+			if (resp.isPresent()) {
+				Posteo post = resp.get();
+				post.setAlta(2);
+				posteoRepositorio.save(post);
 
+			} else {
+				throw new ErrorServicio("No se encontro el post");
+			}
+	}
 
 	@Transactional
 	public void modificar(String id, String titulo, String posteo, Etiqueta etiqueta) throws Exception {

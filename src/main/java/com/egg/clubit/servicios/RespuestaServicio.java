@@ -54,29 +54,30 @@ public class RespuestaServicio {
 	}
 
 	@Transactional
-	public void darBaja(String id, String idLogueado) throws Exception {
+	public void darBaja(String id) throws Exception {
 		Optional<Respuesta> resp = respuestaRepositorio.findById(id);
-		Optional<Usuario> user = usuarioRepositorio.findById(idLogueado);
-
-		Usuario usuario = user.get();
-		if (usuario.getRolAdministrador().equals(true)) {
-			if (resp.isPresent()) {
+		if (resp.isPresent()) {
 				Respuesta respuesta = resp.get();
-				respuesta.setAlta(2);
-			} else {
-				throw new ErrorServicio("No se encontro la respuesta");
-			}
-		} else {
-			if (resp.isPresent()) {
-				Respuesta respuesta = resp.get();
+				respuesta.setAlta(2);	
+				System.out.println("funciona!");
 
-				respuesta.setAlta(0);
-			} else {
-				throw new ErrorServicio("No se encontro la respuesta");
-			}
+				respuestaRepositorio.save(respuesta);
+				
 		}
 	}
 
+	@Transactional
+	public void darAlta(String id) throws Exception {
+		Optional<Respuesta> resp = respuestaRepositorio.findById(id);
+		if (resp.isPresent()) {
+				Respuesta respuesta = resp.get();
+				respuesta.setAlta(1);	
+				System.out.println("funciona!");
+
+				respuestaRepositorio.save(respuesta);
+				
+		}
+	}
 
 	@Transactional
 	public void modificar(String idRespuesta, String rtaModificado) throws Exception {

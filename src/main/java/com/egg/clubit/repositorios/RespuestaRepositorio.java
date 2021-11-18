@@ -14,8 +14,8 @@ import com.egg.clubit.entidades.Respuesta;
 public interface RespuestaRepositorio extends JpaRepository <Respuesta, String> {
 
 	
-	@Query(value= "SELECT * FROM respuesta r WHERE r.posteo_id LIKE :idPost ORDER BY  r.fecha_resp ASC",  nativeQuery = true )
+	@Query(value= "SELECT * FROM respuesta r WHERE r.posteo_id LIKE :idPost AND r.alta != 2 ORDER BY  r.fecha_resp ASC",  nativeQuery = true )
 	public List<Respuesta> ordenarRespuesta(@Param("idPost") String idPost);
 	
-
+	
 }

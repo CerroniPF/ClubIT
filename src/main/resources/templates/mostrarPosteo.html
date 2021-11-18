@@ -10,48 +10,66 @@
 </head>
 
 <body>
-
+	
 	<header th:replace="nav/nav.html :: nav"> </header>
 	<p th:text="${error}"></p>
 	
-	<a th:if="${session.usersession}" class="boton" href="/crearPost">Post</a>
+
 	<!--<a th:if="${session.usersession}" class="botones" th:href="@{verPosteo/} +  ${session.usersession.id}">Editar</a> -->
 	<div class="contenedorPost">
-	<form action="/bajaPost" method="POST">
+	<form action="/cerrarPosteo" method="POST">
 		<div class="contenedor">
 			<div class="cajaCampo">
-				<b class="fechaCampo" th:text="${posteo.id}"></b>
+				<input class="fechaCampo" th:value="${posteo.id}" hidden name="id" />
 				<b class="tituloCampo" th:text="${posteo.titulo}"></b>
 				<div class="cajaDatos">
-					<b class="tituloCampo" th:text="${posteo.fechaPosteo}"></b>
+					<b class="tituloCampo" th:text="${#dates.format(posteo.fechaPosteo, 'dd/MM/yy h:mm a')}"></b>
 					<b class="tituloCampo" th:text="${posteo.etiqueta.nombre}"></b>
-					<button><img class="botonAbrir"  src="../papelera.png" alt="papelera"></button>
+					<button th:if= "${session.usersession!=null && (session.usersession.rolAdministrador ) && posteo.alta==1}"><img class="botonAbrir"  src="../canda.png" alt="papelera"></button>
+					
+
+						</form>
+
+	<form action="/bajaPost" method="POST" >
+		<input class="fechaCampo" th:value="${posteo.id}" hidden name="id" />
+	
+		<button th:if="${session.usersession!=null && session.usersession.rolAdministrador && posteo.alta==1}"><img class="botonAbrir"  src="../cruz.png" alt="papelera"></button>
+</form>
+<form action="/altaPost" method="POST" >
+		<input class="fechaCampo" th:value="${posteo.id}" hidden name="id" />
+	
+		<button th:if="${session.usersession!=null && session.usersession.rolAdministrador && posteo.alta==2}"><img class="botonCerrar"  src="../check.png" alt="papelera"></button>
+				<button th:if="${session.usersession!=null && session.usersession.rolAdministrador && posteo.alta==0}"><img class="botonCerrar"  src="../candadoAbierto.png" alt="papelera"></button>
+
+</form>
 				</div>
 			</div>
 			<div class="cajaPost">
 				<b class="post" th:text="${posteo.posteo}"></b>
 			</div>
 		</div>
-	</form>
-		<div class="cantenedorRespuesta">
+		<div class="tituloContenedorRespuesta">
 	<b class="textoRespuesta">RESPUESTAS</b>
 		</div>
-	<form action="/bajaRespuesta" method="POST">	
-		<div class="contenedor" th:each="respuesta : ${respuestas}">
-			<div class="cajaCampo">
-				<b class="fechaCampo" th:text="${respuesta.id}"></b>
-				<b class="fechaCampo" th:text="${respuesta.respuesta}"></b>
+	<form action="/bajaRespuesta" method="POST" th:each="respuesta : ${respuestas}">	
+		<div class="contenedorRespuesta" >
+			<div class="cajaCampoRespuesta">
+				<input   th:value="${respuesta.id}" hidden name="id"/>			
+					
+				<div class="bloqueCampos">
 				<b class="tituloCampo" th:text="${respuesta.usuario.nombreUsuario}"></b>
-				<b class="fechaCampo" th:text="${respuesta.fechaResp}"></b>
-				<button><img class="botonAbrir"  src="../papelera.png" alt="papelera"></button>
-			</div>
+				<b class="fechaCampo" th:text="${#dates.format(respuesta.fechaResp, 'dd/MM/yy h:mm a')}"></b>
+				</div>
+				<b class="post" th:text="${respuesta.respuesta}"></b>
+				<button th:if="${session.usersession!=null && session.usersession.rolAdministrador}"><img class="botonAbrir"  src="../cruz.png" alt="papelera"></button>
+			</div></div>
 	</form>
-
-		</div>
+	
+	
 		<p th:if="${session.usersession == null}" class="error"> Para poder responder debe estar logeado </p>
 		<form th:if="${session.usersession}" action="/posteo/${id}/respuesta" method="POST">
 		<input th:value="${posteo.id}" type="text" placeholder="Ingrese nombre" hidden name="idPost" />
-			<div class="contenedorRespouesta">
+			<div class="contenedorRespouesta" th:if="${posteo.alta==1}">
 				<textarea name="respuestaRTA" id="" cols="100" rows="20" placeholder="Ingrese tu post"></textarea>
 				<button class="botonResponder">Responder</button>
 			</div>
