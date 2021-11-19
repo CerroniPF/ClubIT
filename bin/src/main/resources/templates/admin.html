@@ -29,24 +29,21 @@
 			<b class="tituloCampo" th:text="${usuario.nombreUsuario}"></b>
 			<b class="tituloCampo" th:text="${usuario.mail}"></b>
 		</div>
-		<div>
-
-		<form class="contenedorBotonAlta" action="/darAdmin" method="POST">	
+		
+		<form action="/darAdmin" method="POST">	
 		<input class="campo" hidden th:value="${usuario.mail}" type="text" placeholder="Ingrese nombre " name="mail" />	
-			
+			<div class=>
 			<button><img th:if="${usuario.rolAdministrador}" class="botonAbrir" src="corona.png"
 					alt="papelera"></button>
 			<button ><img th:if="${!usuario.rolAdministrador}" class="botonAbri" src="corona.png"
 					alt="papelera"></button>
-			
+			</div>
 				
 		</form>				
-		<form class="contenedorBotonAlta" action="/borrarUsuarioAdmin" method="POST">
+		<form action="/borrarUsuarioAdmin" method="POST">
 		<input class="campo" hidden th:value="${usuario.mail}" type="text" placeholder="Ingrese nombre " name="mail" />
-				<button></button>
 				<button><img class="botonAbrir" src="papelera.png" alt="papelera"></button>
 		</form>
-			</div>
 			</div>
 	</div>
 </div>

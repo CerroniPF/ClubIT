@@ -1,53 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head th:fragment="head">
-     <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro usuario	</title>
+    <title>Registro usuario</title>
     <link th:replace="nav/nav.html :: link">
-    <link rel="stylesheet" href="registroUsuario.css" />
-   
- 
-    
-    
+    <link rel="stylesheet" href="registroUsuario.css" />    
 </head>
-<header th:replace="nav/nav.html :: nav"> </header>
+
 <body>
+	<header th:replace="nav/nav.html :: nav"> </header>
     <div class="contenedor">
     <div  class="error" th:text="${error}" th:if="${error != null}"></div>
         <form  action="registro" method="POST">
-
             <div  class="cajaCampo">
                 <b class="nombreCampo">Nombre</b>
-                <input class="campo" type="text" placeholder="ingrese nombre" th:value=${nombre} name="nombre" />
+                <input class="campo" type="text" placeholder="Ingrese nombre" th:value=${nombre} name="nombre" />
             </div>
             <div  class="cajaCampo">
                 <b class="nombreCampo">Apellido</b>
-                <input class="campo" type="text" placeholder="ingrese apellido" th:value=${apellido} name="apellido" />
+                <input class="campo" type="text" placeholder="Ingrese apellido" th:value=${apellido} name="apellido" />
             </div><div  class="cajaCampo">
                 <b class="nombreCampo">Nombre Usuario</b>
-                <input class="campo" type="text" placeholder="ingrese nombre usuario"  th:value=${nombreUsuario} name="nombreUsuario" />
+                <input class="campo" type="text" placeholder="Ingrese nombre usuario" th:value=${nombreUsuario} name="nombreUsuario" />
             </div>
             <div  class="cajaCampo">
                 <b class="nombreCampo">Email</b>
-                <input class="campo" type="email" placeholder="ingrese mail" th:value=${mail} name="mail" />
+                <input class="campo" type="email" placeholder="Ingrese mail" th:value=${mail} name="mail" />
             </div>
-        
             <div  class="cajaCampo">
                 <b class="nombreCampo">Contraseña</b>
-                <input class="campo" type="password" placeholder="ingrese contraseña" name="pass" />
+                <input class="campo" type="password" placeholder="Ingrese contraseña" name="pass" />
             </div>
             <div  class="cajaCampo">
                 <b class="nombreCampo">Repita Contraseña</b>
-                <input class="campo" type="password" placeholder="ingrese contraseña"   name="pass2" />
+                <input class="campo" type="password" placeholder="Ingrese contraseña" name="pass2" />
             </div>
-				
-            <button class="botonRegistro">registro</button>
+            <button class="botonRegistro">Registro</button>
         </form>
     </div>
-  
 </body>
-
 </html>

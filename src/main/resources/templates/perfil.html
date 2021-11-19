@@ -54,39 +54,6 @@
 			<button class="agregar">Guardar cambios</button>
 		</form>
 	</div>
-	
-
-    <div class="contenedor">
-    <div  class="error" th:text="${error}" th:if="${error != null}"></div>
-	<div  class="exito" th:text="${exito}" th:if="${exito != null}"></div>
-        <form action="editarUsuario" method="POST">
-            <div class="contenedorTitulo">
-            <h2 class="titulo" th:text="${session.usersession.nombreUsuario}">{nombre usurio}</h2>
-        </div>
-            <div class="columnas">
-     
-                <div  class="camposLibro">
-                <input class="campo" hidden th:value="${session.usersession.mail}" type="text" placeholder="ingrese nombre " name="mail" />
-                    <b class="tituloCampo" >Nombre </b>
-                    <input class="campo" th:value="${session.usersession.nombre}" type="text" placeholder="ingrese nombre " name="nombre" />
-                </div> 
-                   <div  class="camposLibro">
-                    <b class="tituloCampo">Apellido</b>
-                    <input class="campo" th:value="${session.usersession.apellido}" type="text" placeholder="ingrese apellido" name="apellido" />
-                </div>
-                <div  class="camposLibro">
-                <b class="tituloCampo">Nombre de usuario</b>
-                <input class="campo" th:value="${session.usersession.nombreUsuario}" type="text" placeholder="ingrese nombre usuario" name="nombreUsuario2" />
-            </div>
-
-
-        
-
-        </div>
-            <button class="agregar">Guardar cambios</button>
-        </form>
-    </div>
-  
 
 	<!-- Codigo JavaScrip -->
 	<script>

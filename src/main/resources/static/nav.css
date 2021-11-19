@@ -176,3 +176,19 @@ input:-webkit-autofill:focus
     transition: background-color 600000s 0s, color 600000s 0s;
 }
 
+@media all and (max-width: 900px) {
+    .logo {
+        display: none;
+    }
+    .restoNav {
+    width: 80%;
+    display: flex;
+ 	}
+	.usuarioLogin {
+    width: 60%;
+    height: 100%;
+	}
+	.navbar {
+ 		 display: none;
+	}	
+}

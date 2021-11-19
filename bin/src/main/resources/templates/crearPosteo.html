@@ -5,36 +5,30 @@
      <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cargar Libro</title>
+    <title>Crear post</title>
      <link th:replace="nav/nav.html :: link">
     <link rel="stylesheet" href="crearPosteo.css" />
 </head>
 
 <body>
-<header th:replace="nav/nav.html :: nav"> </header>
-	
+	<header th:replace="nav/nav.html :: nav"> </header>
     <div class="contenedorPost">
         <form action="/crearPost" method="POST">
-     
             <div  class="cajaCampo">
                 <b class="nombreCampo">Titulo</b>
-                <input class="campo" type="text" placeholder="ingrese titulo" name="titulo" />
+                <input class="campo" type="text" placeholder="Ingrese titulo" name="titulo" />
             </div>
               <div  class="cajaCampo">
                    <select class="select" name="etiqueta">
  						<option th:each = "etiqueta : ${etiquetas}" th:value="${etiqueta.id}" th:text="${etiqueta.nombre}" > </option>
  					</select>
             </div>
-        
             <div  class="cajaCampo">
                 <b class="nombreCampo">Post</b>
-               
                 <textarea name="posteo" id="" cols="100" rows="20" placeholder="Ingrese tu post"></textarea>
             </div>
             <button class="boton" id="boton2">Postear</button>
         </form>
-    </div>
-  
+    </div>  
 </body>
-
 </html>

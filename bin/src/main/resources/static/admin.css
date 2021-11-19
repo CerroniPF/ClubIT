@@ -11,10 +11,7 @@
 	outline: none;
 }
 
-.contenedorBotones{
-display: flex;
-justify-content: center;	
-}
+
 .contenedorPost{
     background-color: rgba(63, 73, 87,0.9);
     width: 70%;
@@ -50,7 +47,7 @@ margin-top:10px;
 }
 
 .post{
-	  display: inline-bl;
+	  display: inline-flex;
     width: 95%;
     color:white;
     margin :auto;
@@ -71,21 +68,21 @@ margin-top:10px;
 }
 
 .botonPost {
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
-    text-align:center;
-    margin:10px;
-    margin-top: 20px;
     height: 40px;
-    width: 130px;
+    width: 100px;
     background: #4596D9;
     color: white;
     border-radius: 15px;
     text-decoration: none;
-    
+    margin-top: 30px;
+    margin-left: 46%;
 }
-
+.botonPost{
+	 background: #69b7f6;
+}
 .botonPost-largo {
     width: 120px;
 }
@@ -116,4 +113,30 @@ width: 20%;
     color: white;
     width: 80%;
 }
-  
+
+.botonAbrir {
+	cursor: pointer;
+	display: inline-flex;
+	margin:auto;
+	width: 30px;
+	height: 30px;
+	background-color: #dc3545;
+   border-radius:  7px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.botonAbri {
+	cursor: pointer;
+	display: inline-flex;
+	margin:auto;
+	width: 30px;
+	height: 30px;
+	background-color: #198754;
+
+   border-radius:  7px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

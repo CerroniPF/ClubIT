@@ -39,10 +39,10 @@ public class posteoControlador {
 
 	@Autowired
 	RespuestaServicio respuestaServicio;
-	
+
 	@Autowired
 	EtiquetaRepositorio etiquetaRepositorio;
-	
+
 	@Autowired
 	RespuestaRepositorio respuestaRepositorio;
 
@@ -55,7 +55,10 @@ public class posteoControlador {
 		return mav;
 	}
 
-	/* Activar en el validar en la etiqueta y poner aca la atiqueta pasada por parametro */
+	/*
+	 * Activar en el validar en la etiqueta y poner aca la atiqueta pasada por
+	 * parametro
+	 */
 	@PreAuthorize("hasAnyRole('ROLE_ACTIVO')")
 	@PostMapping("/crearPost")
 	public RedirectView crearPostMetodoPost(Model modelo, HttpSession httpSession, @RequestParam String titulo,
@@ -79,25 +82,35 @@ public class posteoControlador {
 		rv.setUrl("/");
 		return rv;
 	}
-	
+
 	@ModelAttribute
 	public void addAttributes(Model modelo) {
 		List<Etiqueta> listaEtiquetas = etiquetaRepositorio.findAll();
-	    modelo.addAttribute("etiquetas", listaEtiquetas);
+		modelo.addAttribute("etiquetas", listaEtiquetas);
 	}
 //--------------------------------------------------------------------------------------------	
 
 	/* ESTE MÉTODO MUESTRA 1 SOLO POSTEO */
 	@GetMapping("/posteo/{id}")
 	public String posteo(Model modelo, @PathVariable String id) {
-		Posteo posteo = posteoServicio.buscarPorId(id);
-		modelo.addAttribute("posteo", posteo);
-		List<Respuesta> listaRespuestaOrdenada=respuestaRepositorio.ordenarRespuesta(id);
-		modelo.addAttribute("respuestas", listaRespuestaOrdenada);
-		System.out.println();
-		
-		return "mostrarPosteo";
-	}
 
-//--------------------------------------------------------------------------------------------		
+		Usuario u = usuarioServicio.buscarPorId(id);
+		
+		if (u.getRolAdministrador()) {
+			Posteo posteo = posteoServicio.buscarPorId(id);
+			modelo.addAttribute("posteo", posteo);
+			List<Respuesta> listaRespuestaOrdenada = respuestaRepositorio.ordenarRespuesta(id);
+			modelo.addAttribute("respuestas", listaRespuestaOrdenada);
+
+			return "mostrarPosteo";
+		} else {
+			Posteo posteo = posteoServicio.buscarPorId(id);
+			modelo.addAttribute("posteo", posteo);
+			List<Respuesta> listaRespuestaOrdenada = respuestaRepositorio.ordenarTodasRespuesta(id);
+			modelo.addAttribute("respuestas", listaRespuestaOrdenada);
+
+			return "mostrarPosteo";
+		}
+	}
+//--------------------------------------------------------------------------------------------
 }

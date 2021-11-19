@@ -170,13 +170,8 @@ public String bajaRespuesta( @RequestParam String id) throws Exception {
 @PostMapping("/altaRespuesta")
 public String altaRespuesta( @RequestParam String id ) throws Exception {
 	System.out.println(id+ "id");
-
 	respuestaServicio.darAlta(id);
 	
 	return "redirect:/";
   }
-
-
-
-
 }
