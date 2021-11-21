@@ -12,6 +12,26 @@
 <body>
 	
 	<header th:replace="nav/nav.html :: nav"> </header>
+	    <div class="cajaExplicaBotones">
+        <div class="explicaBotones">
+            <b>alta posteo</b>
+            <img class="botonAbrir" src="../candadoAbierto.png" alt="">
+        </div>
+     
+        <div class="explicaBotones">
+            <b>baja posteo</b>
+            <img class="botonCerrar" src="../candadoCerrado.png" alt="">
+        </div>
+      <div class="explicaBotones"> 
+            <b>restaurar posteo</b>
+            <img class="botonAbrir" src="../check.png" alt="">
+        </div>
+     
+        <div class="explicaBotones">
+            <b>borrar posteo</b>
+            <img class="botonCerrar"  src="../cruz.png" alt="">
+        </div>
+        </div>
 	<p th:text="${error}"></p>
 	
 
@@ -25,7 +45,7 @@
 				<div class="cajaDatos">
 					<b class="tituloCampo" th:text="${#dates.format(posteo.fechaPosteo, 'dd/MM/yy h:mm a')}"></b>
 					<b class="tituloCampo" th:text="${posteo.etiqueta.nombre}"></b>
-					<button th:if= "${session.usersession!=null && (session.usersession.rolAdministrador || session.usersession.id == posteo.usuario.id) && posteo.alta==1}"><img class="botonAbrir"  src="../canda.png" alt="papelera"></button>
+					<button th:if= "${session.usersession!=null && (session.usersession.rolAdministrador || session.usersession.id == posteo.usuario.id) && posteo.alta==1}"><img class="botonCerrar"  src="../candadoCerrado.png" alt="papelera"></button>
 					
 
 						</form>
@@ -33,15 +53,16 @@
 	<form action="/bajaPost" method="POST" >
 		<input class="fechaCampo" th:value="${posteo.id}" hidden name="id" />
 	
-		<button th:if="${session.usersession!=null && session.usersession.rolAdministrador && posteo.alta==1}"><img class="botonAbrir"  src="../cruz.png" alt="papelera"></button>
+		<button th:if="${session.usersession!=null && session.usersession.rolAdministrador && posteo.alta==1}"><img class="botonCerrar"  src="../cruz.png" alt="papelera"></button>
 </form>
 <form action="/altaPost" method="POST" >
 		<input class="fechaCampo" th:value="${posteo.id}" hidden name="id" />
 	
-		<button th:if="${session.usersession!=null && session.usersession.rolAdministrador && posteo.alta==2}"><img class="botonCerrar"  src="../check.png" alt="papelera"></button>
-				<button th:if="${session.usersession!=null && (session.usersession.rolAdministrador || session.usersession.id == posteo.usuario.id) && posteo.alta==0}"><img class="botonCerrar"  src="../candadoAbierto.png" alt="papelera"></button>
+		<button th:if="${session.usersession!=null && session.usersession.rolAdministrador && posteo.alta==2}"><img class="botonAbrir"  src="../check.png" alt="papelera"></button>
+				<button th:if="${session.usersession!=null && (session.usersession.rolAdministrador || session.usersession.id == posteo.usuario.id) && posteo.alta==0}"><img class="botonAbrir"  src="../candadoAbierto.png" alt="papelera"></button>
 
 </form>
+
 				</div>
 			</div>
 			<div class="cajaPost">
@@ -61,7 +82,7 @@
 				<b class="fechaCampo" th:text="${#dates.format(respuesta.fechaResp, 'dd/MM/yy h:mm a')}"></b>
 				</div>
 				<b class="post" th:text="${respuesta.respuesta}"></b>
-				<button th:if="${session.usersession!=null && session.usersession.rolAdministrador}"><img class="botonAbrir"  src="../cruz.png" alt="papelera"></button>
+				<button th:if="${session.usersession!=null && session.usersession.rolAdministrador}"><img class="botonCerrar"  src="../cruz.png" alt="papelera"></button>
 			</div></div>
 	</form>
 	

@@ -13,7 +13,6 @@
 	outline: none;
 }
 
-
 .contenedorPost{
     background-color: rgba(63, 73, 87,0.9);
     width: 70%;
@@ -21,7 +20,7 @@
     text-align: center;
     border-radius: 10px;
     margin:10px auto;
- 
+   
 }
 
 .contenedorBotones{
@@ -39,8 +38,7 @@ justify-content: center;
     display: inline-flex;
     width: 90%;
     flex-wrap:wrap;
-   
-
+	
 }
 .cajaPost{
     display: inline-flex;
@@ -69,7 +67,7 @@ margin-top:10px;
     color:white;
     margin :auto;
     padding: 10px;
-
+    word-break:break-all;
 }
 .textoRespuesta{
     color:white;

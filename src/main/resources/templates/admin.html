@@ -18,7 +18,23 @@
 
 </body>
 <p th:text="${error}"></p>
-
+<div class="cajaExplicaBotones">
+        <div class="explicaBotones">
+            <b>Dar admin</b>
+            <img class="botonAbrir" src="corona.png" alt="">
+        </div>
+     
+        <div class="explicaBotones">
+            <b>Sacar admin</b>
+            <img class="botonCerrar" src="corona.png" alt="">
+        </div>
+      <div class="explicaBotones"> 
+            <b>Borrar usuario</b>
+            <img class="botonCerrar" src="papelera.png" alt="">
+        </div>
+     
+   
+        </div>
 
 <div class="contenedorPost">
 
@@ -34,9 +50,9 @@
 		<form class="contenedorBotonAlta" action="/darAdmin" method="POST">	
 		<input class="campo" hidden th:value="${usuario.mail}" type="text" placeholder="Ingrese nombre " name="mail" />	
 			
-			<button><img th:if="${usuario.rolAdministrador}" class="botonAbrir" src="corona.png"
+			<button><img th:if="${usuario.rolAdministrador}" class="botonCerrar" src="corona.png"
 					alt="papelera"></button>
-			<button ><img th:if="${!usuario.rolAdministrador}" class="botonAbri" src="corona.png"
+			<button ><img th:if="${!usuario.rolAdministrador}" class="botonAbrir" src="corona.png"
 					alt="papelera"></button>
 			
 				
@@ -44,7 +60,7 @@
 		<form class="contenedorBotonAlta" action="/borrarUsuarioAdmin" method="POST">
 		<input class="campo" hidden th:value="${usuario.mail}" type="text" placeholder="Ingrese nombre " name="mail" />
 				<button></button>
-				<button><img class="botonAbrir" src="papelera.png" alt="papelera"></button>
+				<button><img class="botonCerrar" src="papelera.png" alt="papelera"></button>
 		</form>
 			</div>
 			</div>

@@ -116,30 +116,64 @@ width: 20%;
 
 .botonAbrir {
 	cursor: pointer;
-	display: inline-flex;	
+	display: inline-flex;
+	margin:auto;
 	width: 30px;
 	height: 30px;
-	background-color: #dc3545;    
+    background-color: rgb(128, 255, 128);
+ 	border-radius:  7px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border: none;
 }
+button{
+border:none;
+height: 0px;	
 
-.botonAbri {
+}
+.botonCerrar {
 	
 	cursor: pointer;
 	display: inline-flex;	
 	width: 30px;
 	height: 30px;
-	background-color: #198754;    
+	background-color:#d24848;   
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	border: none;
+	margin:auto;
+	border-radius: 7px;;
 }
 
 .contenedorBotonAlta{
 	display: inline-block;
 	margin: auto;
+}
+   .explicaBotones{
+   display:flex;
+    text-align: center;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    color:white;
+    width:25%;
+    margin:auto;
+    
+  
+    
+}
+   .cajaExplicaBotones{
+   display:flex;
+    
+    text-align: center;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    color:white;
+    width:60%;
+   
+    
 }

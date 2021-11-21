@@ -163,7 +163,7 @@ width: 20%;
 	margin:auto;
 	width: 30px;
 	height: 30px;
-	background-color:#d24848;
+    background-color: rgb(128, 255, 128);
  	border-radius:  7px;
 	display: flex;
 	align-items: center;
@@ -180,13 +180,40 @@ height: 0px;
 	margin:auto;
 	width: 30px;
 	height: 30px;
-	background-color: rgb(128, 255, 128);
+	background-color:#d24848;
+	
    border-radius:  7px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
+   .explicaBotones{
+   display:flex;
+    text-align: center;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    color:white;
+    width:25%;
+    margin:auto;
     
+  
+    
+}
+   .cajaExplicaBotones{
+   display:flex;
+    
+    text-align: center;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    color:white;
+    width:60%;
+   
+    
+} 
     
     
     

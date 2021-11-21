@@ -25,7 +25,7 @@
 				<div class="cajaDatos">
 					<b class="tituloCampo" th:text="${#dates.format(posteo.fechaPosteo, 'dd/MM/yy h:mm a')}"></b>
 					<b class="tituloCampo" th:text="${posteo.etiqueta.nombre}"></b>
-					<button th:if= "${session.usersession!=null && (session.usersession.rolAdministrador ) && posteo.alta==1}"><img class="botonAbrir"  src="../canda.png" alt="papelera"></button>
+					<button th:if= "${session.usersession!=null && (session.usersession.rolAdministrador || session.usersession.id == posteo.usuario.id) && posteo.alta==1}"><img class="botonAbrir"  src="../canda.png" alt="papelera"></button>
 					
 
 						</form>
@@ -39,7 +39,7 @@
 		<input class="fechaCampo" th:value="${posteo.id}" hidden name="id" />
 	
 		<button th:if="${session.usersession!=null && session.usersession.rolAdministrador && posteo.alta==2}"><img class="botonCerrar"  src="../check.png" alt="papelera"></button>
-				<button th:if="${session.usersession!=null && session.usersession.rolAdministrador && posteo.alta==0}"><img class="botonCerrar"  src="../candadoAbierto.png" alt="papelera"></button>
+				<button th:if="${session.usersession!=null && (session.usersession.rolAdministrador || session.usersession.id == posteo.usuario.id) && posteo.alta==0}"><img class="botonCerrar"  src="../candadoAbierto.png" alt="papelera"></button>
 
 </form>
 				</div>

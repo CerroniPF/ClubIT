@@ -116,27 +116,30 @@ width: 20%;
 
 .botonAbrir {
 	cursor: pointer;
-	display: inline-flex;
-	margin:auto;
+	display: inline-flex;	
 	width: 30px;
 	height: 30px;
-	background-color: #dc3545;
-   border-radius:  7px;
+	background-color: #dc3545;    
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border: none;
 }
 
 .botonAbri {
+	
 	cursor: pointer;
-	display: inline-flex;
-	margin:auto;
+	display: inline-flex;	
 	width: 30px;
 	height: 30px;
-	background-color: #198754;
-
-   border-radius:  7px;
+	background-color: #198754;    
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border: none;
+}
+
+.contenedorBotonAlta{
+	display: inline-block;
+	margin: auto;
 }

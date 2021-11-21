@@ -94,23 +94,14 @@ public class posteoControlador {
 	@GetMapping("/posteo/{id}")
 	public String posteo(Model modelo, @PathVariable String id) {
 
-		Usuario u = usuarioServicio.buscarPorId(id);
+		Posteo posteo = posteoServicio.buscarPorId(id);
+		modelo.addAttribute("posteo", posteo);
+		List<Respuesta> listaRespuestaOrdenada=respuestaRepositorio.ordenarRespuesta(id);
+		modelo.addAttribute("respuestas", listaRespuestaOrdenada);
+		System.out.println();
 		
-		if (u.getRolAdministrador()) {
-			Posteo posteo = posteoServicio.buscarPorId(id);
-			modelo.addAttribute("posteo", posteo);
-			List<Respuesta> listaRespuestaOrdenada = respuestaRepositorio.ordenarRespuesta(id);
-			modelo.addAttribute("respuestas", listaRespuestaOrdenada);
-
-			return "mostrarPosteo";
-		} else {
-			Posteo posteo = posteoServicio.buscarPorId(id);
-			modelo.addAttribute("posteo", posteo);
-			List<Respuesta> listaRespuestaOrdenada = respuestaRepositorio.ordenarTodasRespuesta(id);
-			modelo.addAttribute("respuestas", listaRespuestaOrdenada);
-
 			return "mostrarPosteo";
 		}
-	}
+	
 //--------------------------------------------------------------------------------------------
 }
