@@ -198,7 +198,8 @@ public class UsuarioServicio implements UserDetailsService {
 			User user = new User(usuario.getMail(), usuario.getContrasena(), permisos);
 			return user;
 		} else {
-			return null;
+
+			throw new UsernameNotFoundException("El usuario no fue encontrado");
 		}
 	}
 

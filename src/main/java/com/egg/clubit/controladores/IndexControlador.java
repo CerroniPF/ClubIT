@@ -122,10 +122,9 @@ public class IndexControlador {
 
 	@PostMapping("/darAdmin")
 	public String darAdmin( @RequestParam String mail) {
-		System.out.println("asdsadas");
 		usuarioServicio.asignarRol(mail);
 		
-		return "redirect:/";
+		return "redirect:/admin";
 	}
 //	-------------------------------------------------------------------------------------------------------------------------
 	@PostMapping("/cerrarPosteo")
@@ -139,25 +138,18 @@ public class IndexControlador {
 //	-------------------------------------------------------------------------------------------------------------------------
 	@PostMapping("/bajaPost")
 	public String bajaPost( @RequestParam String id ) throws Exception {
-		System.out.println(id+ "id");
-
 		posteoServicio.darBaja(id);
-		
 		return "redirect:/";
 	}
 	//-------------------------------------------------------------------------------------------------------------------------
 	@PostMapping("/altaPost")
 	public String altaPost( @RequestParam String id ) throws Exception {
-		System.out.println(id+ "id");
-
 		posteoServicio.darAlta(id);
-		
 		return "redirect:/";
 	}
 //-------------------------------------------------------------------------------------------------------------------------
 @PostMapping("/bajaRespuesta")
 public String bajaRespuesta( @RequestParam String id) throws Exception {
-	System.out.println(id+ "id");
 	respuestaServicio.darBaja(id);
 	return "redirect:/";
 	//ver redirect
@@ -169,7 +161,6 @@ public String bajaRespuesta( @RequestParam String id) throws Exception {
 //-------------------------------------------------------------------------------------------------------------------------
 @PostMapping("/altaRespuesta")
 public String altaRespuesta( @RequestParam String id ) throws Exception {
-	System.out.println(id+ "id");
 	respuestaServicio.darAlta(id);
 	
 	return "redirect:/";
